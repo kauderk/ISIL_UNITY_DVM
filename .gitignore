@@ -78,4 +78,9 @@ crashlytics-build.properties
 *.zip.meta
 *.rar
 
+# plastic
+.plastic
+.collabignore
+ignore.conf
+
 
