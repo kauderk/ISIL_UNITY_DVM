@@ -1,0 +1,28 @@
+{
+	"name": "com.singersilent.behavior",
+	"version": "0.0.1",
+	"displayName": "Behaviors",
+	"description": "This is a package Example",
+	"unity": "2019.1",
+	"unityRelease": "0b5",
+	"documentationUrl": "https://example.com/",
+	"changelogUrl": "https://example.com/changelog.html",
+	"licensesUrl": "https://example.com/licensing.html",
+	"samples": [
+		{
+			"displayName": "Sample Package",
+			"description": "Example of a sample package",
+			"path": "Runtime/"
+		}
+	],
+	"dependencies": {},
+	"keywords": [
+		"Package-Name",
+		"Example"
+	],
+	"author": {
+		"name": "SingerSilent",
+		"email": "unity@example.com",
+		"url": "https://www.unity3d.com"
+	}
+}
