@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rgb = null;
 
-    private Vector3 dirección = Vector3.zero;
+    private Vector3 direction = Vector3.zero;
     //private Vector3 rotation = Vector3.zero;
 
     private float moveX, moveZ, timePerBullet = 0f;
@@ -51,11 +51,11 @@ public class PlayerController : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveZ = Input.GetAxisRaw("Vertical");
 
-        dirección = new Vector3(moveX, 0, moveZ) * 10;
+        direction = new Vector3(moveX, 0, moveZ) * 10;
 
-        transform.forward = dirección.normalized;
+        transform.forward = direction.normalized;
 
-        _rgb.velocity = dirección;
+        _rgb.velocity = direction;
 
         if (Input.GetMouseButtonDown(0) & timePerBullet > 0.17f)
         {
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
         if(count == 0)
         {
-            txtBulletCount.text = "¡R!";
+            txtBulletCount.text = "R!";
         }
     }
 
