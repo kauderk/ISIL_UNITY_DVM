@@ -449,14 +449,14 @@ namespace Photon.Realtime
     #if UNITY_WEBGL
     public class PingHttp : PhotonPing
     {
-        private WWW webRequest;
+        private UnityEngine.Networking.UnityWebRequest webRequest;
 
         public override bool StartPing(string address)
         {
             base.Init();
 
             address = "https://" + address + "/photon/m/?ping&r=" + UnityEngine.Random.Range(0, 10000);
-            this.webRequest = new WWW(address);
+            this.webRequest = new UnityEngine.Networking.UnityWebRequest(address);
             return true;
         }
 
