@@ -6,6 +6,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.ricostudio.sceneingame": {
+      "version": "file:SceneInGame",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.singersilent.behavior": {
       "version": "file:Behavior",
       "depth": 0,

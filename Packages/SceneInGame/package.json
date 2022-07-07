@@ -1,0 +1,28 @@
+{
+	"name": "com.ricostudio.sceneingame",
+	"version": "0.0.1",
+	"displayName": "SceneInGame",
+	"description": "This is a package Example",
+	"unity": "2019.1",
+	"unityRelease": "0b5",
+	"documentationUrl": "https://example.com/",
+	"changelogUrl": "https://example.com/changelog.html",
+	"licensesUrl": "https://example.com/licensing.html",
+	"samples": [
+		{
+			"displayName": "Tank_BG_Scene",
+			"description": "Example of a sample package",
+			"path": "Runtime/"
+		}
+	],
+	"dependencies": {},
+	"keywords": [
+		"Package-Name",
+		"Example"
+	],
+	"author": {
+		"name": "RICOSTUDIO",
+		"email": "unity@example.com",
+		"url": "https://www.unity3d.com"
+	}
+}
