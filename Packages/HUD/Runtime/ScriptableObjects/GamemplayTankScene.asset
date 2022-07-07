@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9fca33c7e860c2459dc5efa1117ba7b, type: 3}
-  m_Name: TestSceneData
+  m_Script: {fileID: 11500000, guid: 5822ccb9c5ee5a541a8bb0b0ef22d7ca, type: 3}
+  m_Name: GamemplayTankScene
   m_EditorClassIdentifier: 
-  Name: TestScene
-  LoadingScreen: {fileID: 21300000, guid: bd293dc32f4aaf94e8274f2fac2cdf89, type: 3}
+  Name: Gameplay
+  LoadingScreen: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Scene:
     sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
     scenePath: Packages/com.singersilent.behavior/Runtime/Scenes/Game.unity

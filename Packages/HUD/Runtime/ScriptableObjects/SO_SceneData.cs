@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 public abstract class ISObject : ScriptableObject
 {
     public string Name;
 }
 
+[System.Serializable]
 [ExecuteInEditMode]
 [CreateAssetMenu(fileName = "New Scene Data", menuName = "Scriptable Objects/SceneData")]
 public class SO_SceneData : ISObject

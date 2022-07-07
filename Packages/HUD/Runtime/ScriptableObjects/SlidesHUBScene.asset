@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5822ccb9c5ee5a541a8bb0b0ef22d7ca, type: 3}
-  m_Name: SceneHUB Data
+  m_Name: SlidesHUBScene
   m_EditorClassIdentifier: 
-  Name: SceneHUB
-  LoadingScreen: {fileID: 0}
+  Name: HUD
+  LoadingScreen: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Scene:
     sceneAsset: {fileID: 102900000, guid: c7e2a27c678976e44bae0e4efd807ffd, type: 3}
-    scenePath: Assets/Scenes/SceneHUB.unity
+    scenePath: Packages/com.kauderk.hud/Runtime/Scenes/SceneHUB.unity
   additiveScenes: []
