@@ -4,7 +4,7 @@ using UnityEditor;
 using SwipeMenu;
 
 [CustomEditor(typeof(SwipeHandler)), CanEditMultipleObjects]
-public class SwipeHandlerEditor : UnityEditor.Editor
+public class SwipeHandlerEditor : Editor
 {
     private SerializedProperty _handleFlicks;
     private SerializedProperty _handleSwipes;
