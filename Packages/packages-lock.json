@@ -8,9 +8,9 @@
       "url": "https://package.openupm.com"
     },
     "com.kauderk.hud": {
-      "version": "file:C:/Users/JOAKIN/Documents/Isil/C6 - M4/unity packages/HUD",
+      "version": "file:HUD",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
         "com.unity.textmeshpro": "3.0.4",
         "com.unity.ugui": "1.0.0",

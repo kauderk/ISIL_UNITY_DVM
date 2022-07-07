@@ -1,0 +1,33 @@
+{
+	"name": "com.kauderk.hud",
+	"version": "0.0.1",
+	"displayName": "HUD",
+	"description": "This is a HUD package Example",
+	"unity": "2019.1",
+	"unityRelease": "0b5",
+	"documentationUrl": "https://example.com/",
+	"changelogUrl": "https://example.com/changelog.html",
+	"licensesUrl": "https://example.com/licensing.html",
+	"samples": [
+		{
+			"displayName": "Sample HUD",
+			"description": "Example of a sample HUD",
+			"path": "Runtime/LauncherHUDScene.unity"
+		}
+	],
+	"dependencies": {
+		"com.unity.textmeshpro": "3.0.4",
+		"com.unity.ugui": "1.0.0",
+		"com.unity.modules.ui": "1.0.0"
+	},
+	"keywords": [
+		"HUD",
+		"Example",
+		"Multiplayer"
+	],
+	"author": {
+		"name": "KauDerK",
+		"email": "unity@example.com",
+		"url": "https://www.unity3d.com"
+	}
+}
