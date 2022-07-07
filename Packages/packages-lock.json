@@ -1,5 +1,22 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "2.3.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.kauderk.hud": {
+      "version": "file:C:/Users/JOAKIN/Documents/Isil/C6 - M4/unity packages/HUD",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.4",
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.ui": "1.0.0"
+      }
+    },
     "com.kauderk.lobby": {
       "version": "file:Lobby",
       "depth": 0,
