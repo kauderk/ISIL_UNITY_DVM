@@ -42,11 +42,6 @@ public class SceneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Hello(int x)
-    {
-        Debug.Log("Hello " + x);
-    }
-
     public async UniTask LoadScene<T>(T sceneID, float duration = 1, float waitTime = 2)
     {
         // YIKES!
