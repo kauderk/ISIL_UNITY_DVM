@@ -48,7 +48,7 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
         DontDestroyOnLoad(pupetMonoBehaviour);
         // AppendCanvasTo
         FaderCanvas = Instantiate(FaderCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        FaderCanvas.SetActive(true);
+        FaderCanvas.SetActive(false);
         SetupFader();
         //SceneUtils.ToogleFader(true);
     }
@@ -87,7 +87,8 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     }
     public static void LoadScene(SO_SceneData data)
     {
-        pupetMonoBehaviour.GetComponent<LoaderUtils>().LoadScene(data.Scene);
+        var name = LoaderUtilsStatic.getSceneName(data.Scene);
+        pupetMonoBehaviour.GetComponent<LoaderUtils>().LoadScene(name);
     }
     #endregion
 

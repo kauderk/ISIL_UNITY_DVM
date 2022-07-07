@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SceneLoader
   m_EditorClassIdentifier: 
   LoadingData:
-  - {fileID: 11400000, guid: 3d88add320f9b0444b99728261191007, type: 2}
-  - {fileID: 11400000, guid: a13bfcb06bf128d458262cbb063fa385, type: 2}
-  - {fileID: 11400000, guid: 765e13aba5e349848be4354d0920bed3, type: 2}
   - {fileID: 11400000, guid: dc12983b82d18dd44b4a7fc3f393e3f2, type: 2}
-  FaderCanvas: {fileID: 4116738222299488092, guid: 41f43640fe213aa4ea437d9edf86e5a6, type: 3}
+  - {fileID: 11400000, guid: 3d88add320f9b0444b99728261191007, type: 2}
+  - {fileID: 11400000, guid: 765e13aba5e349848be4354d0920bed3, type: 2}
+  - {fileID: 11400000, guid: a13bfcb06bf128d458262cbb063fa385, type: 2}
+  FaderCanvasPrefab: {fileID: 4116738222299488092, guid: 41f43640fe213aa4ea437d9edf86e5a6, type: 3}
   isForcedToLoad: 0
