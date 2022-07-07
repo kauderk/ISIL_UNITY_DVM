@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         transform.forward = direction.normalized;
         _rgb.velocity = direction;
 
-        if(isShooting == true) timePerBullet += Time.deltaTime;
+        if (isShooting == true) timePerBullet += Time.deltaTime;
 
         if (isRealoding == true)
         {
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
-        if(count == 0) txtBulletCount.text = "¡R!";
+        if (count == 0) txtBulletCount.text = "R!";
 
         #region multiplayers
         #endregion
