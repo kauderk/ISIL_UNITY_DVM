@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Packages/com.singersilent.behavior/Runtime/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Packages/com.ricostudio.sceneingame/Runtime/Scenes/TANK.unity
+    guid: af9b56f959089c948b00c6001975a778
   m_configObjects: {}
