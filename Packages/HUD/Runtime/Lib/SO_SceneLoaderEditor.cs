@@ -15,11 +15,11 @@ public class SO_SceneLoaderEditor : Editor
 
         if (GUILayout.Button("Play Preview", GUILayout.Height(40)))
         {
-            //script.PlayPreview();
+            script.ToogleFader(true);
         }
         if (GUILayout.Button("Stop Preview", GUILayout.Height(40)))
         {
-            //script.StopPreview();
+            script.ToogleFader(false);
         }
     }
 }

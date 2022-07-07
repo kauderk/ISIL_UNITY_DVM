@@ -11,7 +11,8 @@ using UnityEngine.UI;
 public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
 {
     public List<SO_SceneData> LoadingData = new List<SO_SceneData>();
-    public SceneUtils SceneUtils = new SceneUtils();
+    public GameObject FaderCanvasPrefab = null;
+    //public SceneUtils SceneUtils_ = new SceneUtils();
 
 
     #region Unity State Cycle
@@ -45,8 +46,11 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
         pupetMonoBehaviour = new GameObject("Singleton_SceneLoader");
         pupetMonoBehaviour.AddComponent<LoaderUtils>();
         DontDestroyOnLoad(pupetMonoBehaviour);
-
-
+        // AppendCanvasTo
+        FaderCanvas = Instantiate(FaderCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        FaderCanvas.SetActive(true);
+        SetupFader();
+        //SceneUtils.ToogleFader(true);
     }
     public static void RequestSceneLoad(string name)
     {
@@ -87,30 +91,24 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     }
     #endregion
 
-}
 
-[System.Serializable]
-public class SceneUtils
-{
-    public GameObject FaderCanvas;
-    public Image fader;
-    public Toggle GlobalVolumeToogle;
-    public static SceneUtils Instance;
+
+    static GameObject FaderCanvas;
+    private Image fader;
+    private Toggle GlobalVolumeToogle;
     event Action OnFaderLoaded;
     public bool isForcedToLoad = false;
 
-    public SceneUtils()
+    public void SetupFader()
     {
-        fader = FaderCanvas.GetComponentInChildren<Image>();
-    }
-    public void ToogleFader(bool b) => fader.gameObject.SetActive(b);
-
-    public void FadeIn()
-    {
+        // get the firs children
+        fader = FaderCanvas.transform.GetChild(0).GetComponent<Image>();
         var buffer = 20;
+        fader.gameObject.SetActive(true);
         fader.rectTransform.sizeDelta = new Vector2(Screen.width + buffer, Screen.height + buffer);
-        ToogleFader(false);
     }
+    public void ToogleFader(bool b) => fader.enabled = b;
+
     public async UniTask LoadScene<T>(T sceneID, float duration = 1, float waitTime = 2)
     {
         // YIKES!
