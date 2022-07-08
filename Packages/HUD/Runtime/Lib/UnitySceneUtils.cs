@@ -12,15 +12,15 @@ public static class UnitySceneUtils
         if (o.GetType() == typeof(string))
             name = (string)o;
         else if (o.GetType() == typeof(int))
-            name = SceneUtility.GetScenePathByBuildIndex((int)o);
+            name = GetSceneNameByIndex((int)o);
+        else if (o.GetType() == typeof(SceneID)) // SOLID!!!
+            name = GetSceneNameByIndex((int)o);
         else
             return false;
 
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
-            var lastSlash = scenePath.LastIndexOf("/");
-            var sceneName = scenePath.Substring(lastSlash + 1, scenePath.LastIndexOf(".") - lastSlash - 1);
+            string sceneName = GetSceneNameByIndex(i);
 
             if (string.Compare(name, sceneName, true) == 0)
                 return true;
@@ -28,6 +28,14 @@ public static class UnitySceneUtils
 
         return false;
     }
+
+    private static string GetSceneNameByIndex(int i)
+    {
+        var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+        var lastSlash = scenePath.LastIndexOf("/");
+        return scenePath.Substring(lastSlash + 1, scenePath.LastIndexOf(".") - lastSlash - 1);
+    }
+
     public static int sceneIndexFromName(string sceneName)
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
