@@ -21,7 +21,7 @@ public class SO_SceneData : ISObject
     {
         // get name form scene path
         var name = LoaderUtilsStatic.getSceneName(Scene);
-        await SceneController.Instance.LoadScene(name);
+        await SO_SceneLoader.Instance.LoadScene(name);
     }
 
     void Update()
