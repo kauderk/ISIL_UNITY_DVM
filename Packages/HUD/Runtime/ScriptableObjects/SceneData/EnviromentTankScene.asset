@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5822ccb9c5ee5a541a8bb0b0ef22d7ca, type: 3}
   m_Name: EnviromentTankScene
   m_EditorClassIdentifier: 
-  Name: HUD
+  Name: Enviroment
   LoadingScreen: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Scene:
     sceneAsset: {fileID: 102900000, guid: af9b56f959089c948b00c6001975a778, type: 3}
     scenePath: Packages/com.ricostudio.sceneingame/Runtime/Scenes/TANK.unity
   additiveScenes: []
+  sceneID: 2
+  menuItemCover: {fileID: 21300000, guid: e7a0bc9e601074d459ef98d51673b41e, type: 3}

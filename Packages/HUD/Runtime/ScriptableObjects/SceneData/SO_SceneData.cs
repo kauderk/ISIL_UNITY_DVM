@@ -16,16 +16,13 @@ public class SO_SceneData : ISObject
     public Sprite LoadingScreen;
     public SceneReference Scene;
     public List<string> additiveScenes = new List<string>();
+    [SerializeField]
+    public SceneID sceneID;
+    [SerializeField]
+    public Sprite menuItemCover;
 
     public async void Enter()
     {
-        // get name form scene path
-        var name = LoaderUtilsStatic.getSceneName(Scene);
-        await SO_SceneLoader.Instance.LoadScene(name);
-    }
-
-    void Update()
-    {
-        Debug.Log("UpdateMenuItemOnClick");
+        await SO_SceneLoader.Instance.LoadScene(sceneID);
     }
 }

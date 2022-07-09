@@ -18,3 +18,5 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
     scenePath: Packages/com.singersilent.behavior/Runtime/Scenes/Game.unity
   additiveScenes: []
+  sceneID: 3
+  menuItemCover: {fileID: 21300000, guid: 0a1b4c648661f7a498d7aeff1c08e92e, type: 3}

@@ -18,3 +18,5 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: c7e2a27c678976e44bae0e4efd807ffd, type: 3}
     scenePath: Packages/com.kauderk.hud/Runtime/Scenes/SceneHUB.unity
   additiveScenes: []
+  sceneID: 1
+  menuItemCover: {fileID: 21300000, guid: 1e0732cd5a5aa8443bcd693de0e0f942, type: 3}
