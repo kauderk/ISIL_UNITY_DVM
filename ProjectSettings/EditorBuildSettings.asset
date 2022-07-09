@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/test.LauncherLobbyScene.unity
-    guid: 30ebb00c53e8d5f469a9067d8116c273
+    path: Packages/com.kauderk.hud/Runtime/Scenes/LauncherLobbyScene.unity
+    guid: ca57bdcf8239efd44a0b1d69ebd0bc54
   - enabled: 1
     path: Packages/com.kauderk.hud/Runtime/Scenes/SceneHUB.unity
     guid: c7e2a27c678976e44bae0e4efd807ffd
