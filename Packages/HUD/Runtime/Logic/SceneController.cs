@@ -45,9 +45,10 @@ public class SceneController : MonoBehaviour
     public async UniTask LoadScene<T>(T sceneID, float duration = 1, float waitTime = 2)
     {
         // YIKES!
-        if (UnitySceneUtils.DoesSceneExist(sceneID))
+        var sceneName = UnitySceneUtils.DoesSceneExist(sceneID);
+        if (sceneName != null)
         {
-            await FadeScene(sceneID, duration, waitTime);
+            await FadeScene(sceneName, duration, waitTime);
             return;
         }
         Debug.Log("Scene ID must be string or int");
