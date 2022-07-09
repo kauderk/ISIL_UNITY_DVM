@@ -29,6 +29,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.rotary-heart.serializable-dictionary": {
+      "version": "file:SerializableDictionary",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.singersilent.behavior": {
       "version": "file:Behavior",
       "depth": 0,
