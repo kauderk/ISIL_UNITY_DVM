@@ -5,7 +5,7 @@ public static class UnitySceneUtils
     /// <summary>
     /// Returns true if the scene 'name' exists and is in your Build settings, false otherwise
     /// </summary>
-    public static bool DoesSceneExist(object o)
+    public static string DoesSceneExist(object o)
     {
         // https://gist.github.com/yagero/2cd50a12fcc928a6446539119741a343
         var name = "";
@@ -13,25 +13,32 @@ public static class UnitySceneUtils
             name = (string)o;
         else if (o.GetType() == typeof(int))
             name = GetSceneNameByIndex((int)o);
+        else if (o.GetType() == typeof(SceneReference)) // SOLID!!!
+            name = GetSceneNameFromPath(((SceneReference)o).ScenePath);
         else if (o.GetType() == typeof(SceneID)) // SOLID!!!
             name = GetSceneNameByIndex((int)o);
         else
-            return false;
+            return null;
 
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             string sceneName = GetSceneNameByIndex(i);
 
             if (string.Compare(name, sceneName, true) == 0)
-                return true;
+                return name;
         }
 
-        return false;
+        return null;
     }
 
     private static string GetSceneNameByIndex(int i)
     {
         var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+        return GetSceneNameFromPath(scenePath);
+    }
+
+    private static string GetSceneNameFromPath(string scenePath)
+    {
         var lastSlash = scenePath.LastIndexOf("/");
         return scenePath.Substring(lastSlash + 1, scenePath.LastIndexOf(".") - lastSlash - 1);
     }
