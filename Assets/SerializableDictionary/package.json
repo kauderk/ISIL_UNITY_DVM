@@ -1,0 +1,29 @@
+{
+	"name": "com.rotary-heart.serializable-dictionary",
+	"version": "0.0.1",
+	"displayName": "SerializableDictionary",
+	"description": "This is a SerializableDictionary package Example",
+	"unity": "2019.1",
+	"unityRelease": "0b5",
+	"documentationUrl": "https://example.com/",
+	"changelogUrl": "https://example.com/changelog.html",
+	"licensesUrl": "https://example.com/licensing.html",
+	"samples": [
+		{
+			"displayName": "Tranformed from Rotary Heart's SerializableDictionary",
+			"description": "SerializableDictionary Package",
+			"path": "Runtime/LauncherSerializableDictionaryScene.unity"
+		}
+	],
+	"dependencies": {},
+	"keywords": [
+		"SerializableDictionary",
+		"Example",
+		"Multiplayer"
+	],
+	"author": {
+		"name": "KauDerK",
+		"email": "unity@example.com",
+		"url": "https://www.unity3d.com"
+	}
+}
