@@ -7,8 +7,8 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
-    "com.kauderk.hud": {
-      "version": "file:HUD",
+    "com.kauderk.hub": {
+      "version": "file:HUB",
       "depth": 0,
       "source": "embedded",
       "dependencies": {

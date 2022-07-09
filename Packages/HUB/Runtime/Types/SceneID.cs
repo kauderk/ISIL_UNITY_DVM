@@ -7,7 +7,7 @@ using Unity.Plastic.Newtonsoft.Json.Converters;
 public enum SceneID
 {
     Lobby,
-    HUD,
+    HUB,
     Enviroment,
     Gameplay
 }

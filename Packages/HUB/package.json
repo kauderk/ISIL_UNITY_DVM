@@ -1,8 +1,8 @@
 {
-	"name": "com.kauderk.hud",
+	"name": "com.kauderk.hub",
 	"version": "0.0.1",
-	"displayName": "HUD",
-	"description": "This is a HUD package Example",
+	"displayName": "HUB",
+	"description": "This is a HUB package Example",
 	"unity": "2019.1",
 	"unityRelease": "0b5",
 	"documentationUrl": "https://example.com/",
@@ -10,9 +10,9 @@
 	"licensesUrl": "https://example.com/licensing.html",
 	"samples": [
 		{
-			"displayName": "Sample HUD",
-			"description": "Example of a sample HUD",
-			"path": "Runtime/LauncherHUDScene.unity"
+			"displayName": "Sample HUB",
+			"description": "Example of a sample HUB",
+			"path": "Runtime/LauncherHUBScene.unity"
 		}
 	],
 	"dependencies": {
@@ -21,7 +21,7 @@
 		"com.unity.modules.ui": "1.0.0"
 	},
 	"keywords": [
-		"HUD",
+		"HUB",
 		"Example",
 		"Multiplayer"
 	],

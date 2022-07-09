@@ -4,6 +4,6 @@ public class Lobby : Clickable
 {
     [ReadOnly]
     [SerializeField]
-    private SceneID sceneToLoad = SceneID.HUD;
+    private SceneID sceneToLoad = SceneID.HUB;
     public override SceneID GetSceneID() => sceneToLoad;
 }
