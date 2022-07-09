@@ -8,7 +8,6 @@ namespace SwipeMenu
     /// <summary>
     /// The main menu class. Handles updating the menus position.
     /// </summary>
-    [ExecuteInEditMode]
     public class Menu : MonoBehaviour
     {
         /// <summary>
@@ -35,6 +34,7 @@ namespace SwipeMenu
         /// <summary>
         /// The menu items. The items are audto parented to this transform.
         /// </summary>
+        [HideInInspector]
         public MenuItem[] menuItems;
 
         public UnityEvent OnAnimationComplete;
@@ -64,12 +64,14 @@ namespace SwipeMenu
             }
         }
 
-        void Awake()
+        public void Awake()
         {
             if (!_instance)
             {
                 _instance = this;
             }
+            menuItems = GetComponentsInChildren<MenuItem>();
+
             _currentItem = menuItems[Mathf.Clamp(startingMenuItem - 1, 1, menuItems.Length)];
 
             distanceBetweenMenus -= IsDivisble(distanceBetweenMenus, 0.5f);
