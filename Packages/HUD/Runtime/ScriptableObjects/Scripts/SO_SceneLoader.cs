@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RotaryHeart.Lib.SerializableDictionary;
+using System.Linq;
 
 [System.Serializable]
 public class UDisctionary<Tkey, Tval> : SerializableDictionaryBase<Tkey, Tval> { }
@@ -13,15 +12,17 @@ public class UDisctionary<Tkey, Tval> : SerializableDictionaryBase<Tkey, Tval> {
 [CreateAssetMenu(fileName = "SceneLoader", menuName = "Loaders/SceneLoader")]
 public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
 {
-    [Tooltip("Must to respect Enum.SceneID order")]
-    //public List<SO_SceneData> LoadingData = new List<SO_SceneData>();
-    //public readonly Dictionary<SceneID, SO_SceneData> SceneDataDict = new Dictionary<SceneID, SO_SceneData>();
+    [Tooltip("SO_SceneData are ScriptableObjects")]
     public UDisctionary<SceneID, SO_SceneData> SceneDataDict;
-    //public UDictionarySceneData SceneDataDict;
-    //public SerializableDictionary<SceneID, SO_SceneData> SceneDataDict = new SerializableDictionary<SceneID, SO_SceneData>();
+
+    [Tooltip("A canvas that covers the entire screen")]
     public GameObject FaderCanvasPrefab = null;
+
+    [Tooltip("Fade in/out in specified SceneData Dictionary")]
+    public bool SceneDataOnly = true;
+
+    [Tooltip("Fade from black to white")]
     public bool FadeOutOnLoad = true;
-    //public SceneUtils SceneUtils_ = new SceneUtils();
 
 
     #region Unity State Cycle
@@ -29,16 +30,6 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
 
     private void OnEnable()
     {
-        // loop trough the SceneID enum
-        // IList list = Enum.GetValues(typeof(SceneID));
-        // for (int i = 0; i < list.Count; i++)
-        // {
-        //     SceneID sceneID = (SceneID)list[i];
-        //     SO_SceneData sceneData = LoadingData[i];
-        //     SceneDataDict[sceneID] = sceneData;
-        // }
-        //LoadingData.ForEach(x => SceneDataDict.Add(x.SceneID, x));
-
         //SceneManager.sceneLoaded += UnitySceneManagerLoaded;
         MainManager.OnGameInitialized += OnLoad;
     }
@@ -74,7 +65,8 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     private static Image fader;
     private static Toggle GlobalVolumeToogle;
     event Action OnFaderLoaded;
-    public bool isForcedToLoad = false;
+    [Tooltip("When the loading begins it won't end until this boolen is set to false")]
+    public bool KeepLoading = false;
 
     public async UniTask SetupCanvasAndFaderAsync()
     {
@@ -84,6 +76,13 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
         fader.rectTransform.sizeDelta = new Vector2(Screen.width + buffer, Screen.height + buffer);
         // show
         FaderCanvas.SetActive(true);
+        if (SceneDataOnly)
+        {
+            var sceneName = SceneManager.GetActiveScene().path;
+            var exist = SceneDataDict.Values.Any(so => so.Scene.ScenePath == sceneName);
+            if (!exist)
+                return;
+        }
         ToogleFader(FadeOutOnLoad);
         if (FadeOutOnLoad)
         {
@@ -94,14 +93,15 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     }
     public void ToogleFader(bool b) => fader.gameObject.SetActive(b);
 
-
+    public void LoadSceneAwaiter(SceneID id) => LoadScene(id, null).GetAwaiter();
     public async UniTask LoadScene<T>(T sceneID, Fade fade = null)
     {
         fade = fade ?? new Fade(); // come ON!
+        var sceneName = UnitySceneUtils.DoesSceneExist(sceneID);
         // YIKES!
-        if (UnitySceneUtils.DoesSceneExist(sceneID))
+        if (sceneName != null)
         {
-            await SO_SceneLoader.Instance.FadeScene(sceneID, fade);
+            await SO_SceneLoader.Instance.FadeScene(sceneName, fade);
             return;
         }
         Debug.Log("Scene ID must be string or int");
@@ -119,7 +119,7 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
             ? SceneManager.LoadSceneAsync((int)(object)sceneID)
             : SceneManager.LoadSceneAsync((string)(object)sceneID); // https://stackoverflow.com/questions/4092393/value-of-type-t-cannot-be-converted-to#:~:text=string%20newT2%20%3D%20(string)(object)t%3B
 
-        while (!ao.isDone || isForcedToLoad)
+        while (!ao.isDone || KeepLoading)
             await UniTask.Yield();
 
         await LerpFader(1, 0, fade);
@@ -138,24 +138,4 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
         }
     }
 
-}
-public class Fade
-{
-    public float duration = 5;
-    public float waitTime = 2;
-}
-
-public enum SceneID
-{
-    Lobby,
-    HUD,
-    Enviroment,
-    Gameplay
-}
-
-[System.Serializable]
-public class SceneData
-{
-    public string Name;
-    public SO_SceneData SP_SceneAsset;
 }

@@ -43,5 +43,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a13bfcb06bf128d458262cbb063fa385, type: 2}
     - {fileID: 11400000, guid: 765e13aba5e349848be4354d0920bed3, type: 2}
   FaderCanvasPrefab: {fileID: 4116738222299488092, guid: 41f43640fe213aa4ea437d9edf86e5a6, type: 3}
+  SceneDataOnly: 1
   FadeOutOnLoad: 1
-  isForcedToLoad: 0
+  KeepLoading: 0
