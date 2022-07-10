@@ -22,7 +22,10 @@ namespace Networking
         void Start()
         {
             Debug.Log("Conecting Photon PUN...");
-            PhotonNetwork.ConnectUsingSettings();
+            if (!PhotonNetwork.IsConnected)
+                PhotonNetwork.ConnectUsingSettings();
+            else
+                OnConnectedToMaster();
         }
         public override void OnConnectedToMaster()
         {
