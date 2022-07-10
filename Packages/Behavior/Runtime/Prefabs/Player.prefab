@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3551165451060574526}
   m_Layer: 0
-  m_Name: weapon
+  m_Name: WeaponPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2243083306126377487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.296}
+  m_LocalPosition: {x: 0, y: 0, z: 1.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4035604826248922379}
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
+  scope: {fileID: 3551165451060574526}
   weapon: 0
 --- !u!114 &1107653690493845530
 MonoBehaviour:

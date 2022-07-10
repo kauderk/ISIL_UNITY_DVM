@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject bullet = null;
+    [SerializeField] private Transform scope = null;
 
     private Text txtBulletCount = null;
     private Image imgBullet = null;
@@ -34,14 +35,14 @@ public class PlayerController : MonoBehaviour
         count = maxBullet;
 
         txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
-
     }
 
     private void InstaceBullet(int bullets = 1)
     {
         for (int i = 0; i < bullets; i++)
         {
-            GameObject.Instantiate(bullet);
+            var bulletInstance = GameObject.Instantiate(bullet);
+            bulletInstance.GetComponent<BulletController>().Init(this.gameObject,scope);
         }
     }
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
         transform.forward = direction.normalized;
         _rgb.velocity = direction;
 
-        if (isShooting == true) timePerBullet += Time.deltaTime;
+        if(isShooting == true) timePerBullet += Time.deltaTime;
 
         if (isRealoding == true)
         {
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
-        if (count == 0) txtBulletCount.text = "R!";
+        if(count == 0) txtBulletCount.text = "¡R!";
 
         #region multiplayers
         #endregion
@@ -164,13 +165,6 @@ public class PlayerController : MonoBehaviour
             weapon = TYPEWEAPON.SHOTGUN;
             count = maxBullet;
             txtBulletCount.color = new Color(0, 1, 0.0381248f, 1);
-        }
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            print("I shoot a player");
-            collision.gameObject.GetComponent<HealthController>().GetDamage(bullet.GetComponent<BulletController>().thisDamage);
-            print("le e dado a un player");
         }
     }
 

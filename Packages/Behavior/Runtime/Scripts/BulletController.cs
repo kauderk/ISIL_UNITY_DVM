@@ -1,9 +1,7 @@
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
-{
-    private GameObject Target = null;
-    
+{    
     private float speed = 30f;
     private float distance = 0f;
     [HideInInspector] public float thisDamage = 0f;
@@ -12,15 +10,7 @@ public class BulletController : MonoBehaviour
 
     private PlayerController.TYPEWEAPON weapon;
 
-    private void Awake()
-    {
-        Target = GameObject.Find("Player");
-
-        weapon = Target.GetComponent<PlayerController>().weapon;
-
-        this.transform.position = Target.transform.position;
-    }
-    void Start() => direccion = Target.transform.forward + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
+    private GameObject player = null;
 
     void Update()
     {
@@ -38,10 +28,21 @@ public class BulletController : MonoBehaviour
         }
     }
 
+    public void Init(GameObject _player, Transform _inicialPos)
+    {
+        player = _player;
+        
+        weapon = _player.GetComponent<PlayerController>().weapon;
+
+        this.transform.position = _inicialPos.transform.position;
+
+        direccion = _inicialPos.transform.forward + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
+    }
+
     private void BulletConfig(float limitDistance, float damage)
     {
         thisDamage = damage;
-        distance = Vector3.Distance(Target.transform.position, this.transform.position);
+        distance = Vector3.Distance(player.transform.position, this.transform.position);
 
         this.transform.position += speed * Time.deltaTime * direccion;
 
@@ -49,6 +50,18 @@ public class BulletController : MonoBehaviour
         {
             Destroy(this.gameObject);
             //this.transform.position = Target.transform.position;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            var otherHealthComponent = other.gameObject.GetComponent<HealthController>();
+            if (otherHealthComponent)
+            {
+                otherHealthComponent.GetDamage(thisDamage);
+            }   
         }
     }
 }
