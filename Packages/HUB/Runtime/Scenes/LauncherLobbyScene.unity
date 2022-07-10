@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loading Lobby,,,
+  m_text: Loading Lobby...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3648,6 +3648,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: error
   opened: 0
+--- !u!1001 &2074501810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1897516654284748782, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_Name
+      value: SingletonScriptableObjectReference
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 242
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897516654284748783, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 225ce4cb5faeea04b86bf58e4e539c3d, type: 3}
 --- !u!1 &2106194373
 GameObject:
   m_ObjectHideFlags: 0
