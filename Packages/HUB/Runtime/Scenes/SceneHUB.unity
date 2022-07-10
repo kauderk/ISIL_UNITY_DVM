@@ -880,6 +880,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2901274252470849675, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252470849675, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252470849675, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252470849675, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252904189711, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252904189711, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252904189711, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901274252904189711, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2901274254029728771, guid: d31bf87d6293d824da1f807fbdc01bed, type: 3}
       propertyPath: m_Name
       value: Canvas Scene Switcher

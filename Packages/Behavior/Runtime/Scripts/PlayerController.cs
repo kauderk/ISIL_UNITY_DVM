@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PlayerController : MonoBehaviour
+using Photon.Pun;
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject bullet = null;
     [SerializeField] private Transform scope = null;
@@ -26,15 +26,18 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _rgb = this.gameObject.GetComponent<Rigidbody>();
+        if (photonView.IsMine)
+        {
+            _rgb = this.gameObject.GetComponent<Rigidbody>();
 
-        txtBulletCount = GameObject.Find("txtBulletCount").GetComponent<Text>();
-        imgBullet = GameObject.Find("BgBullet").GetComponent<Image>();
+            txtBulletCount = GameObject.Find("txtBulletCount").GetComponent<Text>();
+            imgBullet = GameObject.Find("BgBullet").GetComponent<Image>();
 
-        maxBullet = 10;
-        count = maxBullet;
+            maxBullet = 10;
+            count = maxBullet;
 
-        txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
+            txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
+        }        
     }
 
     private void InstaceBullet(int bullets = 1)
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        txtBulletCount.text = count.ToString();
+        if(photonView.IsMine) txtBulletCount.text = count.ToString();
 
         moveX = Input.GetAxisRaw("Horizontal");
         moveZ = Input.GetAxisRaw("Vertical");
@@ -125,47 +128,56 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
-        if(count == 0) txtBulletCount.text = "¡R!";
-
-        #region multiplayers
-        #endregion
+        if (photonView.IsMine)
+        {
+            if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
+            if (count == 0) txtBulletCount.text = "¡R!";
+        }
     }
 
 
     private void Reload(int nBullets, float TimeToReaload)
     {
-        if (timeToReaload > TimeToReaload)
+        if (photonView.IsMine)
         {
-            isRealoding = false;
-            count = nBullets;
-            timeToReaload = 0;
-        }
+            if (timeToReaload > TimeToReaload)
+            {
+                isRealoding = false;
+                count = nBullets;
+                timeToReaload = 0;
+            }
+        }        
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Pistol"))
-        {
-            maxBullet = 10;
-            weapon = TYPEWEAPON.PISTOL;
-            count = maxBullet;
-            txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
-        }
-        else if (collision.gameObject.CompareTag("Rifle"))
-        {
-            maxBullet = 20;
-            weapon = TYPEWEAPON.RIFLE;
-            count = maxBullet;
-            txtBulletCount.color = new Color(1, 0.2206753f, 0, 1);
-        }
-        else if (collision.gameObject.CompareTag("Shotgun"))
-        {
-            maxBullet = 6;
-            weapon = TYPEWEAPON.SHOTGUN;
-            count = maxBullet;
-            txtBulletCount.color = new Color(0, 1, 0.0381248f, 1);
-        }
+        //if (photonView.IsMine)
+        //{
+            if (collision.gameObject.CompareTag("Pistol"))
+            {
+                maxBullet = 10;
+                weapon = TYPEWEAPON.PISTOL;
+                count = maxBullet;
+                txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
+                collision.gameObject.SetActive(false);
+            }
+            else if (collision.gameObject.CompareTag("Rifle"))
+            {
+                maxBullet = 20;
+                weapon = TYPEWEAPON.RIFLE;
+                count = maxBullet;
+                txtBulletCount.color = new Color(1, 0.2206753f, 0, 1);
+                collision.gameObject.SetActive(false);
+            }
+            else if (collision.gameObject.CompareTag("Shotgun"))
+            {
+                maxBullet = 6;
+                weapon = TYPEWEAPON.SHOTGUN;
+                count = maxBullet;
+                txtBulletCount.color = new Color(0, 1, 0.0381248f, 1);
+                collision.gameObject.SetActive(false);
+            }
+        //}
     }
 
 }
