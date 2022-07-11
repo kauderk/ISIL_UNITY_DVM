@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
 
     private Vector3 direccion = Vector3.zero;
 
+    // TODO: NO TE MAMES!
     private PlayerController.TYPEWEAPON weapon = PlayerController.TYPEWEAPON.PISTOL;
 
     private GameObject player = null;
@@ -24,22 +25,22 @@ public class BulletController : MonoBehaviour
         switch (weapon)
         {
             case PlayerController.TYPEWEAPON.PISTOL:
-                _BulletDistanceAndDamage(20f, 10f);
+                _BulletDistanceAndDamage(20f, 10f, weapon);
                 break;
             case PlayerController.TYPEWEAPON.RIFLE:
-                _BulletDistanceAndDamage(30f, 20f);
+                _BulletDistanceAndDamage(30f, 20f, weapon);
                 break;
             case PlayerController.TYPEWEAPON.SHOTGUN:
-                _BulletDistanceAndDamage(10f, 15f);
+                _BulletDistanceAndDamage(10f, 15f, weapon);
                 break;
         }
     }
 
-    void _BulletDistanceAndDamage(float dis, float dmg)
+    void _BulletDistanceAndDamage(float dis, float dmg, PlayerController.TYPEWEAPON weapon)
     {
         if (!player)
             Debugger.Break();
-        BulletConfig(dis, dmg, player, player.transform.Find("Scope"));
+        BulletConfig(dis, dmg, weapon, player.transform.Find("Scope"));
     }
 
     public void Init(GameObject _player, Transform _scope = null)
@@ -52,26 +53,26 @@ public class BulletController : MonoBehaviour
         SwitchBulletFlowOnWeaponType();
     }
 
-    private void BulletConfig(float limitDistance, float damage, GameObject _player, Transform _inicialPos)
+    private void BulletConfig(float limitDistance, float damage, PlayerController.TYPEWEAPON _weapon, Transform inicialPos)
     {
-        player = _player;
+        //player = _player;
 
-        weapon = _player.GetComponent<PlayerController>().weapon;
+        weapon = _weapon;
 
-        this.transform.position = _inicialPos.transform.position;
+        transform.position = inicialPos.transform.position;
 
-        direccion = _inicialPos.transform.forward + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
+        direccion = inicialPos.transform.forward + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
 
 
         thisDamage = damage;
-        distance = Vector3.Distance(player.transform.position, this.transform.position);
+        distance = Vector3.Distance(player.transform.position, transform.position);
 
-        this.transform.position += speed * Time.deltaTime * direccion;
+        transform.position += speed * Time.deltaTime * direccion;
 
         if (distance > limitDistance)
         {
             Debugger.Break();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             //this.transform.position = Target.transform.position;
         }
     }
