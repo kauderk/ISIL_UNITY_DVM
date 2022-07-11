@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             // var b = Instantiate(bullet);
             var bc = b.GetComponent<BulletController>();
             bc.enabled = true;
-            b.GetComponent<BulletController>().Init(gameObject, scope);
+            //b.GetComponent<BulletController>().Init(gameObject, scope);
             //Instantiate(b);
         }
     }

@@ -64,7 +64,7 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
                 if (!bc)
                     Debugger.Break();
                 bc.enabled = true;
-                bc.Init(gameObject, scope);
+                //bc.Init(gameObject, scope);
                 //Instantiate(b);
                 //bulletInstance.GetComponent<BulletController>().Init(this.gameObject, scope);
             }
