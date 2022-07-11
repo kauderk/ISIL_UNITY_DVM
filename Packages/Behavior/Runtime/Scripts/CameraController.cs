@@ -3,13 +3,17 @@ using Photon.Pun;
 
 public class CameraController : MonoBehaviourPunCallbacks
 {
-    private Vector3 distance = Vector3.zero;
+    private Vector3 distance = new Vector3(0, 15, -20);
     private Transform myCamera = null;
 
     private void Awake()
     {
-        distance = new Vector3(0, 15, -20);
-        myCamera = GameObject.Find("Main Camera").transform;
+        if(photonView.IsMine)
+        {
+            myCamera = GameObject.FindGameObjectWithTag("Camera").transform; 
+            myCamera.transform.position = this.transform.position + distance;
+        }
+
     }
     void Update()
     {

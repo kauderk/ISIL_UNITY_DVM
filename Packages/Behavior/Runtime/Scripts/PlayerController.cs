@@ -26,10 +26,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        _rgb = this.gameObject.GetComponent<Rigidbody>();
+
         if (photonView.IsMine)
         {
-            _rgb = this.gameObject.GetComponent<Rigidbody>();
-
             txtBulletCount = GameObject.Find("txtBulletCount").GetComponent<Text>();
             imgBullet = GameObject.Find("BgBullet").GetComponent<Image>();
 
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         moveZ = Input.GetAxisRaw("Vertical");
 
         direction = new Vector3(moveX, 0, moveZ) * 10;
-        transform.forward = direction.normalized;
+        this.transform.forward = direction.normalized;
         _rgb.velocity = direction;
 
         if(isShooting == true) timePerBullet += Time.deltaTime;
@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     if (count > 0 && timePerBullet > 0.17f)
                     {
+                        print("Shooting");
                         isShooting = false;
                         InstaceBullet();
                         count -= 1;
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 case TYPEWEAPON.SHOTGUN:
                     if (count > 0 && timePerBullet > 0.5f)
                     {
+                        print("Shooting");
                         isShooting = false;
                         InstaceBullet(3);
                         count -= 1;
@@ -120,6 +122,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 case TYPEWEAPON.RIFLE:
                     if (count > 0 & timePerBullet > 0.1f)
                     {
+                        print("Shooting");
                         isShooting = false;
                         InstaceBullet();
                         count -= 1;
@@ -131,7 +134,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
-            if (count == 0) txtBulletCount.text = "¡R!";
+            if (count == 0) txtBulletCount.text = "R";
         }
     }
 

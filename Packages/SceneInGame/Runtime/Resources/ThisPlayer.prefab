@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &424454161515012409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8179440346441656047}
+  m_Layer: 0
+  m_Name: Scope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8179440346441656047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424454161515012409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.225, y: 2.205, z: 2.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4072184899575808411}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4072184899244473026
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,9 +4908,10 @@ GameObject:
   - component: {fileID: 3131309838712745906}
   - component: {fileID: 4850376616807315522}
   - component: {fileID: 3450427617175060122}
+  - component: {fileID: 3745776910607216154}
   m_Layer: 7
-  m_Name: Player
-  m_TagString: Untagged
+  m_Name: ThisPlayer
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4893,7 +4924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4072184899575808409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.68, y: 11.35, z: 1.04}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2182955481540709136}
@@ -4901,6 +4932,7 @@ Transform:
   - {fileID: 4072184900551237903}
   - {fileID: 4072184900487023857}
   - {fileID: 4072184899244473037}
+  - {fileID: 8179440346441656047}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4945,11 +4977,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd0c597b2415504eb17ca49d356ddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 200
+  bullet: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
+  scope: {fileID: 8179440346441656047}
   dustTrail: {fileID: 4072184900551237897}
   dustTrailBack: {fileID: 4072184900487023863}
   tankMoveAnime: {fileID: 8998160051465264230}
+  weapon: 0
+  movementSpeed: 5
+  rotationSpeed: 200
 --- !u!114 &4072184899575808408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4962,7 +4997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26d5c2815c8c0743b22abb11f615dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets: {fileID: 0}
   fireShot: {fileID: 4072184899244473039}
   camAnim: {fileID: 0}
   TankShotAnim: {fileID: 8998160051465264230}
@@ -5037,6 +5071,18 @@ MonoBehaviour:
   meshColor:
   - {fileID: 5693465460922553108}
   - {fileID: 5596457028400256189}
+--- !u!114 &3745776910607216154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072184899575808409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fb290c7a25cec42949dfadc824187f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4072184900487023860
 GameObject:
   m_ObjectHideFlags: 0
@@ -14754,7 +14800,7 @@ Transform:
   m_GameObject: {fileID: 8998160051465264231}
   m_LocalRotation: {x: -0.64085644, y: 0.64085644, z: 0.29883623, w: 0.29883623}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 14.800007, y: 14.800009, z: 14.800006}
+  m_LocalScale: {x: 14, y: 14, z: 14}
   m_Children: []
   m_Father: {fileID: 4072184899575808411}
   m_RootOrder: 0

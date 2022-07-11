@@ -8,6 +8,7 @@ TagManager:
   - Rifle
   - Shotgun
   - Mira
+  - Camera
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RS_TankShoot : MonoBehaviour
 {
-    public GameObject bullets;
     public ParticleSystem fireShot;
     public Animator camAnim;
     public Animator TankShotAnim;
