@@ -15,7 +15,7 @@ public class RS_CreatePlayer : MonoBehaviourPun
     public void CreatePlayer()
     {
         //Unity debugger p?
-        var p = PhotonNetwork.Instantiate(tankGogo.name, new Vector3(0f,12f,0f), Quaternion.identity);
+        var p = Instantiate(tankGogo, new Vector3(0f, 12f, 0f), Quaternion.identity);
         //PhotonNetwork.Instantiate(tank.name + "(Clone)", this.transform.position, Quaternion.identity);
     }
 
@@ -23,5 +23,5 @@ public class RS_CreatePlayer : MonoBehaviourPun
     {
         if (Input.GetKeyDown(KeyCode.L)) CreatePlayer();
     }
-    
+
 }

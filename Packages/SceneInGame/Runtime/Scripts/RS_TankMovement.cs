@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Diagnostics;
 using System.Collections;
 
-public class RS_TankMovement : MonoBehaviourPunCallbacks
+public class RS_TankMovement : MonoBehaviour
 {
 
     [SerializeField] private GameObject bullet = null;
@@ -51,14 +51,14 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
 
     private void InstaceBullet(int bullets = 1)
     {
-        if (photonView.IsMine)
+        // if (photonView.IsMine)
+        // {
+        for (int i = 0; i < bullets; i++)
         {
-            for (int i = 0; i < bullets; i++)
-            {
-                // start Shoot coroutine
-            }
-            StartCoroutine(Shoot());
+            // start Shoot coroutine
         }
+        StartCoroutine(Shoot());
+        // }
     }
 
     // create a coroutine
@@ -119,7 +119,8 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
         //}
         #region UI
 
-        if (photonView.IsMine) txtBulletCount.text = count.ToString();
+        //if (photonView.IsMine) 
+        txtBulletCount.text = count.ToString();
         #endregion
 
         #region Shooting Time
@@ -198,21 +199,21 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
         #endregion
 
         #region UI
-        if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
+        if (count == 0) txtBulletCount.text = "R";
         #endregion
     }
 
     private void Reload(int nBullets, float TimeToReaload)
     {
-        if (photonView.IsMine)
+        // if (photonView.IsMine)
+        // {
+        if (timeToReaload > TimeToReaload)
         {
-            if (timeToReaload > TimeToReaload)
-            {
-                isRealoding = false;
-                count = nBullets;
-                timeToReaload = 0;
-            }
+            isRealoding = false;
+            count = nBullets;
+            timeToReaload = 0;
         }
+        // }
     }
 
     private void OnCollisionEnter(Collision collision)

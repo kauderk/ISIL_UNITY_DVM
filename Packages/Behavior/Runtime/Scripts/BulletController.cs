@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
     /// </summary>
     [HideInInspector] public float? thisDamage = null;
     private SO_BulletSettings settings;
-    Stopwatch timer = new Stopwatch();
+    // Stopwatch timer = new Stopwatch();
     private GameObject hitTarget = null;
 
     void Update() => Move();
@@ -20,7 +20,7 @@ public class BulletController : MonoBehaviour
         transform.position = settings.origin;
         thisDamage = thisDamage ?? settings.damage;
         gameObject.transform.forward = settings.forward;
-        timer.Start();
+        // timer.Start();
     }
 
     public static float Remap(float value, float from1, float from2, float to1, float to2)
@@ -31,10 +31,10 @@ public class BulletController : MonoBehaviour
     private void Move()
     {
         // destroy
-        if (timer.ElapsedMilliseconds > 3000)
-        {
-            //Destroy(gameObject);
-        }
+        // if (timer.ElapsedMilliseconds > 3000)
+        // {
+        //     //Destroy(gameObject);
+        // }
         // move
         if (hitTarget == null)
             GetHitTarget();
@@ -71,7 +71,7 @@ public class BulletController : MonoBehaviour
     {
         RaycastHit HitRaycast;
         // capsule cast to detect if there is something in the way
-        var hit = Physics.CapsuleCast(transform.position, transform.position + transform.forward * 2f, 1f, transform.forward, out HitRaycast, settings.layerMask);
+        var hit = Physics.CapsuleCast(transform.position, transform.position + transform.forward * 2f, 2f, transform.forward, out HitRaycast, settings.layerMask);
 
 
         if (hit && HitRaycast.transform.gameObject && HitRaycast.transform.gameObject.tag == "Enemy")
@@ -80,6 +80,7 @@ public class BulletController : MonoBehaviour
             hitTarget = HitRaycast.transform.gameObject;
 
         }
+
         // debug capsule cast
         UnityEngine.Debug.DrawLine(transform.position, transform.position + transform.forward * 5f, Color.green);
     }

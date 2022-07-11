@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 877571812}
   m_Layer: 0
   m_Name: TreeColliders
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1122,7 +1122,7 @@ GameObject:
   - component: {fileID: 1226384302}
   - component: {fileID: 1226384301}
   - component: {fileID: 1226384300}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tree
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226384299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44, y: 12.43, z: -8.94}
+  m_LocalPosition: {x: 0.44, y: 11.61, z: -8.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 281855665253622610}
   - component: {fileID: 281855665253622609}
   - component: {fileID: 281855665253622612}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees07
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3312,7 +3312,7 @@ GameObject:
   - component: {fileID: 1502877291524929226}
   - component: {fileID: 1502877291524929225}
   - component: {fileID: 1502877291524929228}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees12
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3539,7 +3539,7 @@ GameObject:
   - component: {fileID: 1582813066353784807}
   - component: {fileID: 1582813066353784806}
   - component: {fileID: 1582813066353784809}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees04
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4103,7 +4103,7 @@ GameObject:
   - component: {fileID: 1980921582209718471}
   - component: {fileID: 1980921582209718470}
   - component: {fileID: 1980921582209718473}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees16
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4302,7 +4302,7 @@ GameObject:
   - component: {fileID: 2076850631211650040}
   - component: {fileID: 2076850631211650039}
   - component: {fileID: 2076850631211650042}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees03
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4719,7 +4719,7 @@ GameObject:
   - component: {fileID: 2459513672402382693}
   - component: {fileID: 2459513672402382692}
   - component: {fileID: 2459513672402382695}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees09
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -7749,7 +7749,7 @@ GameObject:
   - component: {fileID: 5252682845665911713}
   - component: {fileID: 5252682845665911712}
   - component: {fileID: 5252682845665911715}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees14
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -8593,7 +8593,7 @@ GameObject:
   - component: {fileID: 6014503084257048520}
   - component: {fileID: 6014503084257048519}
   - component: {fileID: 6014503084257048522}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees13
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -9826,7 +9826,7 @@ GameObject:
   - component: {fileID: 7041628270946812764}
   - component: {fileID: 7041628270946812763}
   - component: {fileID: 7041628270946812766}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees15
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -10195,7 +10195,7 @@ GameObject:
   - component: {fileID: 7178114112585034417}
   - component: {fileID: 7178114112585034416}
   - component: {fileID: 7178114112585034419}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees08
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -10709,7 +10709,7 @@ GameObject:
   - component: {fileID: 7623545440345148282}
   - component: {fileID: 7623545440345148281}
   - component: {fileID: 7623545440345148284}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees17
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -11251,7 +11251,7 @@ GameObject:
   - component: {fileID: 8009987137110021455}
   - component: {fileID: 8009987137110021454}
   - component: {fileID: 8009987137110021457}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees10
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -11653,7 +11653,7 @@ GameObject:
   - component: {fileID: 8416272008640325220}
   - component: {fileID: 8416272008640325219}
   - component: {fileID: 8416272008640325222}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees02
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -11858,7 +11858,7 @@ GameObject:
   - component: {fileID: 8485173162266345985}
   - component: {fileID: 8485173162266345984}
   - component: {fileID: 8485173162266345987}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees11
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -12439,7 +12439,7 @@ GameObject:
   - component: {fileID: 8707273952194750361}
   - component: {fileID: 8707273952194750360}
   - component: {fileID: 8707273952194750363}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees01
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -12539,7 +12539,7 @@ GameObject:
   - component: {fileID: 8757042445535904997}
   - component: {fileID: 8757042445535904996}
   - component: {fileID: 8757042445535904999}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees05
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -12877,7 +12877,7 @@ GameObject:
   - component: {fileID: 9014776605192258582}
   - component: {fileID: 9014776605192258581}
   - component: {fileID: 9014776605192258584}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trees06
   m_TagString: Enemy
   m_Icon: {fileID: 0}
