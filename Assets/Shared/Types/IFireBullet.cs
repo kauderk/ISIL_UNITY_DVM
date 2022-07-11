@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IFireBullet
 {
-    void RegenerateBulletList(GameObject bullet);
+    void RegenerateBulletList(MonoBehaviour bullet);
 }

@@ -15,7 +15,7 @@ public class BulletController : MonoBehaviour
     float rotSpeed;
 
     public Vector3 DesireedPosition;
-    public float BulletSpeed = 20f;
+    public float BulletSpeed = 0f;
 
 
 
@@ -92,7 +92,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCustomDestroy()
     {
-        settings.caster.GetComponent<IFireBullet>().RegenerateBulletList(gameObject);
+        settings.caster.GetComponent<IFireBullet>().RegenerateBulletList(this);
     }
 
     public static float Remap(float value, float from1, float from2, float to1, float to2)

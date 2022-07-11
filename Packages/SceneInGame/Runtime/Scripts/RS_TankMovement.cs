@@ -58,50 +58,52 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
         {
             // start Shoot coroutine
         }
-        //StartCoroutine(Shoot());
-        Shoot();
+        StartCoroutine(Shoot());
+        //Shoot();
         // }
     }
 
-    List<GameObject> InOrbitBullets = new List<GameObject>();
+    List<MonoBehaviour> InOrbitBullets = new List<MonoBehaviour>();
 
-    public void RegenerateBulletList(GameObject bullet)
+    public void RegenerateBulletList(MonoBehaviour bullet)
     {
         InOrbitBullets.Remove(bullet);
     }
 
     // create a coroutine
-    private void Shoot()
+    private IEnumerator Shoot()
     {
         var bulletAmount = 10;
         var rotAngle = 360 / bulletAmount;
         for (int i = 0; i < bulletAmount; i++)
         {
             var bullet = Instantiate(this.bullet);
-            InOrbitBullets.Add(bullet);
 
             var bulletController = bullet.GetComponent<BulletController>();
-            bulletController.enabled = true;
+            bulletController.enabled = false;
+            InOrbitBullets.Add(bulletController);
             var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
 
+            var pointY = (rotAngle * i) + totalDelta;
             //convert vector to quaternion
-            var newForward = Quaternion.Euler(0, rotAngle * i, 0) * BetterScope.transform.forward;
+            var newForward = Quaternion.Euler(0, pointY, 0) * BetterScope.transform.forward;
             newForward.Normalize();
-            var newPosition = BetterScope.transform.position + newForward * 1.5f;
+            var newPosition = BetterScope.transform.position + newForward * PositionOffset;
 
             bulletController.DesireedPosition = newPosition;
-
+            bulletController.BulletSpeed = _BulletsSpeed;
             bulletSettings.Init(gameObject, newPosition, newForward, weapon);
             bulletController.Init(bulletSettings);
 
-            //yield return new WaitForSeconds(0.00f);
+            bulletController.enabled = true;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
     float totalDelta = 0f;
     public float DeltaOffsetRate = 150f;
     public float PositionOffset = 2f;
-    public float BulletsSpeed = 20f;
+    public float _BulletsSpeed = 5f;
     private void UpdateBulletsPosition()
     {
         if (InOrbitBullets.Count == 0)
@@ -111,22 +113,28 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
         var idx = 0;
         foreach (var bullet in InOrbitBullets)
         {
-            var pointY = (rotAngle * idx) + totalDelta;
-            //convert vector to quaternion
-            var newForward = Quaternion.Euler(0, pointY, 0) * BetterScope.transform.forward; //rotate forward vector
-            newForward.Normalize();
-            var newPosition = BetterScope.transform.position + newForward * PositionOffset; // ... + offset
+            Vector3 newPosition = CalcPostionBasedOnForwardAngle(rotAngle, idx);
 
-            var bulletController = bullet.GetComponent<BulletController>();
+            var bulletController = bullet as BulletController;
             bulletController.DesireedPosition = newPosition;
-            bulletController.BulletSpeed = BulletsSpeed;
+
             idx++;
 
-            UnityEngine.Debug.DrawLine(newPosition, newPosition + Vector3.up * 3, Color.red);
+            //UnityEngine.Debug.DrawLine(newPosition, newPosition + Vector3.up * 3, Color.red);
         }
         totalDelta += Time.deltaTime * DeltaOffsetRate;
         if (totalDelta >= 360f)
             totalDelta = 0f;
+    }
+
+    private Vector3 CalcPostionBasedOnForwardAngle(int rotAngle, int idx)
+    {
+        var pointY = (rotAngle * idx) + totalDelta;
+        //convert vector to quaternion
+        var newForward = Quaternion.Euler(0, pointY, 0) * BetterScope.transform.forward; //rotate forward vector
+        newForward.Normalize();
+        var newPosition = BetterScope.transform.position + newForward * PositionOffset; // ... + offset
+        return newPosition;
     }
 
     void Update()

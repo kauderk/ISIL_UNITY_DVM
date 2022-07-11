@@ -4987,6 +4987,9 @@ MonoBehaviour:
   weapon: 0
   movementSpeed: 5
   rotationSpeed: 200
+  DeltaOffsetRate: 150
+  PositionOffset: 2
+  _BulletsSpeed: 5
 --- !u!114 &4072184899575808408
 MonoBehaviour:
   m_ObjectHideFlags: 0
