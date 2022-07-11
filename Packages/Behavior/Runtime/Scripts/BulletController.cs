@@ -1,7 +1,8 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
-{    
+{
     private float speed = 30f;
     private float distance = 0f;
     [HideInInspector] public float thisDamage = 0f;
@@ -11,42 +12,44 @@ public class BulletController : MonoBehaviour
     private PlayerController.TYPEWEAPON weapon = PlayerController.TYPEWEAPON.PISTOL;
 
     private GameObject player = null;
+    // why is this here?
+    [SerializeField] private Transform scope = null;
 
-    private void Awake()
+
+
+    void Update() => SwitchBulletFlowOnWeaponType();
+
+    private void SwitchBulletFlowOnWeaponType()
     {
         switch (weapon)
         {
             case PlayerController.TYPEWEAPON.PISTOL:
-                BulletConfig(20f, 10f,player,player.transform.GetChild(5));
+                _BulletDistanceAndDamage(20f, 10f);
                 break;
             case PlayerController.TYPEWEAPON.RIFLE:
-                BulletConfig(30f, 20f,player, player.transform.GetChild(5));
+                _BulletDistanceAndDamage(30f, 20f);
                 break;
             case PlayerController.TYPEWEAPON.SHOTGUN:
-                BulletConfig(10f, 15f,player, player.transform.GetChild(5));
+                _BulletDistanceAndDamage(10f, 15f);
                 break;
         }
     }
 
-    void Update()
+    void _BulletDistanceAndDamage(float dis, float dmg)
     {
-        switch (weapon)
-        {
-            case PlayerController.TYPEWEAPON.PISTOL:
-                BulletConfig(20f,10f, player, player.transform.GetChild(5));
-                break;
-            case PlayerController.TYPEWEAPON.RIFLE:
-                BulletConfig(30f,20f, player, player.transform.GetChild(5));
-                break;
-            case PlayerController.TYPEWEAPON.SHOTGUN:
-                BulletConfig(10f,15f, player, player.transform.GetChild(5));
-                break;
-        }
+        if (!player)
+            Debugger.Break();
+        BulletConfig(dis, dmg, player, player.transform.Find("Scope"));
     }
 
-    public void Init(GameObject _player, Transform _inicialPos)
+    public void Init(GameObject _player, Transform _scope = null)
     {
-        
+        player = _player;
+        scope = _scope;
+        if (!player)
+            Debugger.Break();
+        //AWAKE();
+        SwitchBulletFlowOnWeaponType();
     }
 
     private void BulletConfig(float limitDistance, float damage, GameObject _player, Transform _inicialPos)
@@ -67,6 +70,7 @@ public class BulletController : MonoBehaviour
 
         if (distance > limitDistance)
         {
+            Debugger.Break();
             Destroy(this.gameObject);
             //this.transform.position = Target.transform.position;
         }
@@ -74,11 +78,9 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.TryGetComponent<KD_IDamage>(out var damage))
         {
-            var otherHealthComponent = collision.gameObject.GetComponent<HealthController>();
-            if (otherHealthComponent) otherHealthComponent.GetDamage(thisDamage);
+            damage.TakeDamage(thisDamage);
         }
     }
 }
-

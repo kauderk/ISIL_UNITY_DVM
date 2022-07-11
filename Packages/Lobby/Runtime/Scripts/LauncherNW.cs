@@ -52,7 +52,7 @@ namespace Networking
         {
             Debug.Log("Joined lobby");
             OnJoinedLobbyLauncher?.Invoke(); // title
-            CreateRoom();
+            //CreateRoom();
         }
         public void CreateRoom()
         {

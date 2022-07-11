@@ -37,21 +37,25 @@ public class PlayerController : MonoBehaviourPunCallbacks
             count = maxBullet;
 
             txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
-        }        
+        }
     }
 
     private void InstaceBullet(int bullets = 1)
     {
         for (int i = 0; i < bullets; i++)
         {
-            var bulletInstance = GameObject.Instantiate(bullet);
-            bulletInstance.GetComponent<BulletController>().Init(this.gameObject,scope);
+            var b = Resources.Load<GameObject>(bullet.name);
+            // var b = Instantiate(bullet);
+            var bc = b.GetComponent<BulletController>();
+            bc.enabled = true;
+            b.GetComponent<BulletController>().Init(gameObject, scope);
+            //Instantiate(b);
         }
     }
 
     private void Update()
     {
-        if(photonView.IsMine) txtBulletCount.text = count.ToString();
+        if (photonView.IsMine) txtBulletCount.text = count.ToString();
 
         moveX = Input.GetAxisRaw("Horizontal");
         moveZ = Input.GetAxisRaw("Vertical");
@@ -60,7 +64,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         this.transform.forward = direction.normalized;
         _rgb.velocity = direction;
 
-        if(isShooting == true) timePerBullet += Time.deltaTime;
+        if (isShooting == true) timePerBullet += Time.deltaTime;
 
         if (isRealoding == true)
         {
@@ -149,37 +153,37 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 count = nBullets;
                 timeToReaload = 0;
             }
-        }        
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         //if (photonView.IsMine)
         //{
-            if (collision.gameObject.CompareTag("Pistol"))
-            {
-                maxBullet = 10;
-                weapon = TYPEWEAPON.PISTOL;
-                count = maxBullet;
-                txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
-                collision.gameObject.SetActive(false);
-            }
-            else if (collision.gameObject.CompareTag("Rifle"))
-            {
-                maxBullet = 20;
-                weapon = TYPEWEAPON.RIFLE;
-                count = maxBullet;
-                txtBulletCount.color = new Color(1, 0.2206753f, 0, 1);
-                collision.gameObject.SetActive(false);
-            }
-            else if (collision.gameObject.CompareTag("Shotgun"))
-            {
-                maxBullet = 6;
-                weapon = TYPEWEAPON.SHOTGUN;
-                count = maxBullet;
-                txtBulletCount.color = new Color(0, 1, 0.0381248f, 1);
-                collision.gameObject.SetActive(false);
-            }
+        if (collision.gameObject.CompareTag("Pistol"))
+        {
+            maxBullet = 10;
+            weapon = TYPEWEAPON.PISTOL;
+            count = maxBullet;
+            txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.CompareTag("Rifle"))
+        {
+            maxBullet = 20;
+            weapon = TYPEWEAPON.RIFLE;
+            count = maxBullet;
+            txtBulletCount.color = new Color(1, 0.2206753f, 0, 1);
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.CompareTag("Shotgun"))
+        {
+            maxBullet = 6;
+            weapon = TYPEWEAPON.SHOTGUN;
+            count = maxBullet;
+            txtBulletCount.color = new Color(0, 1, 0.0381248f, 1);
+            collision.gameObject.SetActive(false);
+        }
         //}
     }
 

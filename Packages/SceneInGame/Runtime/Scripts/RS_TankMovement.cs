@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using System.Diagnostics;
 
 public class RS_TankMovement : MonoBehaviourPunCallbacks
 {
@@ -14,7 +15,7 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
 
     private Text txtBulletCount = null;
 
-    private Image imgBullet = null;    
+    private Image imgBullet = null;
 
     [HideInInspector] public enum TYPEWEAPON { PISTOL, SHOTGUN, RIFLE };
     public TYPEWEAPON weapon = TYPEWEAPON.PISTOL;
@@ -32,13 +33,17 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
     {
         //if (photonView.IsMine)
         //{
-            txtBulletCount = GameObject.Find("txtBulletCount").GetComponent<Text>();
-            imgBullet = GameObject.Find("BgBullet").GetComponent<Image>();
+        txtBulletCount = GameObject.Find("txtBulletCount").GetComponent<Text>();
+        imgBullet = GameObject.Find("BgBullet").GetComponent<Image>();
 
-            maxBullet = 10;
-            count = maxBullet;
+        maxBullet = 10;
+        count = maxBullet;
 
-            txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
+        txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
+
+        scope = gameObject.transform.Find("Scope");
+        if (!scope)
+            Debugger.Break();
         //}
     }
 
@@ -48,43 +53,54 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < bullets; i++)
             {
-                GameObject bulletInstance = bullet;//Instantiate(bullet);
-                Instantiate(bulletInstance);
+                // load a bullet
+                // get bullet prefab path
+                var b = Instantiate(bullet);
+
+                if (!b)
+                    Debugger.Break();
+                // var b = Instantiate(bullet);
+                var bc = b.GetComponent<BulletController>();
+                if (!bc)
+                    Debugger.Break();
+                bc.enabled = true;
+                bc.Init(gameObject, scope);
+                //Instantiate(b);
                 //bulletInstance.GetComponent<BulletController>().Init(this.gameObject, scope);
             }
         }
     }
-    
+
     void Update()
     {
         //if (photonView.IsMine)
         //{
-            transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
-            transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
+        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
+        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
 
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                dustTrail.Play();
-                tankMoveAnime.SetBool("IsMoving", true);
-            }
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            dustTrail.Play();
+            tankMoveAnime.SetBool("IsMoving", true);
+        }
 
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-            {
-                dustTrail.Stop();
-                tankMoveAnime.SetBool("IsMoving", false);
-            }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            dustTrail.Stop();
+            tankMoveAnime.SetBool("IsMoving", false);
+        }
 
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                dustTrailBack.Play();
-                tankMoveAnime.SetBool("IsMoving", true);
-            }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            dustTrailBack.Play();
+            tankMoveAnime.SetBool("IsMoving", true);
+        }
 
-            if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                dustTrailBack.Stop();
-                tankMoveAnime.SetBool("IsMoving", false);
-            }
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            dustTrailBack.Stop();
+            tankMoveAnime.SetBool("IsMoving", false);
+        }
         //}
 
         if (photonView.IsMine) txtBulletCount.text = count.ToString();
@@ -151,10 +167,10 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
                     break;
             }
         }
-        
+
         if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
         if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
-        
+
     }
 
     private void Reload(int nBullets, float TimeToReaload)
