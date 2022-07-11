@@ -10,27 +10,37 @@ public class SO_BulletSettings : ScriptableObject
     /// <summary>
     /// How fast the bullet will move.
     /// </summary>
-    [field: SerializeField, UsePropertyName]
-    public float speed { get; } = 30f;
+    [field: SerializeField]
+    public float speed { get; private set; } = 30f;
+
     /// <summary>
     /// How Far away until the bullet gets destroyed.
     /// </summary>
-    [field: SerializeField, UsePropertyName]
-    public float limitDistance { get; } = 20f;
+    [field: SerializeField]
+    public float limitDistance { get; private set; } = 20f;
+
     /// <summary>
     /// Will target GameObject that include the Interface KD_IDamage
     /// </summary>
-    [field: SerializeField, UsePropertyName]
-    public float damage { get; } = 10f;
+    [field: SerializeField]
+    public float damage { get; private set; } = 10f;
+
     /// <summary>
     /// Using Shared Types: PISTOL, SHOTGUN, RIFLE
     /// </summary>
-    [field: SerializeField, UsePropertyName]
-    public TYPEWEAPON weapon { get; } = TYPEWEAPON.PISTOL;
+    [field: SerializeField]
+    public TYPEWEAPON weapon { get; private set; } = TYPEWEAPON.PISTOL;
+
     /// <summary>
     /// GameObject that shot this bullet.
     /// </summary>
     public GameObject caster { get; }
+
+    /// <summary>
+    /// The scope of the bullet.
+    /// </summary>
+    public Transform origin { get; }
+    public Vector3 originPos { get; } = Vector3.zero;
 
     public SO_BulletSettings(GameObject caster, Vector3 origin, TYPEWEAPON weapon)
     {
@@ -38,15 +48,10 @@ public class SO_BulletSettings : ScriptableObject
         this.originPos = origin;
         this.weapon = weapon;
     }
-
-    /// <summary>
-    /// The scope of the bullet.
-    /// </summary>
-    public Transform origin { get; }
-    public Vector3 originPos { get; } = Vector3.zero;
 }
 #if UNITY_EDITOR
 /// <summary>
+/// https://gist.github.com/FlaShG/49fcaf93bd8682a9722fd11950345b90 <br/>
 /// Use this attribute in combination with a [SerializeField] attribute on top of a property to display the property name. Example:
 /// [field: SerializeField, UsePropertyName]
 /// public int number { get; private set; }
