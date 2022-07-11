@@ -3,8 +3,9 @@ using Photon.Pun;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System.Collections;
+using System.Collections.Generic;
 
-public class RS_TankMovement : MonoBehaviour
+public class RS_TankMovement : MonoBehaviour, IFireBullet
 {
 
     [SerializeField] private GameObject bullet = null;
@@ -57,31 +58,75 @@ public class RS_TankMovement : MonoBehaviour
         {
             // start Shoot coroutine
         }
-        StartCoroutine(Shoot());
+        //StartCoroutine(Shoot());
+        Shoot();
         // }
     }
 
+    List<GameObject> InOrbitBullets = new List<GameObject>();
+
+    public void RegenerateBulletList(GameObject bullet)
+    {
+        InOrbitBullets.Remove(bullet);
+    }
+
     // create a coroutine
-    private IEnumerator Shoot()
+    private void Shoot()
     {
         var bulletAmount = 10;
         var rotAngle = 360 / bulletAmount;
         for (int i = 0; i < bulletAmount; i++)
         {
-            var b = Instantiate(bullet);
-            var bc = b.GetComponent<BulletController>();
-            bc.enabled = true;
-            var temp = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+            var bullet = Instantiate(this.bullet);
+            InOrbitBullets.Add(bullet);
+
+            var bulletController = bullet.GetComponent<BulletController>();
+            bulletController.enabled = true;
+            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
 
             //convert vector to quaternion
             var newForward = Quaternion.Euler(0, rotAngle * i, 0) * BetterScope.transform.forward;
             newForward.Normalize();
             var newPosition = BetterScope.transform.position + newForward * 1.5f;
 
-            temp.Init(gameObject, newPosition, newForward, weapon);
-            bc.Init(temp);
-            yield return new WaitForSeconds(0.01f);
+            bulletController.DesireedPosition = newPosition;
+
+            bulletSettings.Init(gameObject, newPosition, newForward, weapon);
+            bulletController.Init(bulletSettings);
+
+            //yield return new WaitForSeconds(0.00f);
         }
+    }
+
+    float totalDelta = 0f;
+    public float DeltaOffsetRate = 150f;
+    public float PositionOffset = 2f;
+    public float BulletsSpeed = 20f;
+    private void UpdateBulletsPosition()
+    {
+        if (InOrbitBullets.Count == 0)
+            return;
+
+        var rotAngle = 360 / InOrbitBullets.Count;
+        var idx = 0;
+        foreach (var bullet in InOrbitBullets)
+        {
+            var pointY = (rotAngle * idx) + totalDelta;
+            //convert vector to quaternion
+            var newForward = Quaternion.Euler(0, pointY, 0) * BetterScope.transform.forward; //rotate forward vector
+            newForward.Normalize();
+            var newPosition = BetterScope.transform.position + newForward * PositionOffset; // ... + offset
+
+            var bulletController = bullet.GetComponent<BulletController>();
+            bulletController.DesireedPosition = newPosition;
+            bulletController.BulletSpeed = BulletsSpeed;
+            idx++;
+
+            UnityEngine.Debug.DrawLine(newPosition, newPosition + Vector3.up * 3, Color.red);
+        }
+        totalDelta += Time.deltaTime * DeltaOffsetRate;
+        if (totalDelta >= 360f)
+            totalDelta = 0f;
     }
 
     void Update()
@@ -201,6 +246,8 @@ public class RS_TankMovement : MonoBehaviour
         #region UI
         if (count == 0) txtBulletCount.text = "R";
         #endregion
+
+        UpdateBulletsPosition();
     }
 
     private void Reload(int nBullets, float TimeToReaload)

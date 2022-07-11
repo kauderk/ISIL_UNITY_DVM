@@ -1,3 +1,16 @@
 {
-	"name": "shared-types"
+    "name": "shared-types",
+    "rootNamespace": "",
+    "references": [
+        "GUID:da03c659d1d863649b6f35fa75dbed59"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
