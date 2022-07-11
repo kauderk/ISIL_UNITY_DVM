@@ -1,6 +1,6 @@
-public enum Weapons
+public enum TYPEWEAPON
 {
-    Pistol,
-    Shotgun,
-    Rifle
+    PISTOL,
+    SHOTGUN,
+    RIFLE
 }

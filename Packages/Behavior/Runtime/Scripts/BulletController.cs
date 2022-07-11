@@ -9,12 +9,20 @@ public class BulletController : MonoBehaviour
 
     private Vector3 direccion = Vector3.zero;
 
-    // TODO: NO TE MAMES!
-    private PlayerController.TYPEWEAPON weapon = PlayerController.TYPEWEAPON.PISTOL;
+    /// <summary>
+    /// Using Shared Types: PISTOL, SHOTGUN, RIFLE
+    /// </summary>
+    private TYPEWEAPON weapon = TYPEWEAPON.PISTOL;
 
-    private GameObject player = null;
-    // why is this here?
-    [SerializeField] private Transform scope = null;
+    /// <summary>
+    /// GameObject that shot this bullet.
+    /// </summary>
+    private GameObject caster = null;
+
+    /// <summary>
+    /// The scope of the bullet.
+    /// </summary>
+    private Vector3 originPos = Vector3.zero;
 
 
 
@@ -24,64 +32,50 @@ public class BulletController : MonoBehaviour
     {
         switch (weapon)
         {
-            case PlayerController.TYPEWEAPON.PISTOL:
+            case TYPEWEAPON.PISTOL:
                 _BulletDistanceAndDamage(20f, 10f, weapon);
                 break;
-            case PlayerController.TYPEWEAPON.RIFLE:
+            case TYPEWEAPON.RIFLE:
                 _BulletDistanceAndDamage(30f, 20f, weapon);
                 break;
-            case PlayerController.TYPEWEAPON.SHOTGUN:
+            case TYPEWEAPON.SHOTGUN:
                 _BulletDistanceAndDamage(10f, 15f, weapon);
                 break;
         }
     }
 
-    void _BulletDistanceAndDamage(float dis, float dmg, PlayerController.TYPEWEAPON weapon)
+    void _BulletDistanceAndDamage(float dis, float dmg, TYPEWEAPON weapon)
     {
-        if (!player)
-            Debugger.Break();
-        BulletConfig(dis, dmg, weapon, player.transform.Find("Scope"));
+        BulletConfig(dis, dmg, weapon);
     }
 
-    public void Init(GameObject _player, Transform _scope = null)
+    public void Init(GameObject _caster, Transform _origin = null)
     {
-        player = _player;
-        scope = _scope;
-        if (!player)
-            Debugger.Break();
+        caster = _caster;
         //AWAKE();
-        SwitchBulletFlowOnWeaponType();
+        transform.position = _origin.transform.position;
+        originPos = _origin.transform.forward;
+        // SwitchBulletFlowOnWeaponType(); will be called in Update() anyways
     }
 
-    private void BulletConfig(float limitDistance, float damage, PlayerController.TYPEWEAPON _weapon, Transform inicialPos)
+    private void BulletConfig(float limitDistance, float damage, TYPEWEAPON _weapon)
     {
-        //player = _player;
-
         weapon = _weapon;
 
-        transform.position = inicialPos.transform.position;
-
-        direccion = inicialPos.transform.forward + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
-
+        direccion = originPos + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
 
         thisDamage = damage;
-        distance = Vector3.Distance(player.transform.position, transform.position);
+        distance = Vector3.Distance(caster.transform.position, transform.position);
 
         transform.position += speed * Time.deltaTime * direccion;
 
         if (distance > limitDistance)
-        {
-            Debugger.Break();
             Destroy(gameObject);
-            //this.transform.position = Target.transform.position;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<KD_IDamage>(out var damage))
-        {
             damage.TakeDamage(thisDamage);
-        }
     }
 }

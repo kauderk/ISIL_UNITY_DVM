@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private bool isRealoding, isShooting = false;
 
-    [HideInInspector] public enum TYPEWEAPON { PISTOL, SHOTGUN, RIFLE };
-
     public TYPEWEAPON weapon = TYPEWEAPON.PISTOL;
 
     private void Awake()
