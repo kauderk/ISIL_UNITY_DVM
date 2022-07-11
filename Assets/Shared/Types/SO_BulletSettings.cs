@@ -34,19 +34,36 @@ public class SO_BulletSettings : ScriptableObject
     /// <summary>
     /// GameObject that shot this bullet.
     /// </summary>
-    public GameObject caster { get; }
+    public GameObject caster { get; private set; }
 
     /// <summary>
     /// The scope of the bullet.
     /// </summary>
-    public Transform origin { get; }
-    public Vector3 originPos { get; } = Vector3.zero;
+    public Vector3 origin { get; private set; }
+    public Vector3 forward { get; private set; } = Vector3.zero;
 
-    public SO_BulletSettings(GameObject caster, Vector3 origin, TYPEWEAPON weapon)
+    public Vector3[] jiggle = new Vector3[2];
+
+    [field: SerializeField]
+    public LayerMask layerMask { get; private set; } = LayerMask.GetMask("Trees");
+
+    public SO_BulletSettings(GameObject caster, Vector3 origin, Vector3 forward, TYPEWEAPON weapon)
+    {
+        Init(caster, origin, forward, weapon);
+    }
+    public void Init(GameObject caster, Vector3 origin, Vector3 forward, TYPEWEAPON weapon)
     {
         this.caster = caster;
-        this.originPos = origin;
+        this.origin = origin;
+        this.forward = forward;
         this.weapon = weapon;
+    }
+    public void Init(SO_BulletSettings settings)
+    {
+        this.caster = settings.caster;
+        this.origin = settings.origin;
+        this.forward = settings.forward;
+        this.weapon = settings.weapon;
     }
 }
 #if UNITY_EDITOR

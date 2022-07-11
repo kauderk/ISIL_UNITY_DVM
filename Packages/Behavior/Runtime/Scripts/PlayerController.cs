@@ -4,7 +4,6 @@ using Photon.Pun;
 public class PlayerController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject bullet = null;
-    [SerializeField] private Transform scope = null;
 
     private Text txtBulletCount = null;
     private Image imgBullet = null;

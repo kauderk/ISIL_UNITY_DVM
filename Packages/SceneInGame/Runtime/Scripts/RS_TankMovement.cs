@@ -2,12 +2,14 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using System.Diagnostics;
+using System.Collections;
 
 public class RS_TankMovement : MonoBehaviourPunCallbacks
 {
 
     [SerializeField] private GameObject bullet = null;
     [SerializeField] private Transform scope = null;
+    [SerializeField] private Transform BetterScope = null;
 
     public ParticleSystem dustTrail;
     public ParticleSystem dustTrailBack;
@@ -17,7 +19,6 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
 
     private Image imgBullet = null;
 
-    [HideInInspector] public enum TYPEWEAPON { PISTOL, SHOTGUN, RIFLE };
     public TYPEWEAPON weapon = TYPEWEAPON.PISTOL;
 
     public float movementSpeed = 5.0f;
@@ -42,6 +43,7 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
         txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
 
         scope = gameObject.transform.Find("Scope");
+        BetterScope = gameObject.transform.Find("BetterScope");
         if (!scope)
             Debugger.Break();
         //}
@@ -53,21 +55,32 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < bullets; i++)
             {
-                // load a bullet
-                // get bullet prefab path
-                var b = Instantiate(bullet);
-
-                if (!b)
-                    Debugger.Break();
-                // var b = Instantiate(bullet);
-                var bc = b.GetComponent<BulletController>();
-                if (!bc)
-                    Debugger.Break();
-                bc.enabled = true;
-                //bc.Init(gameObject, scope);
-                //Instantiate(b);
-                //bulletInstance.GetComponent<BulletController>().Init(this.gameObject, scope);
+                // start Shoot coroutine
             }
+            StartCoroutine(Shoot());
+        }
+    }
+
+    // create a coroutine
+    private IEnumerator Shoot()
+    {
+        var bulletAmount = 10;
+        var rotAngle = 360 / bulletAmount;
+        for (int i = 0; i < bulletAmount; i++)
+        {
+            var b = Instantiate(bullet);
+            var bc = b.GetComponent<BulletController>();
+            bc.enabled = true;
+            var temp = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+
+            //convert vector to quaternion
+            var newForward = Quaternion.Euler(0, rotAngle * i, 0) * BetterScope.transform.forward;
+            newForward.Normalize();
+            var newPosition = BetterScope.transform.position + newForward * 1.5f;
+
+            temp.Init(gameObject, newPosition, newForward, weapon);
+            bc.Init(temp);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
@@ -75,6 +88,7 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
     {
         //if (photonView.IsMine)
         //{
+        #region Movement
         transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
         transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
 
@@ -101,12 +115,18 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
             dustTrailBack.Stop();
             tankMoveAnime.SetBool("IsMoving", false);
         }
+        #endregion
         //}
+        #region UI
 
         if (photonView.IsMine) txtBulletCount.text = count.ToString();
+        #endregion
 
+        #region Shooting Time
         if (isShooting == true) timePerBullet += Time.deltaTime;
+        #endregion
 
+        #region Realoading
         if (isRealoding == true)
         {
             timeToReaload += Time.deltaTime;
@@ -123,7 +143,9 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
                     break;
             }
         }
+        #endregion
 
+        #region Shoot Manual
         if (Input.GetMouseButtonDown(0))
         {
             isShooting = true;
@@ -149,7 +171,9 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
                     break;
             }
         }
+        #endregion
 
+        #region Shoot Automatic Weapons
         if (Input.GetMouseButton(0))
         {
             isShooting = true;
@@ -167,10 +191,15 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
                     break;
             }
         }
+        #endregion
 
+        #region Shoot Realoading
         if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
-        if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
+        #endregion
 
+        #region UI
+        if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
+        #endregion
     }
 
     private void Reload(int nBullets, float TimeToReaload)

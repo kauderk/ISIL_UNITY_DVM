@@ -4933,6 +4933,7 @@ Transform:
   - {fileID: 4072184900487023857}
   - {fileID: 4072184899244473037}
   - {fileID: 8179440346441656047}
+  - {fileID: 5632194257466095127}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4979,6 +4980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
   scope: {fileID: 8179440346441656047}
+  BetterScope: {fileID: 0}
   dustTrail: {fileID: 4072184900551237897}
   dustTrailBack: {fileID: 4072184900487023863}
   tankMoveAnime: {fileID: 8998160051465264230}
@@ -14691,6 +14693,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &5804257596253980907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5632194257466095127}
+  m_Layer: 7
+  m_Name: BetterScope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5632194257466095127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804257596253980907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4072184899575808411}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8078488608823751954
 GameObject:
   m_ObjectHideFlags: 0
