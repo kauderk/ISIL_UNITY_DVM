@@ -10,9 +10,9 @@ public interface KD_IWeapon
     public int fireRate { get; }
     public float cadence { get; }
     public bool isReloading { get; }
-    public TYPEWEAPON weapon { get; }
-    public Transform scope { get; }
-    public GameObject bulletPrefab { get; }
+    //public TYPEWEAPON weapon { get; }
+    //public Transform scope { get; }
+    //public GameObject bulletPrefab { get; }
     public void Fire();
     public void Reload();
     public void FillMagazine();

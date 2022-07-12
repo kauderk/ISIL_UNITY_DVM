@@ -13,7 +13,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     {
         scope = gameObject.transform.Find("Scope"); //TODO:
         Iweapon = Settings;
-        Iweapon.Init(Settings.bulletPrefab, scope);
+        Iweapon.Init(Settings.bulletSettings.bullet, scope);
     }
 
     void Update()

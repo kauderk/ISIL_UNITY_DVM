@@ -40,7 +40,7 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeapon
 
             var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
 
-            bulletSettings.Init(gameObject, scope, weapon);
+            bulletSettings.Init(bullet, gameObject, scope, weapon);
             controller.Init(bulletSettings);
 
             controller.enabled = true;
