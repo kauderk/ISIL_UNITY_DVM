@@ -35,6 +35,7 @@ public class SO_WeaponShooter : ScriptableObject, KD_IWeaponShooter
 
     public void Fire()
     {
+        amoution--;
         for (int i = 0; i < fireRate; i++)
         {
             var bullet = Instantiate(this.bullet);
