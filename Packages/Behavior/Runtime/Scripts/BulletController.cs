@@ -20,7 +20,7 @@ public class BulletController : MonoBehaviour
 
     private void Move()
     {
-        float randomJiggle() => Random.Range(settings.Jigle.x, settings.Jigle.y);
+        float randomJiggle() => Random.Range(settings.jigle.x, settings.jigle.y);
 
         var direccion = settings.originPos + new Vector3(randomJiggle(), 0, randomJiggle());
         var distance = Vector3.Distance(settings.caster.transform.position, transform.position);

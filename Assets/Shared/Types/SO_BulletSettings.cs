@@ -13,34 +13,34 @@ public class UJigleDictionary<Tkey, Tval> : SerializableDictionaryBase<Tkey, Tva
 public class SO_BulletSettings : ScriptableObject
 {
     /// <summary>
-    /// How fast the bullet will move.
+    /// How fast will the bullet move.
     /// </summary>
-    [field: SerializeField]
+    [field: SerializeField, Tooltip("How fast will the bullet move.")]
     public float speed { get; private set; } = 30f;
 
     /// <summary>
     /// How Far away until the bullet gets destroyed.
     /// </summary>
-    [field: SerializeField]
+    [field: SerializeField, Tooltip("How Far away until the bullet gets destroyed.")]
     public float limitDistance { get; private set; } = 20f;
 
     /// <summary>
     /// Will target GameObject that include the Interface KD_IDamage
     /// </summary>
-    [field: SerializeField]
+    [field: SerializeField, Tooltip("Will target GameObject that include the Interface KD_IDamage")]
     public float damage { get; private set; } = 10f;
 
     /// <summary>
     /// Using Shared Types: PISTOL, SHOTGUN, RIFLE
     /// </summary>
-    [field: SerializeField]
+    [field: SerializeField, Tooltip("Using Shared Types: PISTOL, SHOTGUN, RIFLE")]
     public TYPEWEAPON weapon { get; private set; } = TYPEWEAPON.PISTOL;
 
     /// <summary>
     /// Move Behavior, shotting in straight line, with random jiggle.
     /// </summary>
-    [field: SerializeField]
-    public Vector2 Jigle { get; private set; } = new Vector2(-0.3f, 0.3f);
+    [field: SerializeField, Tooltip("Move Behavior, shotting in straight line, with random jiggle.")]
+    public Vector2 jigle { get; private set; } = new Vector2(-0.3f, 0.3f);
 
     /// <summary>
     /// GameObject that shot this bullet.
