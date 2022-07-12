@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,59 +8,9 @@ public class KD_WeaponSettings
 }
 
 [CreateAssetMenu(fileName = "WeaponSettings", menuName = "Game Data/WeaponSettings")]
-public class SO_WeaponSettings : ScriptableObject, KD_IWeapon
+public class SO_WeaponSettings : ScriptableObject
 {
-    [field: SerializeField]
-    public int magazineSize { get; private set; }
-
-    [field: SerializeField]
-    public int amoution { get; private set; }
-
-    [field: SerializeField]
-    public int reloadAmount { get; private set; }
-
-    [field: SerializeField]
-    public float reloadTime { get; private set; }
-
-    [field: SerializeField]
-    public WeaponType type { get; private set; }
-
-    [field: SerializeField]
-    public int fireRate { get; private set; }
-
-    [field: SerializeField]
-    public float cadence { get; private set; }
-
-    [field: SerializeField, ReadOnly]
-    public bool isReloading { get; private set; }
-
-
-
-    [field: SerializeField]
-    public SO_BulletSettings bulletSettings { get; private set; }
-
-    public bool CanFire(float deltaFireRate)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void FillMagazine()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Fire()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Init(GameObject bulletPrefab, Transform scope)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Reload()
-    {
-        throw new System.NotImplementedException();
-    }
+    public SO_WeaponShooter shooter;
+    public SO_WeaponReloader reloader;
+    public SO_BulletSettings bulletSettings;
 }

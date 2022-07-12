@@ -59,13 +59,42 @@ public class SO_BulletSettings : ScriptableObject
     #endregion
     public Vector2 jigle { get; private set; } = new Vector2(-0.3f, 0.3f);
 
+    #region
+    /// <summary>
+    /// Where the bullet is headed. Cached world position, based on origin's forward vector
+    /// </summary>
+    [field: SerializeField, ReadOnly, Tooltip("Cached world position, based on origin's forward vector")]
+    #endregion
+    public Vector3 originForward { get; private set; } = Vector3.zero;
+
+    public SOC_BulletInstance Instance;
+
+    public SO_BulletSettings Init(GameObject bullet, GameObject caster, Transform origin, TYPEWEAPON weapon)
+    {
+        this.Instance.bullet = bullet;
+        this.Instance.caster = caster;
+        this.Instance.origin = origin;
+        this.originForward = origin.forward;
+        this.weapon = weapon;
+        return this;
+    }
+    public static SO_BulletSettings Instantiate(SO_BulletSettings settings)
+    {
+        var @new = ScriptableObject.Instantiate(settings);
+        return @new.Init(settings.Instance.bullet, settings.Instance.caster, settings.Instance.origin, settings.weapon);
+    }
+}
+
+[System.Serializable]
+public class SOC_BulletInstance
+{
     #region 
     /// <summary>
     /// GameObject that shoots this bullet.
     /// </summary>
     [field: SerializeField, ReadOnly, Tooltip("GameObject that shoots this bullet.")]
     #endregion
-    public GameObject caster { get; private set; }
+    public GameObject caster { get; set; }
 
     #region 
     /// <summary>
@@ -73,7 +102,7 @@ public class SO_BulletSettings : ScriptableObject
     /// </summary>
     [field: SerializeField, ReadOnly, Tooltip("The actual Bullet Model.")]
     #endregion
-    public GameObject bullet { get; private set; }
+    public GameObject bullet { get; set; }
 
     #region 
     /// <summary>
@@ -89,7 +118,7 @@ public class SO_BulletSettings : ScriptableObject
     /// </summary>
     [field: SerializeField, ReadOnly, Tooltip("The scope of the bullet.")]
     #endregion
-    public Transform origin { get; private set; }
+    public Transform origin { get; set; }
 
     #region
     /// <summary>
@@ -97,20 +126,5 @@ public class SO_BulletSettings : ScriptableObject
     /// </summary>
     [field: SerializeField, ReadOnly, Tooltip("Cached world position, based on origin's forward vector")]
     #endregion
-    public Vector3 originForward { get; private set; } = Vector3.zero;
-
-    public SO_BulletSettings Init(GameObject bullet, GameObject caster, Transform origin, TYPEWEAPON weapon)
-    {
-        this.bullet = bullet;
-        this.caster = caster;
-        this.origin = origin;
-        this.originForward = origin.forward;
-        this.weapon = weapon;
-        return this;
-    }
-    public static SO_BulletSettings Instantiate(SO_BulletSettings settings)
-    {
-        var @new = ScriptableObject.Instantiate(settings);
-        return @new.Init(settings.bullet, settings.caster, settings.origin, settings.weapon);
-    }
+    public Vector3 originForward { get; set; } = Vector3.zero;
 }
