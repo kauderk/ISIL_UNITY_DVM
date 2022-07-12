@@ -1,18 +1,41 @@
 using UnityEngine;
 using Photon.Pun;
 
+public enum WeaponType
+{
+    automatic,
+    semiAutomatic,
+    singleShot,
+}
 public interface IWeapon
 {
+    public float reloadAmount { get; }
+    public float reloadTime { get; }
+    public WeaponType type { get; }
+    public int fireRate { get; }
     public float cadence { get; set; }
     public void Fire();
+    public void Reload();
 }
 
 public class WeaponClass : MonoBehaviour, IWeapon
 {
+    public float reloadAmount { get; } = 10f;
+    public float reloadTime { get; } = 1f;
+    public WeaponType type { get; }
     public float cadence { get; set; } = 0.1f;
 
+    public int fireRate { get; } = 1;
+
+    public void Reload()
+    {
+        //reloadAmount
+        //reloadTime
+        throw new System.NotImplementedException();
+    }
     public void Fire()
     {
+        // fireRate
         throw new System.NotImplementedException();
     }
 
@@ -29,10 +52,10 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     private Transform scope;
 
 
-    // private bool isRealoding, 
-    // private float timePerBullet, timeToReaload = 0f;
+    float timeToReaload = 0f;
     float timePerBullet = 0f;
     int count, maxBullet = 0;
+    bool isRealoding;
     bool isShooting = false;
 
     bool enoughTime(float time = 0.1f) => timePerBullet > time;
@@ -82,14 +105,13 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //     timePerBullet += Time.deltaTime;
 
         // Reload();
-        if (InputIsShooting() && hasAmmo())
+
+        if (InputIsShooting() && hasAmmo() && enoughTime(weapon.cadence))
         {
-            // ShootManual
-            if (enoughTime(weapon.cadence))
-                weapon.Fire();
-            // ShootAutomatic
-            if (enoughTime())
-                FireAndReset();
+            if (weapon.type == WeaponType.automatic)
+                timePerBullet = 0f; // reset timer
+
+            weapon.Fire();
         }
 
         // // realoading
@@ -99,53 +121,28 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //UpdateUI();
     }
 
-    public void ChangeWeapon()
+    private void Reload()
     {
+        if (isRealoding == true)
+        {
+            timeToReaload += Time.deltaTime;
+            weapon.Reload();
 
+        }
     }
 
-
-
-    private void FireAndReset(int bullets = 1)
+    private void Reload(int nBullets, float TimeToReaload)
     {
-        Fire(bullets);
-        timePerBullet = 0f; // reset timer
+        if (photonView.IsMine)
+        {
+            if (timeToReaload > TimeToReaload)
+            {
+                isRealoding = false;
+                count = nBullets;
+                timeToReaload = 0;
+            }
+        }
     }
-
-
-
-    // private void Reload()
-    // {
-    //     if (isRealoding == true)
-    //     {
-    //         timeToReaload += Time.deltaTime;
-    //         switch (weapon)
-    //         {
-    //             case TYPEWEAPON.PISTOL:
-    //                 Reload(10, 0.5f);
-    //                 break;
-    //             case TYPEWEAPON.SHOTGUN:
-    //                 Reload(6, 0.5f);
-    //                 break;
-    //             case TYPEWEAPON.RIFLE:
-    //                 Reload(20, 1f);
-    //                 break;
-    //         }
-    //     }
-    // }
-
-    // private void Reload(int nBullets, float TimeToReaload)
-    // {
-    //     if (photonView.IsMine)
-    //     {
-    //         if (timeToReaload > TimeToReaload)
-    //         {
-    //             isRealoding = false;
-    //             count = nBullets;
-    //             timeToReaload = 0;
-    //         }
-    //     }
-    // }
 
     // private void OnCollisionEnter(Collision collision)
     // {
