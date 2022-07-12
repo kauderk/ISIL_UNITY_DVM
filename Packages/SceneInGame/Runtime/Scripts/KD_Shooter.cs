@@ -1,60 +1,79 @@
 using UnityEngine;
 using Photon.Pun;
 
+public interface IWeapon
+{
+    public float cadence { get; set; }
+    public void Fire();
+}
+
+public class WeaponClass : MonoBehaviour, IWeapon
+{
+    public float cadence { get; set; } = 0.1f;
+
+    public void Fire()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void FireAndReset(float time)
+    {
+        throw new System.NotImplementedException();
+    }
+}
+
 public class KD_Shooter : MonoBehaviourPunCallbacks
 {
     public SO_PlayerSettings settings;
-    //private GameObject bullet = null;
-    //private Transform scope = null;
+    //private GameObject bullet;
+    private Transform scope;
 
 
-    //private Text txtBulletCount = null;
-
-    //private Image imgBullet = null;
-
-    //private TYPEWEAPON weapon = TYPEWEAPON.PISTOL;
-
-
+    // private bool isRealoding, 
     // private float timePerBullet, timeToReaload = 0f;
-    // private int count, maxBullet = 0;
-    // private bool isRealoding, isShooting = false;
+    float timePerBullet = 0f;
+    int count, maxBullet = 0;
+    bool isShooting = false;
+
+    bool enoughTime(float time = 0.1f) => timePerBullet > time;
+
+    bool hasAmmo() => count > 0;
+
+    public IWeapon weapon;
 
 
     private void Awake()
     {
         settings.Init(gameObject);
+        //TODO: weapon has to be an object
         //if (photonView.IsMine)
         //{
-        //txtBulletCount = GameObject.Find("txtBulletCount").GetComponent<Text>();
-        //imgBullet = GameObject.Find("BgBullet").GetComponent<Image>();
-
         //count = maxBullet = 10;
-
-        //txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
-
-        //scope = gameObject.transform.Find("Scope");
+        scope = gameObject.transform.Find("Scope"); //TODO:
         //}
     }
 
-    // private void Fire(int bullets = 1)
-    // {
-    //     if (photonView.IsMine)
-    //     {
-    //         for (int i = 0; i < bullets; i++)
-    //         {
-    //             var bullet = Instantiate(this.bullet);
-    //             var controller = bullet.GetComponent<BulletController>();
-    //             controller.enabled = false;
+    private void Fire(int bullets = 1)
+    {
+        isShooting = false;
+        count -= 1;
+        //if (photonView.IsMine)
+        //{
+        for (int i = 0; i < bullets; i++)
+        {
+            var bullet = Instantiate(settings.bullet);
+            var controller = bullet.GetComponent<BulletController>();
+            controller.enabled = false;
 
-    //             var settings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
 
-    //             settings.Init(gameObject, scope, weapon);
-    //             controller.Init(settings);
+            bulletSettings.Init(gameObject, scope, settings.weapon);
+            controller.Init(bulletSettings);
 
-    //             controller.enabled = true;
-    //         }
-    //     }
-    // }
+            controller.enabled = true;
+        }
+        //}
+    }
 
     void Update()
     {
@@ -63,8 +82,15 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //     timePerBullet += Time.deltaTime;
 
         // Reload();
-        // ShootManual();
-        // ShootAutomatic();
+        if (InputIsShooting() && hasAmmo())
+        {
+            // ShootManual
+            if (enoughTime(weapon.cadence))
+                weapon.Fire();
+            // ShootAutomatic
+            if (enoughTime())
+                FireAndReset();
+        }
 
         // // realoading
         // if (Input.GetKeyDown(KeyCode.R))
@@ -73,61 +99,20 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //UpdateUI();
     }
 
-    // private void UpdateUI()
-    // {
-    //     if (photonView.IsMine) txtBulletCount.text = count.ToString();
-    //     if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
-    // }
+    public void ChangeWeapon()
+    {
 
-    // private void ShootAutomatic()
-    // {
-    //     if (Input.GetMouseButton(0))
-    //     {
-    //         isShooting = true;
+    }
 
-    //         switch (weapon)
-    //         {
-    //             case TYPEWEAPON.RIFLE:
-    //                 if (count > 0 & timePerBullet > 0.1f)
-    //                 {
-    //                     isShooting = false;
-    //                     Fire();
-    //                     count -= 1;
-    //                     timePerBullet = 0f;
-    //                 }
-    //                 break;
-    //         }
-    //     }
-    // }
 
-    // private void ShootManual()
-    // {
-    //     if (Input.GetMouseButtonDown(0))
-    //     {
-    //         isShooting = true;
-    //         switch (weapon)
-    //         {
-    //             case TYPEWEAPON.PISTOL:
 
-    //                 if (count > 0 && timePerBullet > 0.17f)
-    //                 {
-    //                     isShooting = false;
-    //                     Fire();
-    //                     count -= 1;
-    //                 }
-    //                 break;
-    //             case TYPEWEAPON.SHOTGUN:
-    //                 if (count > 0 && timePerBullet > 0.5f)
-    //                 {
-    //                     isShooting = false;
-    //                     Fire(3);
-    //                     count -= 1;
-    //                     timePerBullet = 0f;
-    //                 }
-    //                 break;
-    //         }
-    //     }
-    // }
+    private void FireAndReset(int bullets = 1)
+    {
+        Fire(bullets);
+        timePerBullet = 0f; // reset timer
+    }
+
+
 
     // private void Reload()
     // {
@@ -177,4 +162,10 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     //     }
     //     //}
     // }
+    bool InputIsShooting()
+    {
+        if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+            return isShooting = true;
+        return false;
+    }
 }

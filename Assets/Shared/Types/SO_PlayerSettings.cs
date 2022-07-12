@@ -7,6 +7,8 @@ public class SO_PlayerSettings : ScriptableObject
     public float movementSpeed = 5.0f;
     public GameObject dustTrailBackPrefab;
     public GameObject dustTrailPrefab;
+    public GameObject bullet;
+    public TYPEWEAPON weapon;
 
     public Animator animator { get; private set; }
     public ParticleSystem dustTrail { get; private set; }
