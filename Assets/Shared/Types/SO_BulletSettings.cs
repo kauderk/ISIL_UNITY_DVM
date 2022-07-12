@@ -23,10 +23,6 @@ public class SO_BulletSettings : ScriptableObject
     public Color color { get; private set; } = Color.white;
 
 
-    [field: SerializeField, Tooltip("Using Shared Types: PISTOL, SHOTGUN, RIFLE")]
-    public TYPEWEAPON weapon { get; private set; } = TYPEWEAPON.PISTOL;
-
-
     [field: SerializeField, Tooltip("Move Behavior, shotting in straight line, with random jiggle.")]
     public Vector2 jigle { get; private set; } = new Vector2(-0.3f, 0.3f);
 
@@ -36,19 +32,18 @@ public class SO_BulletSettings : ScriptableObject
 
     public SOC_BulletInstance Instance;
 
-    public SO_BulletSettings Init(GameObject bullet, GameObject caster, Transform origin, TYPEWEAPON weapon)
+    public SO_BulletSettings Init(GameObject bullet, GameObject caster, Transform origin)
     {
         this.Instance.bullet = bullet;
         this.Instance.caster = caster;
         this.Instance.origin = origin;
         this.originForward = origin.forward;
-        this.weapon = weapon;
         return this;
     }
     public static SO_BulletSettings Instantiate(SO_BulletSettings settings)
     {
         var @new = ScriptableObject.Instantiate(settings);
-        return @new.Init(settings.Instance.bullet, settings.Instance.caster, settings.Instance.origin, settings.weapon);
+        return @new.Init(settings.Instance.bullet, settings.Instance.caster, settings.Instance.origin);
     }
 }
 
