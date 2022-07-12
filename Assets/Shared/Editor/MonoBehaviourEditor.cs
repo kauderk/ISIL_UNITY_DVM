@@ -111,6 +111,13 @@ public class ExpandableAttributeDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        // property is type of ScriptableObject
+        if (property.objectReferenceValue == null)
+        {
+            EditorGUI.LabelField(position, label.text, "ScriptableObject not assigned");
+            return;
+        }
+
         Rect fieldRect = new Rect(position);
         fieldRect.height = EditorGUIUtility.singleLineHeight;
 

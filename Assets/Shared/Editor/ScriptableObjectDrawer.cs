@@ -14,11 +14,11 @@ public class ScriptableObjectDrawerF : PropertyDrawer
         // Draw label
         EditorGUI.PropertyField(position, property, label, true);
 
+        if (property.objectReferenceValue == null)
+            return; // draw it's picker
+
         // Draw foldout arrow
-        if (property.objectReferenceValue != null)
-        {
-            property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, GUIContent.none);
-        }
+        property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, GUIContent.none);
 
         // Draw foldout properties
         if (property.isExpanded)
