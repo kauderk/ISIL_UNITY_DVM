@@ -48,6 +48,7 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
         if (!scope)
             Debugger.Break();
         //}
+        // Time.timeScale = 0.45f;
     }
 
     private void InstaceBullet(int bullets = 1)
@@ -75,6 +76,7 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
     {
         var bulletAmount = 10;
         var rotAngle = 360 / bulletAmount;
+        var InitialBulletPosition = CalcPostionBasedOnForwardAngle(0, 0);
         for (int i = 0; i < bulletAmount; i++)
         {
             var bullet = Instantiate(this.bullet);
@@ -84,26 +86,26 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
             InOrbitBullets.Add(bulletController);
             var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
 
-            var pointY = (rotAngle * i) + totalDelta;
-            //convert vector to quaternion
-            var newForward = Quaternion.Euler(0, pointY, 0) * BetterScope.transform.forward;
-            newForward.Normalize();
-            var newPosition = BetterScope.transform.position + newForward * PositionOffset;
+            // Vector3 newPosition = CalcPostionBasedOnForwardAngle(rotAngle, i);
 
-            bulletController.DesireedPosition = newPosition;
+            bulletController.DesireedPosition = InitialBulletPosition;
             bulletController.BulletSpeed = _BulletsSpeed;
-            bulletSettings.Init(gameObject, newPosition, newForward, weapon);
+            bulletSettings.Init(gameObject, InitialBulletPosition, weapon);
             bulletController.Init(bulletSettings);
 
             bulletController.enabled = true;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(WaitForSeconds);
+
+            // totalDelta += 0.1f * DeltaOffsetRate;
+            // if (totalDelta >= 360f)
+            //     totalDelta = 0f;
         }
     }
-
     float totalDelta = 0f;
     public float DeltaOffsetRate = 150f;
     public float PositionOffset = 2f;
     public float _BulletsSpeed = 5f;
+    public float WaitForSeconds = 0.1f;
     private void UpdateBulletsPosition()
     {
         if (InOrbitBullets.Count == 0)
@@ -119,7 +121,6 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
             bulletController.DesireedPosition = newPosition;
 
             idx++;
-
             //UnityEngine.Debug.DrawLine(newPosition, newPosition + Vector3.up * 3, Color.red);
         }
         totalDelta += Time.deltaTime * DeltaOffsetRate;

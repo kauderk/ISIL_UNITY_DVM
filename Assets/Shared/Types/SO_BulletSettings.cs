@@ -47,11 +47,11 @@ public class SO_BulletSettings : ScriptableObject
     [field: SerializeField]
     public LayerMask layerMask { get; private set; } = LayerMask.GetMask("Trees");
 
-    public SO_BulletSettings(GameObject caster, Vector3 origin, Vector3 forward, TYPEWEAPON weapon)
+    public SO_BulletSettings(GameObject caster, Vector3 origin, TYPEWEAPON weapon)
     {
-        Init(caster, origin, forward, weapon);
+        Init(caster, origin, weapon);
     }
-    public void Init(GameObject caster, Vector3 origin, Vector3 forward, TYPEWEAPON weapon)
+    public void Init(GameObject caster, Vector3 origin, TYPEWEAPON weapon)
     {
         this.caster = caster;
         this.origin = origin;
