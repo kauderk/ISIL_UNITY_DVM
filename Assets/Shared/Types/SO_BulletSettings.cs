@@ -43,21 +43,25 @@ public class SO_BulletSettings : ScriptableObject
     public Vector2 jigle { get; private set; } = new Vector2(-0.3f, 0.3f);
 
     /// <summary>
-    /// GameObject that shot this bullet.
+    /// GameObject that shoots this bullet.
     /// </summary>
+    [field: SerializeField, ReadOnly, Tooltip("GameObject that shoots this bullet.")]
     public GameObject caster { get; private set; }
 
     /// <summary>
     /// The scope of the bullet.
     /// </summary>
+    [field: SerializeField, ReadOnly, Tooltip("The scope of the bullet.")]
     public Transform origin { get; private set; }
-    public Vector3 originPos { get; private set; } = Vector3.zero;
+
+    [field: SerializeField, ReadOnly, Tooltip("Cached world position, based on origin's forward vector")]
+    public Vector3 originForward { get; private set; } = Vector3.zero;
 
     public SO_BulletSettings Init(GameObject caster, Transform origin, TYPEWEAPON weapon)
     {
         this.caster = caster;
         this.origin = origin;
-        this.originPos = origin.forward;
+        this.originForward = origin.forward;
         this.weapon = weapon;
         return this;
     }
