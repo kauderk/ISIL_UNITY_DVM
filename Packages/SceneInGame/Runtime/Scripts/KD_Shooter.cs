@@ -76,7 +76,6 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     private void Awake()
     {
         settings.Init(gameObject);
-        //TODO: weapon has to be an object
         //if (photonView.IsMine)
         //{
         count = maxBullet = weapon.magazineSize;
@@ -108,11 +107,16 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        // // timers
-        // if (isShooting == true)
-        //     timePerBullet += Time.deltaTime;
+        if (InputReload() && !weapon.isReloading)
+        {
+            timeToReaload += Time.deltaTime;
 
-        // Reload();
+            if (timeToReaload > weapon.reloadTime)
+            {
+                weapon.Reload();
+                timeToReaload = 0;
+            }
+        }
 
         if (InputIsShooting() && hasAmmo() && enoughTime(weapon.cadence))
         {
@@ -121,34 +125,10 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
 
             weapon.Fire();
         }
-
-        // // realoading
-        // if (Input.GetKeyDown(KeyCode.R))
-        //     isRealoding = true;
-
-        //UpdateUI();
-    }
-
-    private void Reload()
-    {
-        if (weapon.isReloading)
-            return;
-
-        timeToReaload += Time.deltaTime;
-        weapon.Reload();
-    }
-
-    private void Reload(int amount, float reloadTime)
-    {
-        // if (photonView.IsMine)
-        // {
-        if (timeToReaload > reloadTime)
+        else if (InputIsShooting())
         {
-            weapon.isReloading = false;
-            count = amount;
-            timeToReaload = 0;
+            timePerBullet += Time.deltaTime;
         }
-        // }
     }
 
     // private void OnCollisionEnter(Collision collision)
@@ -166,6 +146,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     //     }
     //     //}
     // }
+    bool InputReload() => Input.GetKeyDown(KeyCode.R);
     bool InputIsShooting()
     {
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
