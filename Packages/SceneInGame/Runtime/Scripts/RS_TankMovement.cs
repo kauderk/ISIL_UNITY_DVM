@@ -3,6 +3,7 @@ using Photon.Pun;
 
 public class RS_TankMovement : MonoBehaviourPunCallbacks
 {
+    public SO_PlayerSettings Settings;
     public KD_TankEditorSettings EditorSettings;
 
     void Update()
@@ -13,8 +14,8 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
 
     private void Move()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * EditorSettings.SO.rotationSpeed, 0);
-        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * EditorSettings.SO.movementSpeed);
+        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * Settings.rotationSpeed, 0);
+        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * Settings.movementSpeed);
 
         void isMoving(bool bol) => EditorSettings.animator.SetBool("isMoving", bol);
 

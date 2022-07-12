@@ -9,14 +9,10 @@ public class KD_TankEditorSettings
     public ParticleSystem dustTrail { get; private set; }
     [field: SerializeField]
     public ParticleSystem dustTrailBack { get; private set; }
-    [field: SerializeField]
-    public SO_PlayerSettings SO;
 }
 [CreateAssetMenu(fileName = "PlayerSettings", menuName = "Game Data/PlayerSettings", order = 1)]
 public class SO_PlayerSettings : ScriptableObject
 {
     public float rotationSpeed = 200f;
     public float movementSpeed = 5.0f;
-    public TYPEWEAPON weapon;
-    public GameObject bulletPrefab;
 }

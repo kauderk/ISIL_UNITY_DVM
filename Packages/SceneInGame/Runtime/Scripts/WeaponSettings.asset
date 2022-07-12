@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af6e7b818ae64242bde4e48b4095714, type: 3}
-  m_Name: PlayerSettings
+  m_Script: {fileID: 11500000, guid: d2e1bf59f50206b49adc4469229d3498, type: 3}
+  m_Name: WeaponSettings
   m_EditorClassIdentifier: 
-  rotationSpeed: 200
-  movementSpeed: 5
-  weapon: 0
-  bulletPrefab: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
