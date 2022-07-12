@@ -3,12 +3,12 @@ using Photon.Pun;
 
 public class KD_Reloader : MonoBehaviourPunCallbacks
 {
-    public SO_WeaponSettings Settings;
+    public SO_WeaponReloader Settings;
 
     KD_IWeaponReloader Iweapon;
     float timeToReaload = 0f;
 
-    private void Awake() => Iweapon = Settings.reloader;
+    private void Awake() => Iweapon = Settings;
 
     void Update()
     {

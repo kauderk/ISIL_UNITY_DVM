@@ -12,7 +12,7 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeapon
     public bool isReloading { get; private set; } = false;
     public TYPEWEAPON weapon { get; }
     public Transform scope { get; private set; }
-    public GameObject bulletPrefab { get; private set; }
+    public GameObject bullet { get; private set; }
 
     public void Init(GameObject bulletPrefab, Transform scope)
     {
@@ -34,7 +34,7 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeapon
     {
         for (int i = 0; i < fireRate; i++)
         {
-            var bullet = Instantiate(bulletPrefab);
+            var bullet = Instantiate(this.bullet);
             var controller = bullet.GetComponent<BulletController>();
             controller.enabled = false;
 

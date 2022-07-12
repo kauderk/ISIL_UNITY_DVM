@@ -3,27 +3,27 @@ using Photon.Pun;
 
 public class KD_Shooter : MonoBehaviourPunCallbacks
 {
-    public SO_WeaponSettings Settings;
-    public Transform scope;
+    public SO_WeaponShooter Settings;
+    public Transform scope; // SOC_WeaponShooter ready to use if needed
 
-    KD_IWeaponShooter Iweapon;
+    KD_IWeaponShooter IShooter;
     float deltaFireRate = 0f;
 
     private void Awake()
     {
         scope = gameObject.transform.Find("Scope"); //TODO:
-        Iweapon = Settings.shooter;
-        Iweapon.Init(Settings.bulletSettings.Instance.bullet, scope);
+        IShooter = Settings;
+        //Iweapon.Init(Settings.bulletSettings.Instance.bullet, scope);
     }
 
     void Update()
     {
-        if (InputIsShooting() && Iweapon.CanFire(deltaFireRate))
+        if (InputIsShooting() && IShooter.CanFire(deltaFireRate))
         {
-            if (Iweapon.type == WeaponType.automatic)
+            if (IShooter.type == WeaponType.automatic)
                 deltaFireRate = 0f; // reset timer
 
-            Iweapon.Fire();
+            IShooter.Fire();
         }
         else if (InputIsShooting())
         {

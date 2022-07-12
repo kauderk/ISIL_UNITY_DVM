@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6a7ed6ef9e9194a870949f72f8f44f, type: 3}
   m_Name: WeaponReloader
   m_EditorClassIdentifier: 
+  <reloadAmount>k__BackingField: 1
+  <reloadTime>k__BackingField: 0.5
+  <isReloading>k__BackingField: 0

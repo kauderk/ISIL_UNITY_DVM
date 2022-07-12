@@ -9,7 +9,7 @@ public class SO_WeaponReloader : ScriptableObject, KD_IWeaponReloader
     [field: SerializeField]
     public float reloadTime { get; private set; }
 
-    [field: SerializeField]
+    [field: SerializeField, ReadOnly]
     public bool isReloading { get; private set; }
 
     public void FillMagazine()
