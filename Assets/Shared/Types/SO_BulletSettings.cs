@@ -16,19 +16,37 @@ public class SO_BulletSettings : ScriptableObject
     /// How fast will the bullet move.
     /// </summary>
     [field: SerializeField, Tooltip("How fast will the bullet move.")]
-    public float speed { get; private set; } = 30f;
+    public float speed { get; private set; } = 10f;
 
     /// <summary>
     /// How Far away until the bullet gets destroyed.
     /// </summary>
     [field: SerializeField, Tooltip("How Far away until the bullet gets destroyed.")]
-    public float limitDistance { get; private set; } = 20f;
+    public float limitDistance { get; private set; } = 40f;
 
     /// <summary>
     /// Will target GameObject that include the Interface KD_IDamage
     /// </summary>
     [field: SerializeField, Tooltip("Will target GameObject that include the Interface KD_IDamage")]
-    public float damage { get; private set; } = 10f;
+    public float damage { get; private set; } = 5f;
+
+    /// <summary>
+    /// How much ammo will be consumed.
+    /// </summary>
+    [field: SerializeField, Tooltip("How much ammo will be consumed.")]
+    public int magazineSize { get; private set; } = 10;
+
+    /// <summary>
+    /// When a collider triggers it's pickup function, the global UI color should change.
+    /// </summary>
+    [field: SerializeField, Tooltip("When a collider triggers it's pickup function, the global UI color should change.")]
+    public Color color { get; private set; } = Color.white;
+
+    /// <summary>
+    /// It's material should be updated during Editor.
+    /// </summary>
+    [field: SerializeField, Tooltip("It's material should be updated during Editor.")]
+    public MeshRenderer meshRenderer { get; set; }
 
     /// <summary>
     /// Using Shared Types: PISTOL, SHOTGUN, RIFLE
