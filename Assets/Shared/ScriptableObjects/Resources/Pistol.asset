@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160f1fc96bc450e47817f5f0976387f4, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  <speed>k__BackingField: 30
-  <limitDistance>k__BackingField: 20
-  <damage>k__BackingField: 10
+  <speed>k__BackingField: 10
+  <limitDistance>k__BackingField: 40
+  <damage>k__BackingField: 1
   <weapon>k__BackingField: 0
+  <Jigle>k__BackingField: {x: -0.3, y: 0.3}

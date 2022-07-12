@@ -1,8 +1,13 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
+using RotaryHeart.Lib.SerializableDictionary;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+[System.Serializable]
+public class UJigleDictionary<Tkey, Tval> : SerializableDictionaryBase<Tkey, Tval> { }
+
 
 [CreateAssetMenu(fileName = "BulletSettings", menuName = "Game Data/BulletSettings", order = 1)]
 public class SO_BulletSettings : ScriptableObject
@@ -32,21 +37,34 @@ public class SO_BulletSettings : ScriptableObject
     public TYPEWEAPON weapon { get; private set; } = TYPEWEAPON.PISTOL;
 
     /// <summary>
+    /// Move Behavior, shotting in straight line, with random jiggle.
+    /// </summary>
+    [field: SerializeField]
+    public Vector2 Jigle { get; private set; } = new Vector2(-0.3f, 0.3f);
+
+    /// <summary>
     /// GameObject that shot this bullet.
     /// </summary>
-    public GameObject caster { get; }
+    public GameObject caster { get; private set; }
 
     /// <summary>
     /// The scope of the bullet.
     /// </summary>
-    public Transform origin { get; }
-    public Vector3 originPos { get; } = Vector3.zero;
+    public Transform origin { get; private set; }
+    public Vector3 originPos { get; private set; } = Vector3.zero;
 
-    public SO_BulletSettings(GameObject caster, Vector3 origin, TYPEWEAPON weapon)
+    public SO_BulletSettings Init(GameObject caster, Transform origin, TYPEWEAPON weapon)
     {
         this.caster = caster;
-        this.originPos = origin;
+        this.origin = origin;
+        this.originPos = origin.forward;
         this.weapon = weapon;
+        return this;
+    }
+    public static SO_BulletSettings Instantiate(SO_BulletSettings settings)
+    {
+        var @new = ScriptableObject.Instantiate(settings);
+        return @new.Init(settings.caster, settings.origin, settings.weapon);
     }
 }
 #if UNITY_EDITOR

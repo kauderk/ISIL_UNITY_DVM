@@ -13,15 +13,16 @@ public class BulletController : MonoBehaviour
 
     public void Init(SO_BulletSettings _settings) // Awake()
     {
-        settings = ScriptableObject.Instantiate(_settings);
-
+        settings = SO_BulletSettings.Instantiate(_settings); // create a new instance to avoid changing the original settings, because c# passes by reference
         transform.position = settings.origin.transform.position;
         thisDamage = thisDamage ?? settings.damage;
     }
 
     private void Move()
     {
-        var direccion = settings.originPos + new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
+        float randomJiggle() => Random.Range(settings.Jigle.x, settings.Jigle.y);
+
+        var direccion = settings.originPos + new Vector3(randomJiggle(), 0, randomJiggle());
         var distance = Vector3.Distance(settings.caster.transform.position, transform.position);
         transform.position += settings.speed * Time.deltaTime * direccion;
 
