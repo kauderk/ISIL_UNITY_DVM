@@ -16,27 +16,38 @@ public class KD_WeaponSettings
 [CreateAssetMenu(fileName = "WeaponSettings", menuName = "Game Data/WeaponSettings")]
 public class SO_WeaponSettings : ScriptableObject, KD_IWeapon
 {
-    public int magazineSize => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public int magazineSize { get; private set; }
 
-    public int amoution => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public int amoution { get; private set; }
 
-    public int reloadAmount => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public int reloadAmount { get; private set; }
 
-    public float reloadTime => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public float reloadTime { get; private set; }
 
-    public WeaponType type => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public WeaponType type { get; private set; }
 
-    public int fireRate => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public int fireRate { get; private set; }
 
-    public float cadence => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public float cadence { get; private set; }
 
-    public bool isReloading => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public bool isReloading { get; private set; }
 
-    public TYPEWEAPON weapon => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public TYPEWEAPON weapon { get; private set; }
 
-    public Transform scope => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public Transform scope { get; private set; }
 
-    public GameObject bulletPrefab => throw new System.NotImplementedException();
+    [field: SerializeField]
+    public GameObject bulletPrefab { get; private set; }
 
     public bool CanFire(float deltaFireRate)
     {
