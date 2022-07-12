@@ -10,7 +10,8 @@ public enum WeaponType
 public interface IWeapon
 {
     public int magazineSize { get; }
-    public float reloadAmount { get; }
+    public int amoution { get; set; }
+    public int reloadAmount { get; }
     public float reloadTime { get; }
     public WeaponType type { get; }
     public int fireRate { get; }
@@ -23,8 +24,9 @@ public interface IWeapon
 public class WeaponClass : MonoBehaviour, IWeapon
 {
     public int magazineSize { get; } = 10;
-    public float reloadAmount { get; } = 10f;
-    public float reloadTime { get; } = 1f;
+    public int amoution { get; set; } = 10;
+    public int reloadAmount { get; } = 10;
+    public float reloadTime { get; set; } = 1f;
     public WeaponType type { get; }
     public int fireRate { get; } = 1;
     public float cadence { get; set; } = 0.1f;
@@ -34,6 +36,9 @@ public class WeaponClass : MonoBehaviour, IWeapon
     {
         //reloadAmount
         //reloadTime
+        isReloading = false;
+        amoution += reloadAmount;
+        reloadTime = 0;
         throw new System.NotImplementedException();
     }
     public void Fire()
@@ -126,11 +131,11 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
 
     private void Reload()
     {
-        if (weapon.isReloading == true)
-        {
-            timeToReaload += Time.deltaTime;
-            weapon.Reload();
-        }
+        if (weapon.isReloading)
+            return;
+
+        timeToReaload += Time.deltaTime;
+        weapon.Reload();
     }
 
     private void Reload(int amount, float reloadTime)
@@ -139,7 +144,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         // {
         if (timeToReaload > reloadTime)
         {
-            isReloading = false;
+            weapon.isReloading = false;
             count = amount;
             timeToReaload = 0;
         }
