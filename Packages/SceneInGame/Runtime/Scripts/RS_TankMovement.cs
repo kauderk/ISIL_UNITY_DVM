@@ -3,25 +3,20 @@ using Photon.Pun;
 
 public class RS_TankMovement : MonoBehaviourPunCallbacks
 {
-    public SO_PlayerSettings settings;
-
-    private void Awake() => settings.Init(gameObject);
+    public KD_TankEditorSettings EditorSettings;
 
     void Update()
     {
-        //if (photonView.IsMine)
-        //{
         Move();
         Show();
-        //}
     }
 
     private void Move()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * settings.rotationSpeed, 0);
-        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * settings.movementSpeed);
+        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * EditorSettings.SO.rotationSpeed, 0);
+        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * EditorSettings.SO.movementSpeed);
 
-        void isMoving(bool bol) => settings.animator.SetBool("isMoving", bol);
+        void isMoving(bool bol) => EditorSettings.animator.SetBool("isMoving", bol);
 
         if (InputForwards())
             isMoving(true);
@@ -38,16 +33,16 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
     private void Show()
     {
         if (InputForwards())
-            settings.dustTrail.Play();
+            EditorSettings.dustTrail.Play();
 
         if (InputForwardsStoped())
-            settings.dustTrail.Stop();
+            EditorSettings.dustTrail.Stop();
 
         if (InputBackwards())
-            settings.dustTrailBack.Play();
+            EditorSettings.dustTrailBack.Play();
 
         if (InputBackwardsStoped())
-            settings.dustTrailBack.Stop();
+            EditorSettings.dustTrailBack.Stop();
     }
 
     #region Inputs

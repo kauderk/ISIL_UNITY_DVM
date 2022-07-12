@@ -30,7 +30,6 @@ public class KD_Magazine : MonoBehaviour, KD_IMagazine
 [CustomEditor(typeof(KD_Magazine))]
 public class KD_MagazineEditor : Editor
 {
-    private bool lockAutoDraw = false;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
