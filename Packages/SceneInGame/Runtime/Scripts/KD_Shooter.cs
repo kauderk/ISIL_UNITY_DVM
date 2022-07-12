@@ -9,7 +9,7 @@ public enum WeaponType
 }
 public interface IWeapon
 {
-    public int magazineSize { get; }
+    public int magazineSize { get; set; }
     public int amoution { get; set; }
     public int reloadAmount { get; }
     public float reloadTime { get; }
@@ -19,11 +19,12 @@ public interface IWeapon
     public bool isReloading { get; set; }
     public void Fire();
     public void Reload();
+    public void FillMagazine();
 }
 
 public class WeaponClass : MonoBehaviour, IWeapon
 {
-    public int magazineSize { get; } = 10;
+    public int magazineSize { get; set; } = 10;
     public int amoution { get; set; } = 10;
     public int reloadAmount { get; } = 10;
     public float reloadTime { get; set; } = 1f;
@@ -31,6 +32,13 @@ public class WeaponClass : MonoBehaviour, IWeapon
     public int fireRate { get; } = 1;
     public float cadence { get; set; } = 0.1f;
     public bool isReloading { get; set; } = false;
+
+    public void Init()
+    {
+        FillMagazine();
+    }
+
+    public void FillMagazine() => amoution = magazineSize;
 
     public void Reload()
     {
@@ -56,19 +64,14 @@ public class WeaponClass : MonoBehaviour, IWeapon
 public class KD_Shooter : MonoBehaviourPunCallbacks
 {
     public SO_PlayerSettings settings;
-    //private GameObject bullet;
     private Transform scope;
 
-
-    float timeToReaload = 0f;
     float timePerBullet = 0f;
-    int count, maxBullet = 0;
-    bool isReloading;
-    bool isShooting = false;
+    bool canShoot = false;
 
     bool enoughTime(float time = 0.1f) => timePerBullet > time;
 
-    bool hasAmmo() => count > 0;
+    bool hasAmmo() => weapon.amoution > 0;
 
     public IWeapon weapon;
 
@@ -78,15 +81,28 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         settings.Init(gameObject);
         //if (photonView.IsMine)
         //{
-        count = maxBullet = weapon.magazineSize;
         scope = gameObject.transform.Find("Scope"); //TODO:
         //}
     }
 
+    void Update()
+    {
+        if (InputIsShooting() && hasAmmo() && enoughTime(weapon.cadence))
+        {
+            if (weapon.type == WeaponType.automatic)
+                timePerBullet = 0f; // reset timer
+
+            weapon.Fire();
+            canShoot = false;
+        }
+        else if (InputIsShooting())
+        {
+            timePerBullet += Time.deltaTime;
+        }
+    }
+
     private void Fire(int bullets = 1)
     {
-        isShooting = false;
-        count -= 1;
         //if (photonView.IsMine)
         //{
         for (int i = 0; i < bullets; i++)
@@ -105,52 +121,10 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //}
     }
 
-    void Update()
-    {
-        if (InputReload() && !weapon.isReloading)
-        {
-            timeToReaload += Time.deltaTime;
-
-            if (timeToReaload > weapon.reloadTime)
-            {
-                weapon.Reload();
-                timeToReaload = 0;
-            }
-        }
-
-        if (InputIsShooting() && hasAmmo() && enoughTime(weapon.cadence))
-        {
-            if (weapon.type == WeaponType.automatic)
-                timePerBullet = 0f; // reset timer
-
-            weapon.Fire();
-        }
-        else if (InputIsShooting())
-        {
-            timePerBullet += Time.deltaTime;
-        }
-    }
-
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     //if (photonView.IsMine)
-    //     //{
-    //     if (collision.gameObject.TryGetComponent<KD_IMagazine>(out var magazine))
-    //     {
-    //         collision.gameObject.SetActive(false);
-    //         var settings = magazine.PickUp();
-    //         weapon = settings.weapon;
-    //         count = maxBullet = settings.magazineSize;
-    //         // TODO: Fire a Gloabl Event to update the UI 
-    //         txtBulletCount.color = settings.color;
-    //     }
-    //     //}
-    // }
-    bool InputReload() => Input.GetKeyDown(KeyCode.R);
     bool InputIsShooting()
     {
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
-            return isShooting = true;
+            return canShoot = true;
         return false;
     }
 }
