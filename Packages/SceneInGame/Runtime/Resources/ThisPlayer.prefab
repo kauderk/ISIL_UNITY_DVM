@@ -4990,6 +4990,7 @@ MonoBehaviour:
   DeltaOffsetRate: 150
   PositionOffset: 2
   _BulletsSpeed: 5
+  WaitForSeconds: 0.25
 --- !u!114 &4072184899575808408
 MonoBehaviour:
   m_ObjectHideFlags: 0

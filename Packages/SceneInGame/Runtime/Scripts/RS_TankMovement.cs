@@ -111,11 +111,16 @@ public class RS_TankMovement : MonoBehaviour, IFireBullet
         if (InOrbitBullets.Count == 0)
             return;
 
-        var rotAngle = 360 / InOrbitBullets.Count;
+        var rotAngle = 360 / 10;
         var idx = 0;
         foreach (var bullet in InOrbitBullets)
         {
-            Vector3 newPosition = CalcPostionBasedOnForwardAngle(rotAngle, idx);
+            var lastBulletIdx = idx;
+            if (lastBulletIdx != 0)
+            {
+                lastBulletIdx = 10 - idx;
+            }
+            Vector3 newPosition = CalcPostionBasedOnForwardAngle(rotAngle, lastBulletIdx);
 
             var bulletController = bullet as BulletController;
             bulletController.DesireedPosition = newPosition;
