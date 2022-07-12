@@ -15,11 +15,11 @@ public class KD_Magazine : MonoBehaviour, KD_IMagazine
     public void updateMeshRenderer()
     {
         if (!settings) return;
-        settings.meshRenderer = GetComponent<MeshRenderer>();
+        var meshRenderer = settings.Instance.meshRenderer = GetComponent<MeshRenderer>();
         // http://answers.unity.com/answers/322397/view.html
-        var tempMaterial = new Material(settings.meshRenderer.sharedMaterial);
+        var tempMaterial = new Material(meshRenderer.sharedMaterial);
         tempMaterial.color = settings.color;
-        settings.meshRenderer.sharedMaterial = tempMaterial;
+        meshRenderer.sharedMaterial = tempMaterial;
     }
 }
 

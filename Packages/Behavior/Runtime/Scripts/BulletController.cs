@@ -14,7 +14,7 @@ public class BulletController : MonoBehaviour
     public void Init(SO_BulletSettings _settings) // Awake()
     {
         settings = SO_BulletSettings.Instantiate(_settings); // create a new instance to avoid changing the original settings, because c# passes by reference
-        transform.position = settings.origin.transform.position;
+        transform.position = settings.Instance.origin.transform.position;
         thisDamage = thisDamage ?? settings.damage;
     }
 
@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
         float randomJiggle() => Random.Range(settings.jigle.x, settings.jigle.y);
 
         var direccion = settings.originForward + new Vector3(randomJiggle(), 0, randomJiggle());
-        var distance = Vector3.Distance(settings.caster.transform.position, transform.position);
+        var distance = Vector3.Distance(settings.Instance.caster.transform.position, transform.position);
         transform.position += settings.speed * Time.deltaTime * direccion;
 
         if (distance > settings.limitDistance)

@@ -12,8 +12,8 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     private void Awake()
     {
         scope = gameObject.transform.Find("Scope"); //TODO:
-        Iweapon = Settings;
-        Iweapon.Init(Settings.bulletSettings.bullet, scope);
+        Iweapon = Settings.shooter;
+        Iweapon.Init(Settings.bulletSettings.Instance.bullet, scope);
     }
 
     void Update()
