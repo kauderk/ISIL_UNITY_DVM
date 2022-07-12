@@ -199,29 +199,14 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
     {
         //if (photonView.IsMine)
         //{
-        if (collision.gameObject.CompareTag("Pistol"))
+        if (collision.gameObject.TryGetComponent<KD_IMagazine>(out var magazine))
         {
-            maxBullet = 10;
-            weapon = TYPEWEAPON.PISTOL;
-            count = maxBullet;
-            txtBulletCount.color = new Color(0, 0.751729f, 1, 1);
             collision.gameObject.SetActive(false);
-        }
-        else if (collision.gameObject.CompareTag("Rifle"))
-        {
-            maxBullet = 20;
-            weapon = TYPEWEAPON.RIFLE;
-            count = maxBullet;
-            txtBulletCount.color = new Color(1, 0.2206753f, 0, 1);
-            collision.gameObject.SetActive(false);
-        }
-        else if (collision.gameObject.CompareTag("Shotgun"))
-        {
-            maxBullet = 6;
-            weapon = TYPEWEAPON.SHOTGUN;
-            count = maxBullet;
-            txtBulletCount.color = new Color(0, 1, 0.0381248f, 1);
-            collision.gameObject.SetActive(false);
+            var settings = magazine.PickUp();
+            weapon = settings.weapon;
+            count = maxBullet = settings.magazineSize;
+            // TODO: Fire a Gloabl Event to update the UI 
+            txtBulletCount.color = settings.color;
         }
         //}
     }
