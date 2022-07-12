@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface KD_IWeaponShooter
 {
+    public WeaponType type { get; }
     public int magazineSize { get; }
     public int amoution { get; }
     public int fireRate { get; }

@@ -5,7 +5,7 @@ public class KD_Reloader : MonoBehaviourPunCallbacks
 {
     public SO_WeaponSettings Settings;
 
-    KD_IWeapon Iweapon;
+    KD_IWeaponReloader Iweapon;
     float timeToReaload = 0f;
 
     private void Awake() => Iweapon = Settings;

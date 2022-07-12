@@ -6,7 +6,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     public SO_WeaponSettings Settings;
     public Transform scope;
 
-    KD_IWeapon Iweapon;
+    KD_IWeaponShooter Iweapon;
     float deltaFireRate = 0f;
 
     private void Awake()
