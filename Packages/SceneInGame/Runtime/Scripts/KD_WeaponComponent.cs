@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KD_WeaponComponent : MonoBehaviour, KD_IWeapon
+public class KD_WeaponComponent : MonoBehaviour, KD_IWeaponShooter
 {
     public int magazineSize { get; } = 10;
     public int amoution { get; private set; } = 10;
@@ -13,6 +13,30 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeapon
     public TYPEWEAPON weapon { get; }
     public Transform scope { get; private set; }
     public GameObject bullet { get; private set; }
+
+    public bool CanFire(float deltaFireRate)
+    {
+        bool enoughTime = deltaFireRate > cadence;
+        bool hasAmmo = amoution > 0;
+        return hasAmmo && enoughTime;
+    }
+
+    public void Fire()
+    {
+        for (int i = 0; i < fireRate; i++)
+        {
+            var bullet = Instantiate(this.bullet);
+            var controller = bullet.GetComponent<BulletController>();
+            controller.enabled = false;
+
+            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+
+            bulletSettings.Init(bullet, gameObject, scope);
+            controller.Init(bulletSettings);
+
+            controller.enabled = true;
+        }
+    }
 
     public void Init(GameObject bulletPrefab, Transform scope)
     {
@@ -30,27 +54,8 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeapon
         //reloadTime = 0;
     }
 
-    public void Fire()
+    public void Init(SOC_WeaponShooter EditorSettings)
     {
-        for (int i = 0; i < fireRate; i++)
-        {
-            var bullet = Instantiate(this.bullet);
-            var controller = bullet.GetComponent<BulletController>();
-            controller.enabled = false;
-
-            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
-
-            bulletSettings.Init(bullet, gameObject, scope, weapon);
-            controller.Init(bulletSettings);
-
-            controller.enabled = true;
-        }
-    }
-
-    public bool CanFire(float deltaFireRate)
-    {
-        bool enoughTime = deltaFireRate > cadence;
-        bool hasAmmo = amoution > 0;
-        return hasAmmo && enoughTime;
+        throw new System.NotImplementedException();
     }
 }

@@ -4,16 +4,15 @@ using Photon.Pun;
 public class KD_Shooter : MonoBehaviourPunCallbacks
 {
     public SO_WeaponShooter Settings;
-    public Transform scope; // SOC_WeaponShooter ready to use if needed
+    public SOC_WeaponShooter EditorSettings;
 
     KD_IWeaponShooter IShooter;
     float deltaFireRate = 0f;
 
     private void Awake()
     {
-        scope = gameObject.transform.Find("Scope"); //TODO:
         IShooter = Settings;
-        //Iweapon.Init(Settings.bulletSettings.Instance.bullet, scope);
+        IShooter.Init(EditorSettings);
     }
 
     void Update()
