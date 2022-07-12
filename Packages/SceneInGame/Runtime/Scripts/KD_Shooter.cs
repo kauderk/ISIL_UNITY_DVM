@@ -9,23 +9,26 @@ public enum WeaponType
 }
 public interface IWeapon
 {
+    public int magazineSize { get; }
     public float reloadAmount { get; }
     public float reloadTime { get; }
     public WeaponType type { get; }
     public int fireRate { get; }
     public float cadence { get; set; }
+    public bool isReloading { get; set; }
     public void Fire();
     public void Reload();
 }
 
 public class WeaponClass : MonoBehaviour, IWeapon
 {
+    public int magazineSize { get; } = 10;
     public float reloadAmount { get; } = 10f;
     public float reloadTime { get; } = 1f;
     public WeaponType type { get; }
-    public float cadence { get; set; } = 0.1f;
-
     public int fireRate { get; } = 1;
+    public float cadence { get; set; } = 0.1f;
+    public bool isReloading { get; set; } = false;
 
     public void Reload()
     {
@@ -55,7 +58,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
     float timeToReaload = 0f;
     float timePerBullet = 0f;
     int count, maxBullet = 0;
-    bool isRealoding;
+    bool isReloading;
     bool isShooting = false;
 
     bool enoughTime(float time = 0.1f) => timePerBullet > time;
@@ -71,7 +74,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //TODO: weapon has to be an object
         //if (photonView.IsMine)
         //{
-        //count = maxBullet = 10;
+        count = maxBullet = weapon.magazineSize;
         scope = gameObject.transform.Find("Scope"); //TODO:
         //}
     }
@@ -123,25 +126,24 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
 
     private void Reload()
     {
-        if (isRealoding == true)
+        if (weapon.isReloading == true)
         {
             timeToReaload += Time.deltaTime;
             weapon.Reload();
-
         }
     }
 
-    private void Reload(int nBullets, float TimeToReaload)
+    private void Reload(int amount, float reloadTime)
     {
-        if (photonView.IsMine)
+        // if (photonView.IsMine)
+        // {
+        if (timeToReaload > reloadTime)
         {
-            if (timeToReaload > TimeToReaload)
-            {
-                isRealoding = false;
-                count = nBullets;
-                timeToReaload = 0;
-            }
+            isReloading = false;
+            count = amount;
+            timeToReaload = 0;
         }
+        // }
     }
 
     // private void OnCollisionEnter(Collision collision)
