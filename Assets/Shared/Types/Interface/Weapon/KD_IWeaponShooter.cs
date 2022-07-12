@@ -7,6 +7,7 @@ public interface KD_IWeaponShooter
     public int amoution { get; }
     public int fireRate { get; }
     public float cadence { get; }
+    public GameObject bullet { get; }
     public void Fire();
     public void Init(GameObject bulletPrefab, Transform scope);
     public bool CanFire(float deltaFireRate);

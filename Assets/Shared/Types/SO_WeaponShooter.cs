@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class KD_SO_WeaponShooter
+public class SOC_WeaponShooter
 {
     [field: SerializeField]
     public Transform scope { get; private set; }
@@ -26,6 +26,9 @@ public class SO_WeaponShooter : ScriptableObject, KD_IWeaponShooter
 
     [field: SerializeField]
     public float cadence { get; private set; }
+
+    [field: SerializeField, Tooltip("The actual Bullet Model.")]
+    public GameObject bullet { get; set; }
 
     public bool CanFire(float deltaFireRate)
     {

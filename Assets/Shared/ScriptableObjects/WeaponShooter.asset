@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcda179eeb8e064b8291c9e9f7c19a2, type: 3}
   m_Name: WeaponShooter
   m_EditorClassIdentifier: 
+  <type>k__BackingField: 0
+  <magazineSize>k__BackingField: 10
+  <amoution>k__BackingField: 10
+  <fireRate>k__BackingField: 1
+  <cadence>k__BackingField: 0.1
+  <bullet>k__BackingField: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
