@@ -17,11 +17,14 @@ public interface IWeapon
     public int fireRate { get; }
     public float cadence { get; set; }
     public bool isReloading { get; set; }
+    public TYPEWEAPON weapon { get; }
+    public Transform scope { get; }
+    public GameObject bulletPrefab { get; }
     public void Fire();
     public void Reload();
     public void FillMagazine();
+    public void Init(GameObject bulletPrefab, Transform scope);
 }
-
 public class WeaponClass : MonoBehaviour, IWeapon
 {
     public int magazineSize { get; set; } = 10;
@@ -32,9 +35,13 @@ public class WeaponClass : MonoBehaviour, IWeapon
     public int fireRate { get; } = 1;
     public float cadence { get; set; } = 0.1f;
     public bool isReloading { get; set; } = false;
+    public TYPEWEAPON weapon { get; }
+    public Transform scope { get; private set; }
+    public GameObject bulletPrefab { get; private set; }
 
-    public void Init()
+    public void Init(GameObject bulletPrefab, Transform scope)
     {
+        this.scope = scope;
         FillMagazine();
     }
 
@@ -51,8 +58,19 @@ public class WeaponClass : MonoBehaviour, IWeapon
     }
     public void Fire()
     {
-        // fireRate
-        throw new System.NotImplementedException();
+        for (int i = 0; i < fireRate; i++)
+        {
+            var bullet = Instantiate(bulletPrefab);
+            var controller = bullet.GetComponent<BulletController>();
+            controller.enabled = false;
+
+            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+
+            bulletSettings.Init(gameObject, scope, weapon);
+            controller.Init(bulletSettings);
+
+            controller.enabled = true;
+        }
     }
 
     public void FireAndReset(float time)
@@ -82,6 +100,7 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         //if (photonView.IsMine)
         //{
         scope = gameObject.transform.Find("Scope"); //TODO:
+        weapon.Init(settings.bullet, scope);
         //}
     }
 
@@ -99,26 +118,6 @@ public class KD_Shooter : MonoBehaviourPunCallbacks
         {
             timePerBullet += Time.deltaTime;
         }
-    }
-
-    private void Fire(int bullets = 1)
-    {
-        //if (photonView.IsMine)
-        //{
-        for (int i = 0; i < bullets; i++)
-        {
-            var bullet = Instantiate(settings.bullet);
-            var controller = bullet.GetComponent<BulletController>();
-            controller.enabled = false;
-
-            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
-
-            bulletSettings.Init(gameObject, scope, settings.weapon);
-            controller.Init(bulletSettings);
-
-            controller.enabled = true;
-        }
-        //}
     }
 
     bool InputIsShooting()
