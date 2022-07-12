@@ -44,7 +44,7 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
         //}
     }
 
-    private void InstaceBullet(int bullets = 1)
+    private void Fire(int bullets = 1)
     {
         if (photonView.IsMine)
         {
@@ -68,7 +68,102 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
     {
         //if (photonView.IsMine)
         //{
-        #region Movement
+        Move();
+        //}
+
+        // timers
+        if (isShooting == true)
+            timePerBullet += Time.deltaTime;
+
+        Reload();
+        ShootManual();
+        ShootAutomatic();
+
+        // realoading
+        if (Input.GetKeyDown(KeyCode.R))
+            isRealoding = true;
+
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (photonView.IsMine) txtBulletCount.text = count.ToString();
+        if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
+    }
+
+    private void ShootAutomatic()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            isShooting = true;
+
+            switch (weapon)
+            {
+                case TYPEWEAPON.RIFLE:
+                    if (count > 0 & timePerBullet > 0.1f)
+                    {
+                        isShooting = false;
+                        Fire();
+                        count -= 1;
+                        timePerBullet = 0f;
+                    }
+                    break;
+            }
+        }
+    }
+
+    private void ShootManual()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isShooting = true;
+            switch (weapon)
+            {
+                case TYPEWEAPON.PISTOL:
+
+                    if (count > 0 && timePerBullet > 0.17f)
+                    {
+                        isShooting = false;
+                        Fire();
+                        count -= 1;
+                    }
+                    break;
+                case TYPEWEAPON.SHOTGUN:
+                    if (count > 0 && timePerBullet > 0.5f)
+                    {
+                        isShooting = false;
+                        Fire(3);
+                        count -= 1;
+                        timePerBullet = 0f;
+                    }
+                    break;
+            }
+        }
+    }
+
+    private void Reload()
+    {
+        if (isRealoding == true)
+        {
+            timeToReaload += Time.deltaTime;
+            switch (weapon)
+            {
+                case TYPEWEAPON.PISTOL:
+                    Reload(10, 0.5f);
+                    break;
+                case TYPEWEAPON.SHOTGUN:
+                    Reload(6, 0.5f);
+                    break;
+                case TYPEWEAPON.RIFLE:
+                    Reload(20, 1f);
+                    break;
+            }
+        }
+    }
+
+    private void Move()
+    {
         transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed, 0);
         transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
 
@@ -95,91 +190,6 @@ public class RS_TankMovement : MonoBehaviourPunCallbacks
             dustTrailBack.Stop();
             tankMoveAnime.SetBool("IsMoving", false);
         }
-        #endregion
-        //}
-        #region UI
-
-        if (photonView.IsMine) txtBulletCount.text = count.ToString();
-        #endregion
-
-        #region Shooting Time
-        if (isShooting == true) timePerBullet += Time.deltaTime;
-        #endregion
-
-        #region Realoading
-        if (isRealoding == true)
-        {
-            timeToReaload += Time.deltaTime;
-            switch (weapon)
-            {
-                case TYPEWEAPON.PISTOL:
-                    Reload(10, 0.5f);
-                    break;
-                case TYPEWEAPON.SHOTGUN:
-                    Reload(6, 0.5f);
-                    break;
-                case TYPEWEAPON.RIFLE:
-                    Reload(20, 1f);
-                    break;
-            }
-        }
-        #endregion
-
-        #region Shoot Manual
-        if (Input.GetMouseButtonDown(0))
-        {
-            isShooting = true;
-            switch (weapon)
-            {
-                case TYPEWEAPON.PISTOL:
-
-                    if (count > 0 && timePerBullet > 0.17f)
-                    {
-                        isShooting = false;
-                        InstaceBullet();
-                        count -= 1;
-                    }
-                    break;
-                case TYPEWEAPON.SHOTGUN:
-                    if (count > 0 && timePerBullet > 0.5f)
-                    {
-                        isShooting = false;
-                        InstaceBullet(3);
-                        count -= 1;
-                        timePerBullet = 0f;
-                    }
-                    break;
-            }
-        }
-        #endregion
-
-        #region Shoot Automatic Weapons
-        if (Input.GetMouseButton(0))
-        {
-            isShooting = true;
-
-            switch (weapon)
-            {
-                case TYPEWEAPON.RIFLE:
-                    if (count > 0 & timePerBullet > 0.1f)
-                    {
-                        isShooting = false;
-                        InstaceBullet();
-                        count -= 1;
-                        timePerBullet = 0f;
-                    }
-                    break;
-            }
-        }
-        #endregion
-
-        #region Shoot Realoading
-        if (Input.GetKeyDown(KeyCode.R)) isRealoding = true;
-        #endregion
-
-        #region UI
-        if (count == 0 && photonView.IsMine) txtBulletCount.text = "R";
-        #endregion
     }
 
     private void Reload(int nBullets, float TimeToReaload)
