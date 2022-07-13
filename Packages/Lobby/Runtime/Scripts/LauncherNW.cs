@@ -20,7 +20,7 @@ namespace Networking
         public UnityEvent OnCreatedFirstRoomLauncher;
         public UnityEvent<string> OnJoinedRoomLauncher;
         public UnityEvent<string> OnFailedToConnectLauncher;
-        
+
 
         public static LauncherNW Instance;
 
