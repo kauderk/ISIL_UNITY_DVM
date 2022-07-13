@@ -9,7 +9,7 @@ namespace Weapon
         public SOC_WeaponShooter EditorSettings;
 
         IWeaponShooter IShooter;
-        float deltaFireRate;
+        float clockRate;
 
         void Awake()
         {
@@ -19,19 +19,27 @@ namespace Weapon
 
         void Update()
         {
-            if (InputIsShooting() && IShooter.CanFire(deltaFireRate))
+            if (InputIsShooting() && IShooter.CanFire(clockRate))
             {
                 if (IShooter.Type == WeaponType.automatic)
-                    deltaFireRate = 0f; // reset timer
+                    clockRate = 0f; // reset timer
 
                 IShooter.Fire();
+
+                transform.NotifySiblings<IFireEvent>(I => I.OnFire());
             }
             else if (InputIsShooting())
             {
-                deltaFireRate += Time.deltaTime;
+                clockRate += Time.deltaTime;
+            }
+
+            if (InputStoppedShooting())
+            {
+                transform.NotifySiblings<IFireEvent>(I => I.OnStopFire());
             }
         }
 
         bool InputIsShooting() => Input.GetMouseButton(0) || Input.GetMouseButtonDown(0);
+        bool InputStoppedShooting() => Input.GetButtonUp("Fire1");
     }
 }

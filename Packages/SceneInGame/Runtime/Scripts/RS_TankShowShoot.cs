@@ -1,32 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapon;
 
-public class RS_TankShowShoot : MonoBehaviour
+public class RS_TankShowShoot : MonoBehaviour, IFireEvent
 {
     public ParticleSystem fireShot;
     public Animator camAnim;
     public Animator TankShotAnim;
 
-    private float timer;
-
     readonly List<string> shakes = new List<string>() { "Shake01", "Shake02", "Shake03" };
 
-    void Update()
+    public void OnFire()
     {
-        timer += Time.deltaTime;
-        if (InputShoot() && timer > 1)
-        {
-            fireShot.Play(); // TODO: listen to the CanFire() event
-            CamShake();
-            TankShotAnim.SetTrigger("TankShoot");
-            timer = 0;
-        }
-        if (InputShootRelese())
-        {
-            fireShot.Stop();
-        }
+        fireShot.Play();
+        CamShake();
+        TankShotAnim.SetTrigger("TankShoot");
     }
+
+    public void OnStopFire() => fireShot.Stop();
+
     public void CamShake()
     {
         if (!camAnim)
@@ -38,6 +31,4 @@ public class RS_TankShowShoot : MonoBehaviour
         var shake = shakes[rand];
         camAnim.SetTrigger(shake);
     }
-    bool InputShoot() => Input.GetMouseButton(0) || Input.GetMouseButtonDown(0);
-    bool InputShootRelese() => Input.GetMouseButtonUp(0);
 }
