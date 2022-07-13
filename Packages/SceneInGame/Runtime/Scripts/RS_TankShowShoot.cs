@@ -10,7 +10,7 @@ public class RS_TankShowShoot : MonoBehaviour
 
     private float timer;
 
-    List<string> shakes = new List<string>() { "Shake01", "Shake02", "Shake03" };
+    readonly List<string> shakes = new List<string>() { "Shake01", "Shake02", "Shake03" };
 
     void Update()
     {

@@ -3,7 +3,7 @@ using Weapon;
 
 namespace Weapon
 {
-    public class KD_WeaponComponent : MonoBehaviour, IWeaponShooter
+    public class KD_WeaponComponent : MonoBehaviour//, IWeaponShooter
     {
         public int MagazineSize { get; } = 10;
         public int Amoution { get; private set; } = 10;

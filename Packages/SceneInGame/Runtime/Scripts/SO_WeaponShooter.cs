@@ -14,14 +14,11 @@ namespace Weapon
         [field: SerializeField]
         public float Cadence { get; private set; }
 
-        [field: SerializeField, Tooltip("The actual Bullet Model.")]
-        public GameObject Bullet { get; set; }
-
-        [field: SerializeField]
         public SO_WeaponMagazine Magazine { get; private set; }
 
 
-        private SOC_WeaponShooter EditorSettings;
+        GameObject Bullet;
+        SOC_WeaponShooter EditorSettings;
 
         public bool CanFire(float deltaFireRate)
         {
@@ -48,9 +45,11 @@ namespace Weapon
             }
         }
 
-        public void Init(SOC_WeaponShooter EditorSettings)
+        public void Init(SO_WeaponMagazine Magazine, SO_BulletSettings BulletSettings, SOC_WeaponShooter EditorSettings)
         {
             this.EditorSettings = EditorSettings;
+            this.Magazine = Magazine;
+            this.Bullet = BulletSettings.Bullet;
         }
     }
 }
