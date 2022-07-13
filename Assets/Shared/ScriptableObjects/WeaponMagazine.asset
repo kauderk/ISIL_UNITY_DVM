@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <magazineSize>k__BackingField: 10
   <amoution>k__BackingField: 10
+  <Type>k__BackingField: 0
