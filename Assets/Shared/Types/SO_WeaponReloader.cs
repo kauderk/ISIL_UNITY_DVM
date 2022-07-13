@@ -9,9 +9,12 @@ public class SO_WeaponReloader : ScriptableObject, KD_IWeaponReloader
     [field: SerializeField]
     public float reloadTime { get; private set; }
 
-    [field: SerializeField]
     public SO_WeaponMagazine Magazine { get; private set; }
 
+    public void Init(SO_WeaponMagazine Magazine)
+    {
+        this.Magazine = Magazine;
+    }
 
     public void FillMagazine() => Magazine.fill();
 

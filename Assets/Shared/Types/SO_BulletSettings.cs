@@ -4,6 +4,10 @@ using UnityEngine;
 public class SO_BulletSettings : ScriptableObject
 {
     [field: SerializeField, Tooltip("How fast will the bullet move.")]
+    public GameObject Bullet { get; private set; }
+
+
+    [field: SerializeField, Tooltip("How fast will the bullet move.")]
     public float speed { get; private set; } = 10f;
 
 
