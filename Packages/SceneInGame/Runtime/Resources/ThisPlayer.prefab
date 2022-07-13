@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a44eb9751ee4b48a90fed1b3dcae4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponSettings: {fileID: 11400000, guid: 39c61857a940eb7458c8f74dcd0cecd3, type: 2}
   Settings: {fileID: 11400000, guid: 7c916a71b5e1a23439c19a3e6f88ec1a, type: 2}
   EditorSettings:
     <Scope>k__BackingField: {fileID: 8179440346441656047}
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002bb4d12eb2e45499de9f7ea884553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponSettings: {fileID: 11400000, guid: 39c61857a940eb7458c8f74dcd0cecd3, type: 2}
   Settings: {fileID: 11400000, guid: 33939f03d579175498d78359ae385c48, type: 2}
 --- !u!1 &4072184899244473026
 GameObject:
@@ -5051,7 +5053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObservedComponentsFoldoutOpen: 1
   Group: 0
-  prefixField: -1
+  prefixField: 0
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
