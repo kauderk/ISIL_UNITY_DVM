@@ -2,9 +2,7 @@ using UnityEngine;
 
 public interface KD_IWeaponShooter
 {
-    public WeaponType type { get; }
-    public int magazineSize { get; }
-    public int amoution { get; }
+    public WeaponType type { get; } // The actual Weapon should have this property.
     public int fireRate { get; }
     public float cadence { get; }
     public GameObject bullet { get; }
