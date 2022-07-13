@@ -17,7 +17,7 @@ public class RS_TankShowShoot : MonoBehaviour
         timer += Time.deltaTime;
         if (InputShoot() && timer > 1)
         {
-            fireShot.Play();
+            fireShot.Play(); // TODO: listen to the CanFire() event
             CamShake();
             TankShotAnim.SetTrigger("TankShoot");
             timer = 0;

@@ -38,11 +38,6 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeaponShooter
         }
     }
 
-    public void Init(GameObject bulletPrefab, Transform scope)
-    {
-        this.scope = scope;
-        FillMagazine();
-    }
 
     public void FillMagazine() => amoution = magazineSize;
 
@@ -55,6 +50,11 @@ public class KD_WeaponComponent : MonoBehaviour, KD_IWeaponShooter
     }
 
     public void Init(SOC_WeaponShooter EditorSettings)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Init(SOC_WeaponShooter EditorSettings, KD_IWeaponMagazine Magazine)
     {
         throw new System.NotImplementedException();
     }
