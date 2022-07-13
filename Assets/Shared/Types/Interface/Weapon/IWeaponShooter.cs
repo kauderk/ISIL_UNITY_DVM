@@ -7,9 +7,8 @@ namespace Weapon
         public WeaponType Type { get; } // The actual Weapon should have this property.
         public int FireRate { get; }
         public float Cadence { get; }
-        public GameObject Bullet { get; }
         public void Fire();
-        public void Init(SOC_WeaponShooter EditorSettings);
+        public void Init(SO_WeaponMagazine Magazine, SO_BulletSettings BulletSettings, SOC_WeaponShooter EditorSettings);
         public bool CanFire(float deltaFireRate);
     }
     [System.Serializable]

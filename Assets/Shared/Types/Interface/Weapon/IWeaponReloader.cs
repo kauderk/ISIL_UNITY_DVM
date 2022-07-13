@@ -1,7 +1,8 @@
 public interface KD_IWeaponReloader
 {
-    public int reloadAmount { get; }
-    public float reloadTime { get; }
-    public void Reload();
-    public void FillMagazine();
+    int reloadAmount { get; }
+    float reloadTime { get; }
+    void Init(SO_WeaponMagazine Magazine);
+    void Reload();
+    void FillMagazine();
 }
