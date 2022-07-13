@@ -9,18 +9,14 @@ public class SO_WeaponReloader : ScriptableObject, KD_IWeaponReloader
     [field: SerializeField]
     public float reloadTime { get; private set; }
 
-    [field: SerializeField, ReadOnly]
-    public bool busy { get; private set; }
-
     [field: SerializeField]
     public SO_WeaponMagazine Magazine { get; private set; }
 
 
     public void FillMagazine() => Magazine.fill();
 
-    public void Reload()
+    public void Reload() // reloaing one by one could be a mechanic in it's own right
     {
-        Magazine.load(reloadAmount);
-        busy = false;
+        FillMagazine();
     }
 }
