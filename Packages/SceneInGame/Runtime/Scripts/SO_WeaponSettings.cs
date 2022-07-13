@@ -7,7 +7,7 @@ namespace Weapon
     {
         public SO_WeaponShooter shooter;
         public SO_WeaponReloader reloader;
-        public SO_BulletSettings bulletSettings;
+        public SO_AmmoSettings bulletSettings;
         public SO_WeaponMagazine Magazine;
     }
 }

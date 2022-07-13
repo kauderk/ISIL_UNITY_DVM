@@ -8,8 +8,8 @@ using UnityEditor;
 public class KD_Magazine : MonoBehaviour, KD_IMagazine
 {
     [field: SerializeField]
-    public SO_BulletSettings settings { get; private set; }
-    public SO_BulletSettings PickUp() => settings;
+    public SO_AmmoSettings settings { get; private set; }
+    public SO_AmmoSettings PickUp() => settings;
 
 
     public void updateMeshRenderer()

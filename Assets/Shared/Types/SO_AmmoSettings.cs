@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BulletSettings", menuName = "Game Data/BulletSettings", order = 1)]
-public class SO_BulletSettings : ScriptableObject
+[CreateAssetMenu(fileName = "AmmoSettings", menuName = "Game Data/SO_AmmoSettings")]
+public class SO_AmmoSettings : ScriptableObject
 {
     [field: SerializeField, Tooltip("How fast will the bullet move.")]
     public GameObject Bullet { get; private set; }
@@ -36,7 +36,7 @@ public class SO_BulletSettings : ScriptableObject
 
     public SOC_BulletInstance Instance;
 
-    public SO_BulletSettings Init(GameObject bullet, GameObject caster, Transform origin)
+    public SO_AmmoSettings Init(GameObject bullet, GameObject caster, Transform origin)
     {
         this.Instance.bullet = bullet;
         this.Instance.caster = caster;
@@ -44,7 +44,7 @@ public class SO_BulletSettings : ScriptableObject
         this.originForward = origin.forward;
         return this;
     }
-    public static SO_BulletSettings Instantiate(SO_BulletSettings settings)
+    public static SO_AmmoSettings Instantiate(SO_AmmoSettings settings)
     {
         var @new = ScriptableObject.Instantiate(settings);
         return @new.Init(settings.Instance.bullet, settings.Instance.caster, settings.Instance.origin);

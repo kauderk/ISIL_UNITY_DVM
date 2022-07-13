@@ -7,15 +7,15 @@ public class BulletController : MonoBehaviour
     /// If no one sets a value, "settings.damage" will be used.
     /// </summary>
     [HideInInspector] public float? thisDamage = null;
-    private SO_BulletSettings settings;
+    private SO_AmmoSettings settings;
 
     void Update() => Move();
 
-    public void Init(SO_BulletSettings _settings) // Awake()
+    public void Init(SO_AmmoSettings _settings) // Awake()
     {
-        settings = SO_BulletSettings.Instantiate(_settings); // create a new instance to avoid changing the original settings, because c# passes by reference
+        settings = SO_AmmoSettings.Instantiate(_settings); // create a new instance to avoid changing the original settings, because c# passes by reference
         transform.position = settings.Instance.origin.transform.position;
-        thisDamage = thisDamage ?? settings.damage;
+        thisDamage ??= settings.damage;
     }
 
     private void Move()

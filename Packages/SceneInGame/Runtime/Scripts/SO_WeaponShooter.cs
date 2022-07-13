@@ -1,4 +1,5 @@
 using UnityEngine;
+using Store;
 
 namespace Weapon
 {
@@ -36,7 +37,8 @@ namespace Weapon
                 var controller = bullet.GetComponent<BulletController>();
                 controller.enabled = false;
 
-                var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+                var AmmoRef = Store.SO_Artillery.Instance.Ammo[Magazine.Type];
+                var bulletSettings = Instantiate(AmmoRef);
 
                 bulletSettings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
                 controller.Init(bulletSettings);
@@ -45,7 +47,7 @@ namespace Weapon
             }
         }
 
-        public void Init(SO_WeaponMagazine Magazine, SO_BulletSettings BulletSettings, SOC_WeaponShooter EditorSettings)
+        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
         {
             this.EditorSettings = EditorSettings;
             this.Magazine = Magazine;
