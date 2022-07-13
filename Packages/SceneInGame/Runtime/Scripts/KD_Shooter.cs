@@ -1,34 +1,37 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class KD_Shooter : MonoBehaviourPunCallbacks
+namespace Weapon
 {
-    public SO_WeaponShooter Settings;
-    public SOC_WeaponShooter EditorSettings;
-
-    KD_IWeaponShooter IShooter;
-    float deltaFireRate = 0f;
-
-    private void Awake()
+    public class KD_Shooter : MonoBehaviourPunCallbacks
     {
-        IShooter = Settings;
-        IShooter.Init(EditorSettings);
-    }
+        public SO_WeaponShooter Settings;
+        public SOC_WeaponShooter EditorSettings;
 
-    void Update()
-    {
-        if (InputIsShooting() && IShooter.CanFire(deltaFireRate))
+        IWeaponShooter IShooter;
+        float deltaFireRate = 0f;
+
+        void Awake()
         {
-            if (IShooter.type == WeaponType.automatic)
-                deltaFireRate = 0f; // reset timer
-
-            IShooter.Fire();
+            IShooter = Settings;
+            IShooter.Init(EditorSettings);
         }
-        else if (InputIsShooting())
+
+        void Update()
         {
-            deltaFireRate += Time.deltaTime;
-        }
-    }
+            if (InputIsShooting() && IShooter.CanFire(deltaFireRate))
+            {
+                if (IShooter.Type == WeaponType.automatic)
+                    deltaFireRate = 0f; // reset timer
 
-    bool InputIsShooting() => Input.GetMouseButton(0) || Input.GetMouseButtonDown(0);
+                IShooter.Fire();
+            }
+            else if (InputIsShooting())
+            {
+                deltaFireRate += Time.deltaTime;
+            }
+        }
+
+        bool InputIsShooting() => Input.GetMouseButton(0) || Input.GetMouseButtonDown(0);
+    }
 }

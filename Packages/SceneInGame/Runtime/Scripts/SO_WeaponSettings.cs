@@ -1,9 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponSettings", menuName = "Game Data/WeaponSettings")]
-public class SO_WeaponSettings : ScriptableObject
+namespace Weapon
 {
-    public SO_WeaponShooter shooter;
-    public SO_WeaponReloader reloader;
-    public SO_BulletSettings bulletSettings;
+    [CreateAssetMenu(fileName = "WeaponSettings", menuName = "Game Data/WeaponSettings")]
+    public class SO_WeaponSettings : ScriptableObject
+    {
+        public SO_WeaponShooter shooter;
+        public SO_WeaponReloader reloader;
+        public SO_BulletSettings bulletSettings;
+    }
 }

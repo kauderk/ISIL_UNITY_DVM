@@ -1,6 +1,9 @@
-public enum WeaponType
+namespace Weapon
 {
-    automatic,
-    semiAutomatic,
-    singleShot,
+    public enum WeaponType
+    {
+        automatic,
+        semiAutomatic,
+        singleShot,
+    }
 }

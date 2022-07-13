@@ -1,61 +1,64 @@
 using UnityEngine;
+using Weapon;
 
-public class KD_WeaponComponent : MonoBehaviour, KD_IWeaponShooter
+namespace Weapon
 {
-    public int magazineSize { get; } = 10;
-    public int amoution { get; private set; } = 10;
-    public int reloadAmount { get; } = 10;
-    public float reloadTime { get; private set; } = 1f;
-    public WeaponType type { get; }
-    public int fireRate { get; } = 1;
-    public float cadence { get; } = 0.1f;
-    public bool isReloading { get; private set; } = false;
-    public TYPEWEAPON weapon { get; }
-    public Transform scope { get; private set; }
-    public GameObject bullet { get; private set; }
-
-    public bool CanFire(float deltaFireRate)
+    public class KD_WeaponComponent : MonoBehaviour, IWeaponShooter
     {
-        bool enoughTime = deltaFireRate > cadence;
-        bool hasAmmo = amoution > 0;
-        return hasAmmo && enoughTime;
-    }
+        public int MagazineSize { get; } = 10;
+        public int Amoution { get; private set; } = 10;
+        public int Reloadamount { get; } = 10;
+        public float Reloadtime { get; } = 1f;
+        public WeaponType Type { get; }
+        public int FireRate { get; } = 1;
+        public float Cadence { get; } = 0.1f;
+        public bool Isreloading { get; private set; } = false;
+        public TYPEWEAPON Weapon { get; }
+        public Transform Scope { get; }
+        public GameObject Bullet { get; }
 
-    public void Fire()
-    {
-        for (int i = 0; i < fireRate; i++)
+        public bool CanFire(float deltaFireRate)
         {
-            var bullet = Instantiate(this.bullet);
-            var controller = bullet.GetComponent<BulletController>();
-            controller.enabled = false;
-
-            var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
-
-            bulletSettings.Init(bullet, gameObject, scope);
-            controller.Init(bulletSettings);
-
-            controller.enabled = true;
+            bool enoughTime = deltaFireRate > Cadence;
+            bool hasAmmo = Amoution > 0;
+            return hasAmmo && enoughTime;
         }
-    }
+
+        public void Fire()
+        {
+            for (int i = 0; i < FireRate; i++)
+            {
+                var bullet = Instantiate(this.Bullet);
+                var controller = bullet.GetComponent<BulletController>();
+                controller.enabled = false;
+
+                var bulletSettings = ScriptableObject.Instantiate(Resources.Load("Pistol")) as SO_BulletSettings;
+
+                bulletSettings.Init(bullet, gameObject, Scope);
+                controller.Init(bulletSettings);
+
+                controller.enabled = true;
+            }
+        }
 
 
-    public void FillMagazine() => amoution = magazineSize;
+        public void FillMagazine() => Amoution = MagazineSize;
 
-    public void Reload()
-    {
-        isReloading = true;
-        if (amoution < magazineSize)
-            amoution += reloadAmount;
-        //reloadTime = 0;
-    }
+        public void Reload()
+        {
+            Isreloading = true;
+            if (Amoution < MagazineSize)
+                Amoution += Reloadamount;
+        }
 
-    public void Init(SOC_WeaponShooter EditorSettings)
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Init(SOC_WeaponShooter EditorSettings)
+        {
+            throw new System.NotImplementedException();
+        }
 
-    public void Init(SOC_WeaponShooter EditorSettings, KD_IWeaponMagazine Magazine)
-    {
-        throw new System.NotImplementedException();
+        public void Init(SOC_WeaponShooter EditorSettings, KD_IWeaponMagazine Magazine)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
