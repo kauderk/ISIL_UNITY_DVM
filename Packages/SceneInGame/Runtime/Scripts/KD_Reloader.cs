@@ -7,23 +7,23 @@ public class KD_Reloader : MonoBehaviourPunCallbacks
 
 
     KD_IWeaponReloader Iweapon;
-    float timeToReaload = 0f;
+    float delta;
+    bool busy;
 
-    private void Awake()
-    {
-        Iweapon = Settings;
-    }
+    private void Awake() => Iweapon = Settings;
 
     void Update()
     {
-        if (InputReload() && !Iweapon.busy)
-        {
-            timeToReaload += Time.deltaTime;
+        delta += Time.deltaTime;
 
-            if (timeToReaload > Iweapon.reloadTime)
+        if (InputReload() && !busy)
+        {
+            busy = true;
+            if (delta > Iweapon.reloadTime)
             {
-                Iweapon.Reload();
-                timeToReaload = 0;
+                Iweapon.FillMagazine();
+                delta = 0;
+                busy = false;
             }
         }
     }
@@ -33,9 +33,12 @@ public class KD_Reloader : MonoBehaviourPunCallbacks
         if (collision.gameObject.TryGetComponent<KD_IMagazine>(out var magazine))
         {
             collision.gameObject.SetActive(false);
-            // var settings = magazine.PickUp();
-            //weapon = settings.weapon; // TODO:
-            Iweapon.FillMagazine();
+            //Debug.Break();
+            //SO_RedirectSignalManager.Signal.PickUp(gameObject);
+            SO_RedirectSignalManager.UseUpwardSignal<KD_ISignalListener>(gameObject);
+            SO_RedirectSignalManager.UseLateralSignal<KD_ISignalListener>(gameObject);
+            //var settings = magazine.PickUp();
+            //Iweapon.FillMagazine();
             // TODO: Fire a Gloabl Event to update the UI 
             //txtBulletCount.color = settings.color;
         }
