@@ -9,12 +9,6 @@ public class SO_WeaponShooter : ScriptableObject, KD_IWeaponShooter
     public WeaponType type { get; private set; }
 
     [field: SerializeField]
-    public int magazineSize { get; private set; }
-
-    [field: SerializeField]
-    public int amoution { get; private set; }
-
-    [field: SerializeField]
     public int fireRate { get; private set; }
 
     [field: SerializeField]
@@ -23,19 +17,22 @@ public class SO_WeaponShooter : ScriptableObject, KD_IWeaponShooter
     [field: SerializeField, Tooltip("The actual Bullet Model.")]
     public GameObject bullet { get; set; }
 
-    private SOC_WeaponShooter EditorSettings;
+    [field: SerializeField]
+    public SO_WeaponMagazine Magazine { get; private set; }
 
+
+    private SOC_WeaponShooter EditorSettings;
 
     public bool CanFire(float deltaFireRate)
     {
         bool enoughTime = deltaFireRate > cadence;
-        bool hasAmmo = amoution > 0;
+        bool hasAmmo = Magazine.amoution > 0;
         return hasAmmo && enoughTime;
     }
 
     public void Fire()
     {
-        amoution--;
+        Magazine.consume();
         for (int i = 0; i < fireRate; i++)
         {
             var bullet = Instantiate(this.bullet);

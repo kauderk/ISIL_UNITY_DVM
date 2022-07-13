@@ -10,15 +10,17 @@ public class SO_WeaponReloader : ScriptableObject, KD_IWeaponReloader
     public float reloadTime { get; private set; }
 
     [field: SerializeField, ReadOnly]
-    public bool isReloading { get; private set; }
+    public bool busy { get; private set; }
 
-    public void FillMagazine()
-    {
-        throw new System.NotImplementedException();
-    }
+    [field: SerializeField]
+    public SO_WeaponMagazine Magazine { get; private set; }
+
+
+    public void FillMagazine() => Magazine.fill();
 
     public void Reload()
     {
-        throw new System.NotImplementedException();
+        Magazine.load(reloadAmount);
+        busy = false;
     }
 }

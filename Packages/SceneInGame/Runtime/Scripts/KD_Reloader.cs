@@ -5,14 +5,18 @@ public class KD_Reloader : MonoBehaviourPunCallbacks
 {
     public SO_WeaponReloader Settings;
 
+
     KD_IWeaponReloader Iweapon;
     float timeToReaload = 0f;
 
-    private void Awake() => Iweapon = Settings;
+    private void Awake()
+    {
+        Iweapon = Settings;
+    }
 
     void Update()
     {
-        if (InputReload() && !Iweapon.isReloading)
+        if (InputReload() && !Iweapon.busy)
         {
             timeToReaload += Time.deltaTime;
 
@@ -26,8 +30,6 @@ public class KD_Reloader : MonoBehaviourPunCallbacks
 
     void OnCollisionEnter(Collision collision)
     {
-        //if (photonView.IsMine)
-        //{
         if (collision.gameObject.TryGetComponent<KD_IMagazine>(out var magazine))
         {
             collision.gameObject.SetActive(false);
@@ -37,7 +39,6 @@ public class KD_Reloader : MonoBehaviourPunCallbacks
             // TODO: Fire a Gloabl Event to update the UI 
             //txtBulletCount.color = settings.color;
         }
-        //}
     }
 
     bool InputReload() => Input.GetKeyDown(KeyCode.R);
