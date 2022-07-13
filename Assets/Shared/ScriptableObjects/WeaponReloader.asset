@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <reloadAmount>k__BackingField: 1
   <reloadTime>k__BackingField: 0.5
-  <isReloading>k__BackingField: 0
+  <busy>k__BackingField: 0
+  <Magazine>k__BackingField: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
