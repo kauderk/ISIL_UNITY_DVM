@@ -15,7 +15,7 @@ namespace Photon.Pun
         public UnityEvent OnPhotonJoinedLobby;
         public UnityEvent<string> OnPhotonCreatedRoom;
         public UnityEvent<string> OnPhotonJoinedRoom;
-        public UnityEvent<string> OnPhotonLeftRoom;
+        public UnityEvent OnPhotonLeftRoom;
         public UnityEvent<string> OnPhotonFailedToConnect;
         #endregion
 

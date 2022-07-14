@@ -16,7 +16,7 @@ namespace Photon.Pun
         public override void OnLeftRoom()
         {
             Log("Left Room");
-            OnPhotonLeftRoom?.Invoke(PhotonNetwork.CurrentRoom.Name);
+            OnPhotonLeftRoom?.Invoke();
         }
     }
 }
