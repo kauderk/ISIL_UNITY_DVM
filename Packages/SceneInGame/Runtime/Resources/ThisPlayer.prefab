@@ -30,6 +30,52 @@ Transform:
   m_Father: {fileID: 4072184899575808411}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1596875714984352487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2185443561202626465}
+  - component: {fileID: 7427316089083631698}
+  m_Layer: 7
+  m_Name: Skin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2185443561202626465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596875714984352487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4072184899575808411}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7427316089083631698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596875714984352487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbc5a2d701273b4b96a9827490889ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChangeColorOnStart: 1
+  random: 0
+  Color: {r: 1, g: 0.3726415, b: 0.3726415, a: 0}
 --- !u!1 &2597929261817080950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5010,6 +5056,7 @@ Transform:
   - {fileID: 8179440346441656047}
   - {fileID: 7168590212577819718}
   - {fileID: 4691284638087753269}
+  - {fileID: 2185443561202626465}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14775,6 +14822,7 @@ GameObject:
   - component: {fileID: 6411242022772784435}
   - component: {fileID: 784882614022654384}
   - component: {fileID: 5596457028400256189}
+  - component: {fileID: 4051447479018137396}
   m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
@@ -14845,6 +14893,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4051447479018137396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078488608823751954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6a1c89a993aa64caa3d8af88865704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8998160051465264231
 GameObject:
   m_ObjectHideFlags: 0
@@ -14857,7 +14917,7 @@ GameObject:
   - component: {fileID: 3549182522560803783}
   - component: {fileID: 5693465460922553108}
   - component: {fileID: 8998160051465264230}
-  - component: {fileID: 8337136063120824969}
+  - component: {fileID: 4282851369881370714}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Untagged
@@ -14950,7 +15010,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8337136063120824969
+--- !u!114 &4282851369881370714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14959,9 +15019,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8998160051465264231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5466ea1b0b9b15f4abd428c0339cbc3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c6a1c89a993aa64caa3d8af88865704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshColor:
-  - {fileID: 5693465460922553108}
-  - {fileID: 5596457028400256189}
