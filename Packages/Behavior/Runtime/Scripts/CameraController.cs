@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviourPunCallbacks
     }
     void Update()
     {
+        // follow the player 
         myCamera.transform.position = transform.position + distance;
     }
 }
