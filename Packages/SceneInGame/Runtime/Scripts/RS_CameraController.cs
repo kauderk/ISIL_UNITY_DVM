@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class RS_CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform Target = null;
-    private Vector3 distance = Vector3.zero;
+    [Tooltip("Follow the Target with smoothness"), Range(0.01f, 1.0f)]
+    public float Smoothness = 0.1f;
 
-    private void Awake() => distance = new Vector3(0, 10, -10);
+    [SerializeField] Vector3 distance = new Vector3(0, 10, -10);
+    [SerializeField] Transform Target;
 
-    void Update() => this.transform.position = Target.transform.position + distance;
+    public void AssignTarget(Transform target) => Target = target;
+    void Update()
+    {
+        // follow the Target with smoothness
+        transform.position = Vector3.Lerp(transform.position, Target.position + distance, Smoothness);
+    }
 }
