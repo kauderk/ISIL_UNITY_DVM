@@ -13,10 +13,13 @@ namespace UnityEngine
         {
             transform.parent.GetComponentsInChildren<I>().ToList().ForEach(OnInterface);
         }
-        // NotifyAllParents
         public static void NotifyParent<I>(this Transform transform, Action<I> OnInterface) where I : class
         {
             transform.GetComponentsInParent<I>().ToList().ForEach(OnInterface);
+        }
+        public static void NotifyChildren<I>(this Transform transform, Action<I> OnInterface) where I : class
+        {
+            transform.GetComponentsInChildren<I>().ToList().ForEach(OnInterface);
         }
     }
 }
