@@ -7,12 +7,15 @@ namespace Weapon
         [SerializeField, HideInInspector, Tooltip("Inherited from the WeaponSettings.")]
         public SO_WeaponReloader Settings;
 
-
         KD_IWeaponReloader Iweapon;
         float delta;
         bool busy;
 
-        private void Awake() => Iweapon = Settings;
+        private void Awake()
+        {
+            Iweapon = Settings;
+            Iweapon.Init(WeaponSettings.Magazine);
+        }
 
         void Update()
         {
