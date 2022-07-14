@@ -4,15 +4,54 @@ using UnityEditor;
 #endif
 
 public class ReadOnlyAttribute : PropertyAttribute { }
+// https://answers.unity.com/questions/489942/how-to-make-a-readonly-property-in-inspector.html#
+public class EndReadOnlyGroupAttribute : PropertyAttribute { }
+public class BeginReadOnlyGroupAttribute : PropertyAttribute { }
+
+
 #if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-public class ReadOnlyPropertyDrawer : PropertyDrawer
+public class ReadOnlyDrawer : PropertyDrawer
 {
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        return EditorGUI.GetPropertyHeight(property, label, true);
+    }
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        GUI.enabled = false;
-        EditorGUI.PropertyField(position, property, label);
-        GUI.enabled = true;
+        using (var scope = new EditorGUI.DisabledGroupScope(true))
+        {
+            EditorGUI.PropertyField(position, property, label, true);
+        }
     }
+
+}
+
+[CustomPropertyDrawer(typeof(BeginReadOnlyGroupAttribute))]
+public class BeginReadOnlyGroupDrawer : DecoratorDrawer
+{
+
+    public override float GetHeight() { return 0; }
+
+    public override void OnGUI(Rect position)
+    {
+        EditorGUI.BeginDisabledGroup(true);
+    }
+
+}
+
+[CustomPropertyDrawer(typeof(EndReadOnlyGroupAttribute))]
+public class EndReadOnlyGroupDrawer : DecoratorDrawer
+{
+
+    public override float GetHeight() { return 0; }
+
+    public override void OnGUI(Rect position)
+    {
+        EditorGUI.EndDisabledGroup();
+    }
+
 }
 #endif
