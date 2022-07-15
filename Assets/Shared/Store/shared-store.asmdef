@@ -2,10 +2,10 @@
     "name": "shared-store",
     "rootNamespace": "",
     "references": [
+        "GUID:db11e77527d3d9449b57cc4d0c0b396d",
         "GUID:981727d31ca74d44eb221649e15ac489",
         "GUID:10ebc479cc081044d87faf0f7bd87988",
-        "GUID:0160b097a14fede4ba056ccee1c473df",
-        "GUID:db11e77527d3d9449b57cc4d0c0b396d"
+        "GUID:0160b097a14fede4ba056ccee1c473df"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
