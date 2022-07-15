@@ -31,7 +31,7 @@ public class InputOutputData
 public class TrackInstances
 {
     public AudioSource Source;
-    public GameObject GameObj;
+    public GameObject Wrapper;
 }
 [System.Serializable]
 public class Other // Srializables....

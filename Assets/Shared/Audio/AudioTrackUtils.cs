@@ -18,19 +18,6 @@ public static class TrackUtils
         previous = (previous + 1) % lookupDict[mood].Count;
         return previousMoodIndex[mood] = previous;
     }
-    public static void TryToDestroyTrackInstances(this UDictionary<AudioMood, TrackDict> audioMoods)
-    {
-        ForEachEnum((AudioMood mood, string _) =>
-        {
-            audioMoods.ToList(mood).ForEach(track =>
-            {
-                if (track.instances.GameObj)
-                    UnityEngine.Object.DestroyImmediate(track.instances.GameObj);
-                else
-                    Debug.Log("Audio Source is null on Destroy");
-            });
-        });
-    }
     public static SO_AudioTrack TryGetGreaterTrack(this UDictionary<AudioMood, TrackDict> audioMoods, AudioMood mood, int score)
     {
         // get the value of the mood form the Udictionary
@@ -76,26 +63,30 @@ public static class TrackUtils
         var source = IO_Audio.instances.Source;
         if (source == null)
         {
-            var _obj = new GameObject("Sound", typeof(AudioSource));
+            var _obj = new GameObject($"AudioSource {IO_Audio.name}", typeof(AudioSource));
             source = _obj.GetComponent<AudioSource>();
         }
 
         return source;
     }
-    public static void SourceCleanup(SO_AudioTrack IO_Audio, AudioSource source)
+    public static void SourceCleanup(SO_AudioTrack track)
     {
-        if (!source || !IO_Audio.instances.Source)
+        void TryToDestroy(UnityEngine.Object obj)
         {
-            Debug.Log("source is null");
-        }
+            if (!obj)
+            {
+                // Debug.Log($"trying to destroy a null instance at {track.name}");
+                return;
+            }
 #if UNITY_EDITOR
-        if (source != IO_Audio.instances.Source)
-        {
-            UnityEngine.Object.Destroy(source.gameObject);
-        }
+            UnityEngine.Object.DestroyImmediate(obj);
 #else
-        DestroyImmediate(source.gameObject);
+            UnityEngine.Object.Destroy(obj);
 #endif
+        }
+
+        TryToDestroy(track.instances.Source);
+        TryToDestroy(track.instances.Wrapper);
     }
     public static SO_AudioTrack GetTrack(this UDictionary<AudioMood, TrackDict> audioMoods, AudioMood mood, int index)
     {
@@ -135,23 +126,32 @@ public static class TrackUtils
         IO_Audio.Other.PlayIndex = playIndex;
         var track = list[playIndex >= length ? 0 : playIndex];
 
-        // return clip
         return track.Clip;
     }
     public static void AssignSceneComponents(this UDictionary<AudioMood, TrackDict> audioMoods, AudioMixer MainAudioMixer)
     {
         ForEachEnum<AudioMood>((key, name) =>
         {
-            (GameObject go, AudioSource src) = GetNonSerializableObjects(); // those under Master
+            (GameObject go, AudioSource src) = GetNonSerializableObjects(name); // those under Master
 
             src.outputAudioMixerGroup = MainAudioMixer.FindMatchingGroups(name)[0];
 
-            audioMoods[key].Values.ToList().ForEach(track =>
-            {
-                track.instances.Source = src;
-                track.instances.GameObj = go;
-            });
+            audioMoods[key]
+                .Values
+                .ToList()
+                .ForEach(track =>
+                {
+                    track.instances.Source = src;
+                    track.instances.Wrapper = go;
+                });
         });
+    }
+    public static void TryToDestroyTrackInstances(this UDictionary<AudioMood, TrackDict> audioMoods)
+    {
+        ForEachEnum<AudioMood>((key, name) => audioMoods[key]
+            .Values
+            .ToList()
+            .ForEach(track => SourceCleanup(track)));
     }
 
     public static void ForEachEnum<TE>(Action<TE, string> action) where TE : Enum
@@ -165,7 +165,7 @@ public static class TrackUtils
         }
     }
 
-    static (GameObject, AudioSource) GetNonSerializableObjects()
+    static (GameObject, AudioSource) GetNonSerializableObjects(string _name)
     {
         GameObject go; AudioSource sourcePreviewer;
 
@@ -175,9 +175,9 @@ public static class TrackUtils
                 typeof(AudioSource));
         sourcePreviewer = go.GetComponent<AudioSource>();
 #else
-            // get the audio mixer group that matches the name
-            go = new GameObject($"AudioPreview_{name}");
-            sourcePreviewer = go.AddComponent<AudioSource>();
+        // get the audio mixer group that matches the name
+        go = new GameObject($"AudioPreview_{_name}");
+        sourcePreviewer = go.AddComponent<AudioSource>();
 #endif
         return (go, sourcePreviewer); // How do you return an object?
     }

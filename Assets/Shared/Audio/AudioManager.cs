@@ -86,8 +86,6 @@ public class AudioManager : SingletonScriptableObject<AudioManager>
 
         track.Config(source);
         source.Play();
-
-        TrackUtils.SourceCleanup(track, source);
         return track.instances.Source = source; // cache
     }
 }
