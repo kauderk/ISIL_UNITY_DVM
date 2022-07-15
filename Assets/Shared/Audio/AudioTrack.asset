@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412aa19287a0c684cbdca272fc477925, type: 3}
+  m_Name: AudioTrack
+  m_EditorClassIdentifier: 
+  Threshold: 1
+  Clip: {fileID: 8300000, guid: ba5d45b3fd2ba7c4cbc5f8881e09d421, type: 3}
+  instances:
+    Source: {fileID: 0}
+    GameObj: {fileID: 0}
+  Other:
+    Persist: 0
+    Timestamp: 0
+    Loop_: 0
+    PreviousMax: 0
+    PreviousIndex: 0
+    UseSemitones: 0
+    Semitones: {x: 0, y: 0}
+    Pitch: {x: 1, y: 1}
+    PlayOrder: 0
+    PlayIndex: 0
+    Volume: {x: 0.5, y: 0.5}
