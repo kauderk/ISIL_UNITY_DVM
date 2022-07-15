@@ -1,5 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class DimmerAssign : PropertyAttribute
 {
@@ -8,7 +10,7 @@ public class DimmerAssign : PropertyAttribute
     public DimmerAssign(Color _color) => color = _color;
     public DimmerAssign() => color = new Color(1, 1, 1, 0.5f); // semi transparent color
 }
-
+#if UNITY_EDITOR
 // https://www.anton.website/colored-inspector-fields/
 [CustomPropertyDrawer(typeof(DimmerAssign))]
 public class DimmerAssignDrawer : PropertyDrawer
@@ -30,3 +32,4 @@ public class DimmerAssignDrawer : PropertyDrawer
         }
     }
 }
+#endif

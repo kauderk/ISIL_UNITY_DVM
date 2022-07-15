@@ -1,5 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 
 /// <summary>
@@ -10,6 +12,7 @@ public class NonExpandableAttribute : PropertyAttribute
 {
     public NonExpandableAttribute() { }
 }
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(NonExpandableAttribute), true)]
 public class NonExpandableAttributeDrawer : PropertyDrawer
 {
@@ -53,3 +56,4 @@ public class ScriptableObjectDrawer : PropertyDrawer
         }
     }
 }
+#endif
