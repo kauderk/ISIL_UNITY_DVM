@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class ConsoleToGUI : MonoBehaviour
 {
+    [Header("   At Runtime Fire Alt+I To tooggle on and off ")]
+    [SerializeField]
+    string filename = "RuntimeLog";
     string myLog = "*begin log";
-    string filename = "";
     bool doShow = false;
     int kChars = 700;
     public static ConsoleToGUI instance;

@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 0
   m_Name: SingletonScriptableObjectReference
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897516654284748782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 242, y: 136, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,6 +47,12 @@ MonoBehaviour:
   MainManager: {fileID: 11400000, guid: d87550b7f0a088a4593e80c249ef1d11, type: 2}
   SO_SceneLoader: {fileID: 11400000, guid: 7eeca7aa023586b4ab8373e9c5583a76, type: 2}
   SO_CanvasListener: {fileID: 11400000, guid: 2d3bef48aaccbc446bb7464523966ed2, type: 2}
+  SO_RedirectSignalManager: {fileID: 11400000, guid: 62a3f5f2f5e102540a7a6f06019d9329, type: 2}
+  SO_DependencyManager: {fileID: 11400000, guid: eacb0e925cf11ec46a10bba41c8d69da, type: 2}
+  SO_CanvasListener2: {fileID: 11400000, guid: 2d3bef48aaccbc446bb7464523966ed2, type: 2}
+  SO_PhotonLauncher: {fileID: 11400000, guid: 382ceeba565b0ed40b4447c9ebeaf50d, type: 2}
+  SO_Artillery: {fileID: 11400000, guid: 8d5e16b799fb30b478c5603fe2fd9916, type: 2}
+  SO_AudioManager: {fileID: 11400000, guid: f1f09a8ec5100394180d298e3bd1d37f, type: 2}
 --- !u!114 &-6060331195959664751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,3 +65,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70dca1d6f2a2ad40b270310aa9a4478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filename: RuntimeLog

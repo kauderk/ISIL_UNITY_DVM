@@ -1,0 +1,23 @@
+{
+    "name": "read-only-references",
+    "rootNamespace": "",
+    "references": [
+        "GUID:da03c659d1d863649b6f35fa75dbed59",
+        "GUID:4c836f12dba84ba4c87e185546c296d3",
+        "GUID:286ebe1c0096774419c2d5755511f4f9",
+        "GUID:4408aab7c2f48454ba45888514ddca07",
+        "GUID:db11e77527d3d9449b57cc4d0c0b396d",
+        "GUID:1c50d32f4c8e0a540ae035e24d8dbc3a",
+        "GUID:8e0ade62a87bf274abd01d5d14ffc3c3",
+        "GUID:752a3176b22985343a12089ed679a3b4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
