@@ -6,14 +6,11 @@ using UnityEngine.UI;
 using RotaryHeart.Lib.SerializableDictionary;
 using System.Linq;
 
-[System.Serializable]
-public class UDisctionary<Tkey, Tval> : SerializableDictionaryBase<Tkey, Tval> { }
-
 [CreateAssetMenu(fileName = "SceneLoader", menuName = "Loaders/SceneLoader")]
 public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
 {
     [Tooltip("SO_SceneData are ScriptableObjects")]
-    public UDisctionary<SceneID, SO_SceneData> SceneDataDict;
+    public UDictionary<SceneID, SO_SceneData> SceneDataDict;
 
     [Tooltip("A canvas that covers the entire screen")]
     public GameObject FaderCanvasPrefab = null;
