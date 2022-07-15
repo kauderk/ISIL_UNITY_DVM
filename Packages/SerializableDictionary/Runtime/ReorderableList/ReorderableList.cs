@@ -1538,6 +1538,7 @@ namespace RotaryHeart.Lib.SerializableDictionary
                 expandButton = EditorGUIUtility.IconContent("winbtn_win_max");
                 collapseButton = EditorGUIUtility.IconContent("winbtn_win_min");
                 selectedColor = GUI.skin.settings.selectionColor;
+                selectedColor.a = 0.1f;
             }
         }
 
