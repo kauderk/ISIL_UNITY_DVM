@@ -8,8 +8,7 @@ namespace Photon.Pun
     {
         [SerializeField]
         private bool createRoomOnPhotonJoinedLobby;
-        public SO_PhotonLauncher SO_Instance() => SO_PhotonLauncher.Instance;
-        public void SetRoomNameInputField(string roomName) => SO_Instance().RoomName = roomName;
+        public void SetRoomNameInputField(string roomName) => SO_PhotonLauncher.Instance.roomName = roomName;
 
         #region Unity Events
         public UnityEvent OnPhotonJoinedLobby;
@@ -42,12 +41,12 @@ namespace Photon.Pun
         }
         public void CreateRoom()
         {
-            if (string.IsNullOrEmpty(SO_Instance().RoomName))
+            if (string.IsNullOrEmpty(SO_PhotonLauncher.Instance.RoomName))
             {
                 Debug.LogWarning("Room name is empty");
                 return;
             }
-            PhotonNetwork.JoinOrCreateRoom(SO_Instance().RoomName, new RoomOptions { MaxPlayers = 3 }, TypedLobby.Default);
+            PhotonNetwork.JoinOrCreateRoom(SO_PhotonLauncher.Instance.RoomName, new RoomOptions { MaxPlayers = 3 }, TypedLobby.Default);
         }
         public override void OnCreateRoomFailed(short returnCode, string message)
         {
