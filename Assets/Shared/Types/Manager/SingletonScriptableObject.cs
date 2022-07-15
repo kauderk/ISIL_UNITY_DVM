@@ -11,7 +11,7 @@ public abstract class SingletonScriptableObject<T> : ScriptableObject where T : 
                 T[] results = Resources.FindObjectsOfTypeAll<T>();
                 if (results.Length == 0)
                 {
-                    Debug.LogError("SingletonScriptableObject<" + typeof(T).Name + "> not found in Resources.");
+                    Debug.LogError("SingletonScriptableObject<" + typeof(T).Name + "> not found in Resources. Or not referenced in this Scene.");
                     return null;
                 }
                 else if (results.Length > 1)
