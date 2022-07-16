@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PistolAmmo
   m_EditorClassIdentifier: 
   <Bullet>k__BackingField: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
-  <speed>k__BackingField: 10
+  <speed>k__BackingField: 20
   <limitDistance>k__BackingField: 40
   <damage>k__BackingField: 1
   <magazineSize>k__BackingField: 10

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: WeaponShooter
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
-  <FireRate>k__BackingField: 1
+  <Burst>k__BackingField: 5
   <Cadence>k__BackingField: 0.2
+  <Delay>k__BackingField: 0.2
