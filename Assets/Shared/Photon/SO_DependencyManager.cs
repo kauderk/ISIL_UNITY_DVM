@@ -9,6 +9,7 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
     public bool CreatePlayerOffline = false;
     public GameObject playerPrefab;
     public GameObject cameraFollowPrefab;
+
     private void OnEnable()
     {
         MainManager.RegisterOnGameInitialized(() =>
@@ -20,6 +21,9 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
 
     public void CreatePlayer()
     {
+        if (!LauncherNW.IsMine())
+            return;
+
         var cam = InstantiateCamera();
         var player = InstantiatePlayer();
 
@@ -30,6 +34,7 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         .ForEach(go => go.SetActive(true));
     }
 
+    #region Query
     private GameObject InstantiatePlayer()
     {
         var random = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
@@ -54,4 +59,5 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         else
             return PhotonNetwork.Instantiate(prefabName.name, position, rotation);
     }
+    #endregion
 }

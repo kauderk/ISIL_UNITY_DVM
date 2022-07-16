@@ -2,7 +2,7 @@ namespace Photon.Pun
 {
     public class MonoBehaviourPunBase : MonoBehaviourPun
     {
-        bool isMine() => photonView.IsMine || SO_DependencyManager.Instance.CreatePlayerOffline;
+        bool isMine() => LauncherNW.IsMine();
 
         // void OnEnable()
         // {
