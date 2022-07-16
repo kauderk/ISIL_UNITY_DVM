@@ -10,7 +10,7 @@ namespace Weapon
         float Cadence { get; }
         float Delay { get; }
         void Fire(Action OnBurst = null, float delayInSeconds = 0);
-        void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings);
+        void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings Ammo, SOC_WeaponShooter EditorSettings);
         bool Elapsed(float deltaFireRate);
     }
     [System.Serializable]

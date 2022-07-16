@@ -8,25 +8,22 @@ namespace Weapon
     public class KD_Magazine : MonoBehaviour, IMagazine
     {
         [field: SerializeField]
-        public SO_AmmoSettings Settings { get; private set; }
+        public SO_WeaponSkin SkinSettings { get; private set; }
         public void PickUp() { }
 
         public void updateMeshRenderer()
         {
-            // thow not implemented exception
-            throw new System.NotImplementedException();
-            // if (!settings) return;
-            // var meshRenderer = settings.Instance.Meshrenderer = GetComponent<MeshRenderer>();
-            // // http://answers.unity.com/answers/322397/view.html
-            // var tempMaterial = new Material(meshRenderer.sharedMaterial);
-            // tempMaterial.color = settings.color;
-            // meshRenderer.sharedMaterial = tempMaterial;
+            if (!SkinSettings) return;
+            var meshRenderer = GetComponent<MeshRenderer>();
+            // http://answers.unity.com/answers/322397/view.html
+            var tempMaterial = new Material(meshRenderer.sharedMaterial);
+            tempMaterial.color = SkinSettings.Color;
+            meshRenderer.sharedMaterial = tempMaterial;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            throw new System.NotImplementedException();
-            //GlobalEvents.Invoke(IDs.pickupMagazine, settings.color);
+            GlobalEvents.Invoke(IDs.pickupMagazine, SkinSettings.Color);
         }
     }
 
