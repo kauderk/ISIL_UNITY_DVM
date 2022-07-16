@@ -12,12 +12,10 @@ namespace Weapon
         public float reloadTime { get; private set; }
 
         public SO_WeaponMagazine Magazine { get; private set; }
-        public SO_WeaponSFX SFX { get; private set; }
 
-        public void Init(SO_WeaponMagazine Magazine, SO_WeaponSFX SFX)
+        public void Init(SO_WeaponMagazine Magazine)
         {
             this.Magazine = Magazine;
-            this.SFX = SFX;
         }
 
         public void FillMagazine() => Magazine.fill();

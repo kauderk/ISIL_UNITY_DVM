@@ -15,7 +15,7 @@ namespace Weapon
         protected override void MyAwake()
         {
             IShooter = WeaponSettings.shooter; //SO_WeaponShooter
-            IShooter.Init(WeaponSettings.Magazine, WeaponSettings.SFX, WeaponSettings.bulletSettings, EditorSettings);
+            IShooter.Init(WeaponSettings.Magazine, WeaponSettings.bulletSettings, EditorSettings);
         }
 
         protected override void MyUpdate()

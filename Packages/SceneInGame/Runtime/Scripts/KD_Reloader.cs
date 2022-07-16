@@ -14,7 +14,7 @@ namespace Weapon
         private void Awake()
         {
             Iweapon = Settings;
-            Iweapon.Init(WeaponSettings.Magazine, WeaponSettings.SFX);
+            Iweapon.Init(WeaponSettings.Magazine);
         }
 
         void Update()

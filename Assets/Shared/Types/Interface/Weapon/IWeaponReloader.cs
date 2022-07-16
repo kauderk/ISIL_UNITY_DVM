@@ -4,7 +4,7 @@ namespace Weapon
     {
         int reloadAmount { get; }
         float reloadTime { get; }
-        void Init(SO_WeaponMagazine Magazine, SO_WeaponSFX SFX);
+        void Init(SO_WeaponMagazine Magazine);
         void Reload();
         void FillMagazine();
     }

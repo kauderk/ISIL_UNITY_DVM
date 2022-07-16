@@ -17,7 +17,6 @@ namespace Weapon
         public float Cadence { get; private set; }
 
         public SO_WeaponMagazine Magazine { get; private set; }
-        public SO_WeaponSFX SFX { get; private set; }
 
         GameObject Bullet;
         SOC_WeaponShooter EditorSettings;
@@ -49,10 +48,9 @@ namespace Weapon
             }
         }
 
-        public void Init(SO_WeaponMagazine Magazine, SO_WeaponSFX SFX, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
+        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
         {
             this.Magazine = Magazine;
-            this.SFX = SFX;
             this.Bullet = BulletSettings.Bullet;
             this.EditorSettings = EditorSettings;
         }

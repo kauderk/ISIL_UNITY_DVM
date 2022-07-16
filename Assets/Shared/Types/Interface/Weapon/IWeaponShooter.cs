@@ -9,7 +9,7 @@ namespace Weapon
         public int FireRate { get; }
         public float Cadence { get; }
         public void Fire(Action OnBurst = null);
-        public void Init(SO_WeaponMagazine Magazine, SO_WeaponSFX SFX, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings);
+        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings);
         public bool CanFire(float deltaFireRate);
     }
     [System.Serializable]
