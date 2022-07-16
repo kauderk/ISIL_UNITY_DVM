@@ -1,5 +1,8 @@
-public interface KD_IMagazine
+namespace Weapon
 {
-    SO_AmmoSettings settings { get; }
-    void PickUp();
+    public interface IMagazine
+    {
+        SO_AmmoSettings Settings { get; }
+        void PickUp();
+    }
 }

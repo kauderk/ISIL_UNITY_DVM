@@ -3,42 +3,48 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class KD_Magazine : MonoBehaviour, KD_IMagazine
+namespace Weapon
 {
-    [field: SerializeField]
-    public SO_AmmoSettings settings { get; private set; }
-    public void PickUp() { }
-
-    public void updateMeshRenderer()
+    public class KD_Magazine : MonoBehaviour, IMagazine
     {
-        if (!settings) return;
-        var meshRenderer = settings.Instance.meshRenderer = GetComponent<MeshRenderer>();
-        // http://answers.unity.com/answers/322397/view.html
-        var tempMaterial = new Material(meshRenderer.sharedMaterial);
-        tempMaterial.color = settings.color;
-        meshRenderer.sharedMaterial = tempMaterial;
-    }
+        [field: SerializeField]
+        public SO_AmmoSettings Settings { get; private set; }
+        public void PickUp() { }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        GlobalEvents.Invoke(IDs.pickupMagazine, settings.color);
-    }
-}
-
-#if UNITY_EDITOR
-[CanEditMultipleObjects]
-[CustomEditor(typeof(KD_Magazine))]
-public class KD_MagazineEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("Update Material with Settings"))
+        public void updateMeshRenderer()
         {
-            var script = (KD_Magazine)target;
-            script.updateMeshRenderer();
+            // thow not implemented exception
+            throw new System.NotImplementedException();
+            // if (!settings) return;
+            // var meshRenderer = settings.Instance.Meshrenderer = GetComponent<MeshRenderer>();
+            // // http://answers.unity.com/answers/322397/view.html
+            // var tempMaterial = new Material(meshRenderer.sharedMaterial);
+            // tempMaterial.color = settings.color;
+            // meshRenderer.sharedMaterial = tempMaterial;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            throw new System.NotImplementedException();
+            //GlobalEvents.Invoke(IDs.pickupMagazine, settings.color);
         }
     }
-}
+
+#if UNITY_EDITOR
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(KD_Magazine))]
+    public class KD_MagazineEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            if (GUILayout.Button("Update Material with Settings"))
+            {
+                var script = (KD_Magazine)target;
+                script.updateMeshRenderer();
+            }
+        }
+    }
 #endif
+}

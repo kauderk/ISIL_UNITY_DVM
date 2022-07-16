@@ -6,10 +6,10 @@ namespace Weapon
     public class SO_WeaponReloader : ScriptableObject, KD_IWeaponReloader, IBaseWeaponCmp
     {
         [field: SerializeField]
-        public int reloadAmount { get; private set; }
+        public int Amount { get; private set; } = 1;
 
         [field: SerializeField]
-        public float fullyReloadTime { get; private set; } = 5f;
+        public float FullyReloadTime { get; private set; } = 5f;
 
         [field: SerializeField]
         public float SingleReloadTime { get; private set; } = 1.5f;

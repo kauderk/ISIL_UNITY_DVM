@@ -32,7 +32,7 @@ namespace Weapon
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent<KD_IMagazine>(out var magazine))
+            if (collision.gameObject.TryGetComponent<IMagazine>(out var magazine))
             {
                 collision.gameObject.SetActive(false);
                 //Debug.Break();

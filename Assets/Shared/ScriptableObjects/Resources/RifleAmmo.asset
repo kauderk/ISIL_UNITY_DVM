@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: RifleAmmo
   m_EditorClassIdentifier: 
   <Bullet>k__BackingField: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
-  <speed>k__BackingField: 10
-  <limitDistance>k__BackingField: 40
-  <damage>k__BackingField: 5
-  <magazineSize>k__BackingField: 10
-  <color>k__BackingField: {r: 1, g: 0.6343898, b: 0, a: 1}
-  <jigle>k__BackingField: {x: -0.3, y: 0.3}
-  <originForward>k__BackingField: {x: 0, y: 0, z: 0}
+  <Speed>k__BackingField: 10
+  <DestroyAtDistance>k__BackingField: 40
+  <Damage>k__BackingField: 5
+  <Jigle>k__BackingField: {x: -0.3, y: 0.3}
+  <OriginForward>k__BackingField: {x: 0, y: 0, z: 0}
   Instance:
-    <caster>k__BackingField: {fileID: 0}
-    <bullet>k__BackingField: {fileID: 0}
-    <meshRenderer>k__BackingField: {fileID: 0}
-    <origin>k__BackingField: {fileID: 0}
-    <originForward>k__BackingField: {x: 0, y: 0, z: 0}
+    <Caster>k__BackingField: {fileID: 0}
+    <Bullet>k__BackingField: {fileID: 0}
+    <Meshrenderer>k__BackingField: {fileID: 0}
+    <Origin>k__BackingField: {fileID: 0}
+    <Originforward>k__BackingField: {x: 0, y: 0, z: 0}

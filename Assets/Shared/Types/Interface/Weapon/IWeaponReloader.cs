@@ -2,8 +2,8 @@ namespace Weapon
 {
     public interface KD_IWeaponReloader
     {
-        int reloadAmount { get; }
-        float fullyReloadTime { get; }
+        int Amount { get; }
+        float FullyReloadTime { get; }
         float SingleReloadTime { get; }
     }
 }
