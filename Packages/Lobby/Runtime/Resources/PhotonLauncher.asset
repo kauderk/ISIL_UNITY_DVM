@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1b9107bbc8c6842b686d8f29a2847f, type: 3}
   m_Name: PhotonLauncher
   m_EditorClassIdentifier: 
-  ShowDebug: 1
+  ShowDebug: 0
   roomName: ISIL_DVM_Room
   <roomList>k__BackingField: []

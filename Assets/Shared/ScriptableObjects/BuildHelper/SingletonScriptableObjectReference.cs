@@ -10,7 +10,6 @@ public class SingletonScriptableObjectReference : MonoBehaviour
     [SerializeField] private SO_CanvasListener SO_CanvasListener;
     [SerializeField] private SO_RedirectSignalManager SO_RedirectSignalManager;
     [SerializeField] private SO_DependencyManager SO_DependencyManager;
-    [SerializeField] private SO_CanvasListener SO_CanvasListener2;
     [SerializeField] private SO_PhotonLauncher SO_PhotonLauncher;
     [SerializeField] private SO_Artillery SO_Artillery;
     [SerializeField] private AudioManager SO_AudioManager;
