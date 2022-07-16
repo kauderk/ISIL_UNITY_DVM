@@ -1,9 +1,11 @@
 public interface KD_IWeaponMagazine
 {
-    public int magazineSize { get; }
-    public int amoution { get; }
-    public void consume(int amount = 1);
-    public TYPEWEAPON Type { get; }
-    public void load(int amount = 1);
-    public void fill();
+    int magazineSize { get; }
+    int amoution { get; }
+    bool Busy { get; }
+    TYPEWEAPON Type { get; }
+    void consume(int amount = 1);
+    void load(int amount = 1);
+    void fill();
+    bool hasAmmo();
 }
