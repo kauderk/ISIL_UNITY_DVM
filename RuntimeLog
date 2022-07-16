@@ -121,3 +121,7 @@ StackOverflowException: The requested operation caused a stack overflow.
 StackOverflowException: The requested operation caused a stack overflow.
 StackOverflowException: The requested operation caused a stack overflow.
 StackOverflowException: The requested operation caused a stack overflow.
+NotImplementedException: The method or operation is not implemented.
+NotImplementedException: The method or operation is not implemented.
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
