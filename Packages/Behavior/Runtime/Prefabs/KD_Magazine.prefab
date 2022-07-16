@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d9c7480fbcee72459f0969f75ff66b4, type: 2}
+  - {fileID: 2100000, guid: ca4cad6053eeeda4d8c3cb7b9ea5c58b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,10 +91,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4840404370733843882}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.41
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7364139711906798408
 MonoBehaviour:
@@ -108,4 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5bbdddb592a3e48a5718262ebc1d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <settings>k__BackingField: {fileID: 11400000, guid: bbc8f466add33a9408e6d29c7f2d4111, type: 2}
+  <SkinSettings>k__BackingField: {fileID: 11400000, guid: eb846ff21d595a140af8707e5e59334e, type: 2}
