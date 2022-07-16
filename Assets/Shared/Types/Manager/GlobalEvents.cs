@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class GlobalEvents
 {
-    static readonly Dictionary<IDs, Action<object>> IDToEventMap = new Dictionary<IDs, Action<object>>();
+    private static Dictionary<IDs, Action<object>> IDToEventMap = new Dictionary<IDs, Action<object>>();
 
     public static void Invoke(IDs ID, object payload)
     {
@@ -48,9 +48,16 @@ public static class GlobalEvents
 
     public static void ClanIDToEventMap()
     {
-        foreach (var ID in IDToEventMap.Keys)
+        try
         {
-            UnsubscribeAll(ID);
+            foreach (var ID in IDToEventMap.Keys)
+            {
+                UnsubscribeAll(ID);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
         }
     }
 }
