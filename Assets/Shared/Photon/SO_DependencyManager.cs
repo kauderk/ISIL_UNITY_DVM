@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "DependencyManager", menuName = "Managers/DependencyManager", order = 1)]
 public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManager>
@@ -10,22 +11,30 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
     public GameObject cameraFollowPrefab;
     public void CreatePlayer()
     {
-        var cam = PhotonNetwork.Instantiate(cameraFollowPrefab.name, new Vector3(0f, 20f, -20f), Quaternion.identity);
-        cam.SetActive(false);
-        var camController = cam.GetComponent<RS_CameraController>();
+        var cam = InstantiateCamera();
+        var player = InstantiatePlayer();
 
-        var player = PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f, 12f, 0f), Quaternion.identity);
-        player.SetActive(false);
+        cam.controller.AssignTarget(player.transform);
+        player.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.animtor));
 
-        camController.AssignTarget(player.transform);
-
-        player.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.GetComponentInChildren<Animator>()));
-
-        player.SetActive(true);
-        cam.SetActive(true);
+        new List<GameObject> { cam.go, player }
+        .ForEach(go => go.SetActive(true));
     }
-    public void Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)
+
+    private GameObject InstantiatePlayer()
     {
-        PhotonNetwork.Instantiate(prefab.name, position, rotation);
+        var random = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
+        var player = PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(random.x, 12f, random.y), Quaternion.identity);
+        player.SetActive(false);
+        return player;
+    }
+
+    private (GameObject go, ICamera controller, Animator animtor) InstantiateCamera()
+    {
+        var go = PhotonNetwork.Instantiate(cameraFollowPrefab.name, new Vector3(0f, 20f, -20f), Quaternion.identity);
+        go.SetActive(false);
+        var controller = go.GetComponent<ICamera>();
+        var animtor = go.GetComponent<Animator>();
+        return (go, controller, animtor);
     }
 }
