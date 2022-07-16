@@ -1,16 +1,13 @@
 using UnityEngine;
-using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
 
 public class KD_Magazine : MonoBehaviour, KD_IMagazine
 {
     [field: SerializeField]
     public SO_AmmoSettings settings { get; private set; }
-    public SO_AmmoSettings PickUp() => settings;
-
+    public void PickUp() { }
 
     public void updateMeshRenderer()
     {
@@ -21,9 +18,12 @@ public class KD_Magazine : MonoBehaviour, KD_IMagazine
         tempMaterial.color = settings.color;
         meshRenderer.sharedMaterial = tempMaterial;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GlobalEvents.Invoke(IDs.pickupMagazine, settings.color);
+    }
 }
-
-
 
 #if UNITY_EDITOR
 [CanEditMultipleObjects]
