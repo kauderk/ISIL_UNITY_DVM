@@ -27,7 +27,7 @@ namespace Weapon
             {
                 awaiting();
                 Play(S => S.FullyReloaded);
-                WeaponSettings.Magazine.fill();
+                WeaponSettings.Magazine.Fill();
             }
             if (delta > WeaponSettings.SFX.FullyReloaded.length)
             {

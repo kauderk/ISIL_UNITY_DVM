@@ -1,11 +1,15 @@
-public interface KD_IWeaponMagazine
+namespace Weapon
 {
-    int magazineSize { get; }
-    int amoution { get; }
-    bool Busy { get; }
-    TYPEWEAPON Type { get; }
-    void consume(int amount = 1);
-    void load(int amount = 1);
-    void fill();
-    bool hasAmmo();
+    public interface IWeaponMagazine
+    {
+        int MagazineSize { get; }
+        int Amoution { get; }
+        bool Busy { get; }
+        TYPEWEAPON Type { get; }
+        void Consume(int amount = 1);
+        void Load(int amount = 1);
+        void Fill();
+        bool HasAmmo();
+        void Clear();
+    }
 }
