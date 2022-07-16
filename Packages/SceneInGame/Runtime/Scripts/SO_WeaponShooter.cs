@@ -25,7 +25,6 @@ namespace Weapon
 
         public void Fire(Action OnBurst = null)
         {
-            Magazine.consume();
             for (int i = 0; i < FireRate; i++)
             {
                 var bullet = Instantiate(this.Bullet);
