@@ -1,0 +1,4 @@
+public enum IDs
+{
+    pickupMagazine
+}
