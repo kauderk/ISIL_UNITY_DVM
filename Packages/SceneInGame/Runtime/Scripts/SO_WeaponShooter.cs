@@ -21,12 +21,7 @@ namespace Weapon
         GameObject Bullet;
         SOC_WeaponShooter EditorSettings;
 
-        public bool CanFire(float deltaFireRate)
-        {
-            bool enoughTime = deltaFireRate > Cadence;
-            bool hasAmmo = Magazine.amoution > 0;
-            return hasAmmo && enoughTime;
-        }
+        public bool Elapsed(float deltaFireRate) => deltaFireRate > Cadence;
 
         public void Fire(Action OnBurst = null)
         {
