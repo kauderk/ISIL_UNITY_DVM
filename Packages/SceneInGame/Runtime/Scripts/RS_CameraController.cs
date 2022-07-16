@@ -1,6 +1,7 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class RS_CameraController : MonoBehaviour
+public class RS_CameraController : MonoBehaviourPunBase, ICamera
 {
     [Tooltip("Follow the Target with smoothness"), Range(0.01f, 1.0f)]
     public float Smoothness = 0.1f;
@@ -9,7 +10,9 @@ public class RS_CameraController : MonoBehaviour
     [SerializeField] Transform Target;
 
     public void AssignTarget(Transform target) => Target = target;
-    void Update()
+    public Transform GetTarget() => Target;
+
+    protected override void MyUpdate()
     {
         // follow the Target with smoothness
         transform.position = Vector3.Lerp(transform.position, Target.position + distance, Smoothness);

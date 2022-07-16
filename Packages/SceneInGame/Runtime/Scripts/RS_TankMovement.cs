@@ -1,13 +1,16 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class RS_TankMovement : MonoBehaviourPunCallbacks
+namespace Photon.Pun
 {
-    public SO_PlayerSettings Settings;
-
-    void Update()
+    public class RS_TankMovement : MonoBehaviourPunBase
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * Settings.rotationSpeed, 0);
-        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * Settings.movementSpeed);
+        public SO_PlayerSettings Settings;
+
+        protected override void MyUpdate()
+        {
+            transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * Settings.rotationSpeed, 0);
+            transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * Settings.movementSpeed);
+        }
     }
 }

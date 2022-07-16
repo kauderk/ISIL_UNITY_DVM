@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 namespace Weapon
 {
@@ -13,11 +14,13 @@ namespace Weapon
 
         void Awake()
         {
+            if (!photonView.IsMine)
+                return;
             IShooter = WeaponSettings.shooter; //SO_WeaponShooter
             IShooter.Init(WeaponSettings.Magazine, WeaponSettings.bulletSettings, EditorSettings);
         }
 
-        void Update()
+        protected override void MyUpdate()
         {
             if (InputIsShooting() && IShooter.CanFire(clockRate))
             {
@@ -27,6 +30,7 @@ namespace Weapon
                 IShooter.Fire();
 
                 transform.NotifySiblings<IFireEvent>(I => I.OnFire());
+                Debug.Log($"Is mine: {photonView.IsMine} with Amunition: {WeaponSettings.Magazine.amoution}");
             }
             else if (InputIsShooting())
             {
