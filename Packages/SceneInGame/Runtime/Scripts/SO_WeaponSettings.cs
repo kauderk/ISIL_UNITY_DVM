@@ -5,10 +5,11 @@ namespace Weapon
     [CreateAssetMenu(fileName = "WeaponSettings", menuName = "Game Data/WeaponSettings")]
     public class SO_WeaponSettings : ScriptableObject
     {
-        public SO_WeaponShooter shooter;
-        public SO_WeaponReloader reloader;
-        public SO_AmmoSettings bulletSettings;
+        public SO_WeaponShooter Shooter;
+        public SO_WeaponReloader Reloader;
+        public SO_AmmoSettings Ammo;
         public SO_WeaponMagazine Magazine;
+        public SO_WeaponSkin Skin;
         public SO_WeaponSFX SFX;
     }
 }

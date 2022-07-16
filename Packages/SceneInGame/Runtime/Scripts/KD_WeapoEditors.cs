@@ -22,10 +22,10 @@ namespace Weapon
             }
 
             // check if Shooter Settings is valid to show in the inspector
-            script.Settings = EditorUtils.AssignField(wp.shooter, serializedObject.FindProperty(nameof(script.Settings)));
+            script.Settings = EditorUtils.AssignField(wp.Shooter, serializedObject.FindProperty(nameof(script.Settings)));
 
-            if (!wp.bulletSettings) // check if the bullet settings is null
-                EditorUtils.ErrorInspector(nameof(wp.bulletSettings));
+            if (!wp.Ammo) // check if the bullet settings is null
+                EditorUtils.ErrorInspector(nameof(wp.Ammo));
         }
     }
     [CanEditMultipleObjects]
@@ -44,7 +44,7 @@ namespace Weapon
             }
 
             // check if Shooter Settings is valid to show in the inspector
-            script.Settings = EditorUtils.AssignField(wp.reloader, serializedObject.FindProperty(nameof(script.Settings)));
+            script.Settings = EditorUtils.AssignField(wp.Reloader, serializedObject.FindProperty(nameof(script.Settings)));
         }
     }
 #endif

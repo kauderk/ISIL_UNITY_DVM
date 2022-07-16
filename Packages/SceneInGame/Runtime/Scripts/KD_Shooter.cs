@@ -15,8 +15,8 @@ namespace Weapon
         {
             base.MyAwake();
             delta = Settings.Burst + 1; // able to shoot on start up
-            IShooter = WeaponSettings.shooter; //SO_WeaponShooter
-            IShooter.Init(WeaponSettings.Magazine, WeaponSettings.bulletSettings, EditorSettings);
+            IShooter = WeaponSettings.Shooter; //SO_WeaponShooter
+            IShooter.Init(WeaponSettings.Magazine, WeaponSettings.Ammo, EditorSettings);
         }
 
         protected override void MyUpdate()

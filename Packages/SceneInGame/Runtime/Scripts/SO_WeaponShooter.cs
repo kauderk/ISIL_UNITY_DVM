@@ -50,18 +50,18 @@ namespace Weapon
             controller.enabled = false;
 
             var AmmoRef = Store.SO_Artillery.Instance.Ammo[magazine.Type]; // the only "dependency", how do you avoid this?
-            var bulletSettings = Instantiate(AmmoRef);
+            var Ammo = Instantiate(AmmoRef);
 
             OnBurst?.Invoke();
-            bulletSettings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
-            controller.Init(bulletSettings);
+            Ammo.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
+            controller.Init(Ammo);
 
             controller.enabled = true;
         }
-        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
+        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings Ammo, SOC_WeaponShooter EditorSettings)
         {
             this.magazine = Magazine;
-            this.Bullet = BulletSettings.Bullet;
+            this.Bullet = Ammo.Bullet;
             this.EditorSettings = EditorSettings;
         }
     }
