@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Weapon
@@ -9,28 +10,42 @@ namespace Weapon
 
         KD_IWeaponReloader Iweapon;
         float delta;
-        bool busy;
+        bool pending;
 
-        private void Awake()
-        {
-            Iweapon = Settings;
-            Iweapon.Init(WeaponSettings.Magazine);
-        }
+        private void Awake() => Iweapon = Settings;
 
         void Update()
         {
-            delta += Time.deltaTime;
+            var input = InputReload();
 
-            if (InputReload() && !busy)
+            if (pending)
+                delta += Time.deltaTime;
+            if (pending && input.any)
+                Play(S => S.BusyReloading);
+
+            if (!pending && input.fully)
             {
-                busy = true;
-                if (delta > Iweapon.reloadTime)
-                {
-                    Iweapon.FillMagazine();
-                    delta = 0;
-                    busy = false;
-                }
+                awaiting();
+                Play(S => S.FullyReloaded);
+                WeaponSettings.Magazine.fill();
             }
+            if (delta > WeaponSettings.SFX.FullyReloaded.length)
+            {
+                resolve();
+            }
+        }
+
+        private void awaiting()
+        {
+            WeaponSettings.Magazine.Busy = true;
+            pending = true;
+        }
+
+        private void resolve()
+        {
+            WeaponSettings.Magazine.Busy = false;
+            delta = 0;
+            pending = false;
         }
 
         void OnCollisionEnter(Collision collision)
@@ -49,6 +64,14 @@ namespace Weapon
             }
         }
 
-        bool InputReload() => Input.GetKeyDown(KeyCode.R);
+        private void Play(Func<SO_WeaponSFX, AudioClip> cb) => WeaponSettings.SFX.Play(cb);
+        bool InputFullyReload() => Input.GetKeyDown(KeyCode.R);
+        (bool fully, bool single, bool any) InputReload()
+        {
+            var fully = Input.GetKeyDown(KeyCode.R);
+            var single = Input.GetKeyDown(KeyCode.T);
+            var any = fully || single;
+            return (fully, single, any);
+        }
     }
 }
