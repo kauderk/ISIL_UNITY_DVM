@@ -16,3 +16,4 @@ MonoBehaviour:
   reloader: {fileID: 11400000, guid: 33939f03d579175498d78359ae385c48, type: 2}
   bulletSettings: {fileID: 11400000, guid: 00e65dd2c959da949b44d4918736ce36, type: 2}
   Magazine: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
+  SFX: {fileID: 11400000, guid: 5d6b5cb5c375b364fbd1b913bb41d6b0, type: 2}
