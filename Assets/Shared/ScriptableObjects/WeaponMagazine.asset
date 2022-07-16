@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd959fb9bd9e5041814b973e4662099, type: 3}
   m_Name: WeaponMagazine
   m_EditorClassIdentifier: 
-  <magazineSize>k__BackingField: 10
-  <amoution>k__BackingField: 10
+  <MagazineSize>k__BackingField: 10
+  <Amoution>k__BackingField: 0
   <Type>k__BackingField: 0
