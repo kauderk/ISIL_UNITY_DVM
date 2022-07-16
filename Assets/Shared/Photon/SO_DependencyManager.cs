@@ -1,14 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using System.Linq;
 
 [CreateAssetMenu(fileName = "DependencyManager", menuName = "Managers/DependencyManager", order = 1)]
 public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManager>
 {
+    [Tooltip("Should Only be used for testing purposes")]
+    public bool CreatePlayerOffline = false;
     public GameObject playerPrefab;
     public GameObject cameraFollowPrefab;
+    private void OnEnable()
+    {
+        MainManager.RegisterOnGameInitialized(() =>
+        {
+            if (CreatePlayerOffline)
+                CreatePlayer();
+        });
+    }
+
     public void CreatePlayer()
     {
         var cam = InstantiateCamera();
@@ -24,17 +33,25 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
     private GameObject InstantiatePlayer()
     {
         var random = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
-        var player = PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(random.x, 12f, random.y), Quaternion.identity);
+        var player = Instantiate(playerPrefab, new Vector3(random.x, 12f, random.y), Quaternion.identity);
         player.SetActive(false);
         return player;
     }
 
     private (GameObject go, ICamera controller, Animator animtor) InstantiateCamera()
     {
-        var go = PhotonNetwork.Instantiate(cameraFollowPrefab.name, new Vector3(0f, 20f, -20f), Quaternion.identity);
+        GameObject go = Instantiate(cameraFollowPrefab, new Vector3(0f, 20f, -20f), Quaternion.identity);
         go.SetActive(false);
         var controller = go.GetComponent<ICamera>();
-        var animtor = go.GetComponent<Animator>();
+        var animtor = go.GetComponentInChildren<Animator>(); //TODO: what's the convention?
         return (go, controller, animtor);
+    }
+
+    private GameObject Instantiate(GameObject prefabName, Vector3 position, Quaternion rotation)
+    {
+        if (CreatePlayerOffline)
+            return Object.Instantiate(prefabName, position, rotation);
+        else
+            return PhotonNetwork.Instantiate(prefabName.name, position, rotation);
     }
 }
