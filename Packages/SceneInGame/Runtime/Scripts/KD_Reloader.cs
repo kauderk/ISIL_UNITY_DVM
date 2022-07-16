@@ -3,20 +3,15 @@ using UnityEngine;
 
 namespace Weapon
 {
+
     public class KD_Reloader : KD_MonoWeapon
     {
         [SerializeField, HideInInspector, Tooltip("Inherited from the WeaponSettings.")]
         public SO_WeaponReloader Settings;
 
-        KD_IWeaponReloader Iweapon;
-        float delta;
-        bool pending;
-
-        private void Awake() => Iweapon = Settings;
-
-        void Update()
+        protected override void MyUpdate()
         {
-            var input = InputReload();
+            var input = this.InputReload();
 
             if (pending)
                 delta += Time.deltaTime;
@@ -25,27 +20,14 @@ namespace Weapon
 
             if (!pending && input.fully)
             {
-                awaiting();
+                Awaiting(BusyMagazine: true);
                 Play(S => S.FullyReloaded);
                 WeaponSettings.Magazine.Fill();
             }
             if (delta > WeaponSettings.SFX.FullyReloaded.length)
             {
-                resolve();
+                Resolve(BusyMagazine: false);
             }
-        }
-
-        private void awaiting()
-        {
-            WeaponSettings.Magazine.Busy = true;
-            pending = true;
-        }
-
-        private void resolve()
-        {
-            WeaponSettings.Magazine.Busy = false;
-            delta = 0;
-            pending = false;
         }
 
         void OnCollisionEnter(Collision collision)
@@ -62,16 +44,6 @@ namespace Weapon
                 // TODO: Fire a Gloabl Event to update the UI 
                 //txtBulletCount.color = settings.color;
             }
-        }
-
-        private void Play(Func<SO_WeaponSFX, AudioClip> cb) => WeaponSettings.SFX.Play(cb);
-        bool InputFullyReload() => Input.GetKeyDown(KeyCode.R);
-        (bool fully, bool single, bool any) InputReload()
-        {
-            var fully = Input.GetKeyDown(KeyCode.R);
-            var single = Input.GetKeyDown(KeyCode.T);
-            var any = fully || single;
-            return (fully, single, any);
         }
     }
 }

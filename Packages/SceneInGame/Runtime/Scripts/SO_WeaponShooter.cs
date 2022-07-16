@@ -16,7 +16,7 @@ namespace Weapon
         [field: SerializeField]
         public float Cadence { get; private set; }
 
-        public SO_WeaponMagazine Magazine { get; private set; }
+        SO_WeaponMagazine magazine;
 
         GameObject Bullet;
         SOC_WeaponShooter EditorSettings;
@@ -31,7 +31,7 @@ namespace Weapon
                 var controller = bullet.GetComponent<BulletController>();
                 controller.enabled = false;
 
-                var AmmoRef = Store.SO_Artillery.Instance.Ammo[Magazine.Type];
+                var AmmoRef = Store.SO_Artillery.Instance.Ammo[magazine.Type]; // the only "dependency", how do you avoid this?
                 var bulletSettings = Instantiate(AmmoRef);
 
                 OnBurst?.Invoke();
@@ -44,7 +44,7 @@ namespace Weapon
 
         public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
         {
-            this.Magazine = Magazine;
+            this.magazine = Magazine;
             this.Bullet = BulletSettings.Bullet;
             this.EditorSettings = EditorSettings;
         }
