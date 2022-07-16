@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: WeaponReloader
   m_EditorClassIdentifier: 
   <reloadAmount>k__BackingField: 1
-  <reloadTime>k__BackingField: 0.5
-  <busy>k__BackingField: 0
-  <Magazine>k__BackingField: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
+  <fullyReloadTime>k__BackingField: 5
+  <SingleReloadTime>k__BackingField: 1.5

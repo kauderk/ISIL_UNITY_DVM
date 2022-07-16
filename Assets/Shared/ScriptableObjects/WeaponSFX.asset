@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62defd05ff3b5744f99a962b9aa26ee7, type: 3}
   m_Name: WeaponSFX
   m_EditorClassIdentifier: 
-  Fire: {fileID: 8300000, guid: 3ab1b5294ca3dc34f8f7f3cdfd58d0c9, type: 3}
+  Fire: {fileID: 8300000, guid: f06353b2c4efe2f43a3cd7fd3a656ad5, type: 3}
   Release: {fileID: 8300000, guid: 373c4830750424640937731e3fae6bca, type: 3}
-  Reload: {fileID: 8300000, guid: e66635b3015e6e34ead6598e8ab3bf29, type: 3}
-  Empty: {fileID: 0}
-  Burst: {fileID: 8300000, guid: 2f19bbbc1eb67b94097e88cd2d6e070f, type: 3}
-  Exhaust: {fileID: 8300000, guid: b58d87712dbebba4c8d79bcab0871ea6, type: 3}
-  PickUp: {fileID: 0}
-  Drop: {fileID: 0}
-  Equip: {fileID: 0}
-  Unequip: {fileID: 0}
+  Empty: {fileID: 8300000, guid: 7a852acefb706204ebc716372a4d6b7a, type: 3}
+  Burst: {fileID: 8300000, guid: c660aa1fed44f7e4d9ca0fe97f62937d, type: 3}
+  Dry: {fileID: 8300000, guid: a515fe80e3acea249bd032aa2b41f43a, type: 3}
+  SingleReload: {fileID: 8300000, guid: 2fb2590d4e1645a42ae25176fd2bd1d8, type: 3}
+  FullyReloaded: {fileID: 8300000, guid: 264be57b24a0c77438ff7b9128045f50, type: 3}
+  BusyReloading: {fileID: 8300000, guid: e66635b3015e6e34ead6598e8ab3bf29, type: 3}
+  PickUp: {fileID: 8300000, guid: 881b142698810af4e807906661c01f22, type: 3}
+  Drop: {fileID: 8300000, guid: 3341060ef69fcb844b266ec5e8d153f4, type: 3}
+  Equip: {fileID: 8300000, guid: f5a4825ec334c934b9c8b3439825c79e, type: 3}
+  Unequip: {fileID: 8300000, guid: 3341060ef69fcb844b266ec5e8d153f4, type: 3}
