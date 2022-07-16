@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WeaponMagazine
   m_EditorClassIdentifier: 
   <MagazineSize>k__BackingField: 10
-  <Amoution>k__BackingField: 9
+  <Amoution>k__BackingField: 10
   <Type>k__BackingField: 0
