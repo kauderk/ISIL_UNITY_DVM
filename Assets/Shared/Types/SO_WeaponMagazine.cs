@@ -14,7 +14,10 @@ public class SO_WeaponMagazine : ScriptableObject, KD_IWeaponMagazine
     [field: SerializeField]
     public TYPEWEAPON Type { get; private set; }
 
+    public bool Busy { get; set; }
+
     public void consume(int amount = 1) => amoution -= amount;
     public void load(int amount = 1) => amoution += amount;
     public void fill() => amoution = magazineSize;
+    public bool hasAmmo() => amoution > 0;
 }
