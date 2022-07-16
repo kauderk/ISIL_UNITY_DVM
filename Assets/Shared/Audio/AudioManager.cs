@@ -23,7 +23,7 @@ public class AudioManager : SingletonScriptableObject<AudioManager>
     {
         audioMoods.AssignSceneComponents(MainAudioMixer);
 
-        PlayNextTrack(AudioMood.Background);
+        //PlayNextTrack(AudioMood.Background);
 
         OnScoreChangedThreshold += TryToPlayNextTrack;
         OnScoreChanged += PlayNextIfScoreChanged;
