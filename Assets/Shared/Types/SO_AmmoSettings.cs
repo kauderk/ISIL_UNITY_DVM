@@ -19,10 +19,6 @@ public class SO_AmmoSettings : ScriptableObject
     public float damage { get; private set; } = 5f;
 
 
-    [field: SerializeField, Tooltip("How much ammo will be consumed.")]
-    public int magazineSize { get; private set; } = 10;
-
-
     [field: SerializeField, Tooltip("When a collider triggers it's pickup function, the global UI color should change.")]
     public Color color { get; private set; } = Color.white;
 

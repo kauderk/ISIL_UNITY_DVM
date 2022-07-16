@@ -14,7 +14,7 @@ namespace Weapon
         protected override void MyAwake()
         {
             base.MyAwake();
-            delta = Settings.FireRate + 1; // able to shoot on start up
+            delta = Settings.Burst + 1; // able to shoot on start up
             IShooter = WeaponSettings.shooter; //SO_WeaponShooter
             IShooter.Init(WeaponSettings.Magazine, WeaponSettings.bulletSettings, EditorSettings);
         }
@@ -53,7 +53,7 @@ namespace Weapon
                 Awaiting();
 
                 cycle.TakeFromMagazine();
-                IShooter.Fire(OnBurst: () => Play(S => S.Burst));
+                IShooter.Fire(OnBurst: () => Play(S => S.Burst), IShooter.Delay);
                 Play(S => S.Fire);
 
                 transform.NotifySiblings<IFireEvent>(I => I.OnFire());
