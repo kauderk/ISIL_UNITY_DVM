@@ -1,10 +1,11 @@
 using UnityEngine;
 using Store;
+using System;
 
 namespace Weapon
 {
     [CreateAssetMenu(fileName = "WeaponShooter", menuName = "Game Data/WeaponShooter")]
-    public class SO_WeaponShooter : ScriptableObject, IWeaponShooter
+    public class SO_WeaponShooter : ScriptableObject, IWeaponShooter, IBaseWeaponCmp
     {
         [field: SerializeField]
         public WeaponType Type { get; private set; }
@@ -16,7 +17,7 @@ namespace Weapon
         public float Cadence { get; private set; }
 
         public SO_WeaponMagazine Magazine { get; private set; }
-
+        public SO_WeaponSFX SFX { get; private set; }
 
         GameObject Bullet;
         SOC_WeaponShooter EditorSettings;
@@ -28,7 +29,7 @@ namespace Weapon
             return hasAmmo && enoughTime;
         }
 
-        public void Fire()
+        public void Fire(Action OnBurst = null)
         {
             Magazine.consume();
             for (int i = 0; i < FireRate; i++)
@@ -40,6 +41,7 @@ namespace Weapon
                 var AmmoRef = Store.SO_Artillery.Instance.Ammo[Magazine.Type];
                 var bulletSettings = Instantiate(AmmoRef);
 
+                OnBurst?.Invoke();
                 bulletSettings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
                 controller.Init(bulletSettings);
 
@@ -47,11 +49,12 @@ namespace Weapon
             }
         }
 
-        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
+        public void Init(SO_WeaponMagazine Magazine, SO_WeaponSFX SFX, SO_AmmoSettings BulletSettings, SOC_WeaponShooter EditorSettings)
         {
-            this.EditorSettings = EditorSettings;
             this.Magazine = Magazine;
+            this.SFX = SFX;
             this.Bullet = BulletSettings.Bullet;
+            this.EditorSettings = EditorSettings;
         }
     }
 }

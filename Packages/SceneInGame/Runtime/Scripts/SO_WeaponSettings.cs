@@ -9,5 +9,6 @@ namespace Weapon
         public SO_WeaponReloader reloader;
         public SO_AmmoSettings bulletSettings;
         public SO_WeaponMagazine Magazine;
+        public SO_WeaponSFX SFX;
     }
 }

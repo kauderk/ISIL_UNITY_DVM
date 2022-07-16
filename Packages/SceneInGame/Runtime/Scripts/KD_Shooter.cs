@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Weapon
@@ -14,31 +15,34 @@ namespace Weapon
         protected override void MyAwake()
         {
             IShooter = WeaponSettings.shooter; //SO_WeaponShooter
-            IShooter.Init(WeaponSettings.Magazine, WeaponSettings.bulletSettings, EditorSettings);
+            IShooter.Init(WeaponSettings.Magazine, WeaponSettings.SFX, WeaponSettings.bulletSettings, EditorSettings);
         }
 
         protected override void MyUpdate()
         {
-            if (InputIsShooting() && IShooter.CanFire(clockRate))
-            {
-                if (IShooter.Type == WeaponType.automatic)
-                    clockRate = 0f; // reset timer
-
-                IShooter.Fire();
-
-                transform.NotifySiblings<IFireEvent>(I => I.OnFire());
-            }
-            else if (InputIsShooting())
-            {
-                clockRate += Time.deltaTime;
-            }
-
             if (InputStoppedShooting())
             {
+                Play(S => S.Release);
                 transform.NotifySiblings<IFireEvent>(I => I.OnStopFire());
             }
+            if (!InputIsShooting())
+                return;
+
+            clockRate += Time.deltaTime; // update the clock
+
+            if (!IShooter.CanFire(clockRate))
+                return;
+
+            if (IShooter.Type == WeaponType.automatic)
+                clockRate = 0f; // reset timer
+
+            IShooter.Fire(OnBurst: () => Play(S => S.Burst));
+            Play(S => S.Fire);
+
+            transform.NotifySiblings<IFireEvent>(I => I.OnFire());
         }
 
+        private void Play(Func<SO_WeaponSFX, AudioClip> cb) => WeaponSettings.SFX.Play(cb);
         bool InputIsShooting() => Input.GetMouseButton(0) || Input.GetMouseButtonDown(0);
         bool InputStoppedShooting() => Input.GetButtonUp("Fire1");
     }
