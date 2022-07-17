@@ -1,6 +1,7 @@
 using System;
 using EventBusSystem;
 using UnityEngine;
+using Visual;
 
 namespace Weapon
 {
@@ -17,9 +18,8 @@ namespace Weapon
 
         public void OnCollisionWithMagazine(IMagazine magazine, Collision collision)
         {
-            var Ammo = Store.SO_Artillery.Instance.Ammo[magazine.Settings.Type]; // actual object
-            var skin = Instantiate(magazine.SkinSettings); // copy
-            IShooter.Init(Ammo, skin: skin);
+            var obj = magazine.AmmoAndVisualOnPickup(magazine);
+            IShooter.Init(obj.ammo, EditorSettings, obj.skin);
         }
 
         protected override void MyAwake()

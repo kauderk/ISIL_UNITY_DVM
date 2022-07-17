@@ -1,14 +1,15 @@
 using UnityEngine;
+using Visual;
 
 namespace Weapon
 {
     [System.Serializable]
     public class KD_Magazine : WeaponMonoBehaviourPunBase, IMagazine
     {
-        [field: SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
+        [field: SerializeField, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponMagazine Settings { get; set; }
 
-        [field: SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
+        [field: SerializeField, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponSkin SkinSettings { get; set; }
 
         private void OnEnable()
@@ -27,6 +28,15 @@ namespace Weapon
             var tempMaterial = new Material(meshRenderer.sharedMaterial);
             tempMaterial.color = SkinSettings.Color.Runtime;
             meshRenderer.sharedMaterial = tempMaterial;
+        }
+
+        public (SO_AmmoSettings ammo, SO_WeaponSkin skin) AmmoAndVisualOnPickup(IMagazine magazine)
+        {
+            // we can do better that that FIXME:
+            var ammo = Instantiate(Store.SO_Artillery.Instance.Ammo[magazine.Settings.Type]);
+            var skin = Instantiate(magazine.SkinSettings);
+            ammo.Init(ammo.Bullet);
+            return (ammo, skin);
         }
     }
 }

@@ -91,8 +91,8 @@ public class KD_MagazineEditor : Editor
         }
 
         // check if Shooter Settings is valid to show in the inspector
-        script.Settings = EditorUtils.AssignField(wp.Magazine, serializedObject.FindProperty(nameof(script.Settings)));
-        script.SkinSettings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.SkinSettings)));
+        //script.Settings = EditorUtils.AssignField(wp.Magazine, serializedObject.FindProperty("Settings"));
+        //script.SkinSettings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.SkinSettings)));
     }
 }
 #endif

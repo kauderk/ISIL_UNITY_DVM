@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WeaponSettings>k__BackingField: {fileID: 11400000, guid: 39c61857a940eb7458c8f74dcd0cecd3, type: 2}
-  <Settings>k__BackingField: {fileID: 0}
+  <Settings>k__BackingField: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
   <SkinSettings>k__BackingField: {fileID: 11400000, guid: eb846ff21d595a140af8707e5e59334e, type: 2}

@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4840404370733843882, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4840404370733843885, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: m_Radius
@@ -2564,6 +2564,10 @@ PrefabInstance:
       objectReference: {fileID: 1074210193}
     - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: Settings
+      value: 
+      objectReference: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
+    - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
+      propertyPath: <Settings>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
     - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}

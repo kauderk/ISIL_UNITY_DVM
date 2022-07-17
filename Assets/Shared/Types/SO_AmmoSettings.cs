@@ -33,6 +33,11 @@ namespace Weapon
             OriginForward = origin.forward;
             return this;
         }
+        public SO_AmmoSettings Init(GameObject bullet)
+        {
+            Instance.Bullet = bullet;
+            return this;
+        }
         public static SO_AmmoSettings Init(SO_AmmoSettings settings)
         {
             // go fuck yourself rosynator, I DO need the Unity Version of Instantiate()

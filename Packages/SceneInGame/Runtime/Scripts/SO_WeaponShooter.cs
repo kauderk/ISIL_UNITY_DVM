@@ -1,6 +1,7 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
+using Visual;
 
 namespace Weapon
 {
@@ -57,6 +58,7 @@ namespace Weapon
             var bullet = Instantiate(crr.Bullet);
             var settings = Instantiate(crr);
             settings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
+            bullet.GetComponent<MeshRenderer>().ApplyDefaultMaterial(SkinSettings.Color.Editor); // FIXME: this shold be at least a Visual Event
             return (bullet, settings);
         }
 

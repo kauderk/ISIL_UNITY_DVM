@@ -24,6 +24,6 @@ public class KD_SkinTarget : MonoBehaviour, ISkin, IVisualChange
     {
         if (!mesh)
             Awake();
-        mesh.ApplyColor(color);
+        mesh.ApplyDefaultMaterial(color);
     }
 }

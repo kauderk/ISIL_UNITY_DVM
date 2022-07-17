@@ -9,7 +9,7 @@ namespace Visual
     }
     public static class VisualUtils
     {
-        public static void ApplyColor(this MeshRenderer mesh, Color color)
+        public static void ApplyDefaultMaterial(this MeshRenderer mesh, Color color)
         {
             var meshRenderer = mesh;
             var temp = new Material(Shader.Find("Standard")) { color = color };
