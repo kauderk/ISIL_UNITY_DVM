@@ -2,7 +2,7 @@ namespace Photon.Pun
 {
     public class MonoBehaviourPunBase : MonoBehaviourPun
     {
-        bool isMine() => LauncherNW.IsMine();
+        bool isMine() => true;//LauncherNW.IsMine();
 
         // void OnEnable()
         // {
