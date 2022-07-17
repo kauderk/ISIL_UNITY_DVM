@@ -1,4 +1,5 @@
 using UnityEngine;
+using EventBusSystem;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -23,7 +24,7 @@ namespace Weapon
 
         private void OnTriggerEnter(Collider other)
         {
-            GlobalEvents.Invoke(IDs.pickupMagazine, SkinSettings.Color);
+            EventBus.RaiseEvent<ITestBus>(I => I.HandleSubscription());
         }
     }
 

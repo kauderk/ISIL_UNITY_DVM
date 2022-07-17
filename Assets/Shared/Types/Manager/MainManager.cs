@@ -23,7 +23,7 @@ public class MainManager : SingletonScriptableObject<MainManager>
     private void OnDisable()
     {
         CleanOnGameInitializedActions();
-        GlobalEvents.ClanIDToEventMap();
+        //GlobalEvents.ClanIDToEventMap();
     }
 
     private static void CleanOnGameInitializedActions()
