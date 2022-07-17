@@ -10,8 +10,8 @@ namespace Weapon
         float Cadence { get; }
         float Delay { get; }
         void Fire(Action OnBurst = null, float delayInSeconds = 0);
-        void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings Ammo, SOC_WeaponShooter EditorSettings);
         bool Elapsed(float deltaFireRate);
+        void Init(SO_AmmoSettings Ammo = null, SOC_WeaponShooter Editor = null, SO_WeaponSkin skin = null);
     }
     [System.Serializable]
     public class SOC_WeaponShooter

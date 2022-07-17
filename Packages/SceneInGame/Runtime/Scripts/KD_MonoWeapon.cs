@@ -11,10 +11,9 @@ public abstract class WeaponMonoBehaviourPunBase : MonoBehaviourPunBase // think
 
 namespace Weapon
 {
-    public abstract class KD_MonoWeapon : MonoBehaviourPunBase
+    public abstract class KD_MonoWeapon : WeaponMonoBehaviourPunBase
     {
-        [DimmerAssign, Tooltip("Will render Settings, if this isn't null.")]
-        public SO_WeaponSettings WeaponSettings;
+        //public SO_WeaponSettings WeaponSettings { get; }
         protected SO_WeaponMagazine Magazine;
         protected float delta;
         protected bool pending;
