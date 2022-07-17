@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Photon.Realtime;
-using System;
 
 namespace Photon.Pun
 {
@@ -23,21 +22,8 @@ namespace Photon.Pun
         #endregion
 
         #region Photon SetUp
-        public static Func<bool> IsMine { get; private set; } // kinda spaghetti
-
-        void Awake()
+        void Start()
         {
-            IsMine = () =>
-            {
-                try
-                {
-                    return photonView.IsMine;
-                }
-                catch
-                {
-                    return SO_DependencyManager.Instance.CreatePlayerOffline;
-                }
-            };
             Log("Conecting Photon PUN...");
             if (!PhotonNetwork.IsConnected)
                 PhotonNetwork.ConnectUsingSettings();
@@ -53,7 +39,6 @@ namespace Photon.Pun
         {
             Log("Joined lobby");
             OnPhotonJoinedLobby?.Invoke();
-            IsMine = () => photonView.IsMine;
             if (createRoomOnPhotonJoinedLobby)
                 CreateRoom();
         }

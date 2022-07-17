@@ -21,9 +21,6 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
 
     public void CreatePlayer()
     {
-        if (!LauncherNW.IsMine())
-            return;
-
         var cam = InstantiateCamera();
         var player = InstantiatePlayer();
 
