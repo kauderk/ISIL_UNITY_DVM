@@ -6,7 +6,7 @@ namespace Weapon
 {
     public class KD_Shooter : KD_MonoWeapon, ICollisionSubscriber
     {
-        [SerializeField, HideInInspector, Tooltip("Inherited from WeaponSettings")]
+        [SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponShooter Settings;
         public SOC_WeaponShooter EditorSettings;
 
@@ -15,11 +15,11 @@ namespace Weapon
         private void OnEnable() => EventBus.Subscribe(this);
         private void OnDisable() => EventBus.Unsubscribe(this);
 
-        public void OnCollisionWithMagazine(Collision collision)
+        public void OnCollisionWithMagazine(IMagazine magazine, Collision collision)
         {
-            var magazine = collision.gameObject.GetComponent<IMagazine>();
-            var Ammo = Store.SO_Artillery.Instance.Ammo[magazine.settings.Type];
-            IShooter.Init(Ammo: Ammo, skin: magazine.skinSettings);
+            var Ammo = Store.SO_Artillery.Instance.Ammo[magazine.Settings.Type]; // actual object
+            var skin = Instantiate(magazine.SkinSettings); // copy
+            IShooter.Init(Ammo, skin: skin);
         }
 
         protected override void MyAwake()

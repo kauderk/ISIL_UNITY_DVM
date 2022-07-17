@@ -4,5 +4,5 @@ using Weapon;
 
 public interface ICollisionSubscriber : IGlobalSubscriber
 {
-    void OnCollisionWithMagazine(Collision collision);
+    void OnCollisionWithMagazine(IMagazine magazine, Collision collision);
 }

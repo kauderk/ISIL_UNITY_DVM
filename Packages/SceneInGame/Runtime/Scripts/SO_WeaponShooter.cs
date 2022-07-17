@@ -42,17 +42,24 @@ namespace Weapon
         }
         private void CreateBurst(Action OnBurst)
         {
-            var bullet = Instantiate(AmmoSettings.Bullet);
-            var controller = bullet.GetComponent<BulletController>();
+            var @new = InstanciateAmmo(AmmoSettings);
+
+            var controller = @new.bullet.GetComponent<BulletController>();
             controller.enabled = false;
-
-            var Ammo = Instantiate(AmmoSettings);
-            OnBurst?.Invoke();
-            Ammo.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
-            controller.Init(Ammo);
-
+            controller.Init(@new.settings);
             controller.enabled = true;
+
+            OnBurst?.Invoke();
         }
+
+        private (GameObject bullet, SO_AmmoSettings settings) InstanciateAmmo(SO_AmmoSettings crr)
+        {
+            var bullet = Instantiate(crr.Bullet);
+            var settings = Instantiate(crr);
+            settings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
+            return (bullet, settings);
+        }
+
         public void Init(SO_AmmoSettings Ammo = null, SOC_WeaponShooter Editor = null, SO_WeaponSkin skin = null)
         {
             AmmoSettings = Ammo ?? AmmoSettings;

@@ -2,17 +2,20 @@ using UnityEngine;
 
 namespace Weapon
 {
+    [System.Serializable]
     public class KD_Magazine : WeaponMonoBehaviourPunBase, IMagazine
     {
-        [field: SerializeField, HideInInspector, Tooltip("Inherited from WeaponSettings")]
-        public SO_WeaponMagazine Settings;
+        [field: SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
+        public SO_WeaponMagazine Settings { get; set; }
 
-        [field: SerializeField, HideInInspector, Tooltip("Inherited from WeaponSettings")]
-        public SO_WeaponSkin SkinSettings;
+        [field: SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
+        public SO_WeaponSkin SkinSettings { get; set; }
 
-        public SO_WeaponMagazine settings { get { return Settings; } }
-
-        public SO_WeaponSkin skinSettings { get { return SkinSettings; } }
+        private void OnEnable()
+        {
+            Settings = WeaponSettings.Magazine;
+            SkinSettings = WeaponSettings.Skin;
+        }
 
         public void PickUp() { }
 

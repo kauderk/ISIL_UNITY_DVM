@@ -4,7 +4,7 @@ namespace Weapon
 {
     public class KD_Reloader : KD_MonoWeapon
     {
-        [SerializeField, HideInInspector, Tooltip("Inherited from WeaponSettings")]
+        [SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponReloader Settings;
 
         protected override void MyUpdate()
