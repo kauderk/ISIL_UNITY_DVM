@@ -553,3 +553,158 @@ Quick save
 Quick save
 Quick save
 Quick save
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+Disconnecting PUN due to recompile. Exit PlayMode.
+NullReferenceException: Object reference not set to an instance of an object
+OnCollisionEnter
+KeyNotFoundException: The given key was not present in the dictionary.
+OnCollisionEnter
+KeyNotFoundException: The given key was not present in the dictionary.
+OnCollisionEnter
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Weapon.KD_Shooter.OnCollisionWithMagazine (UnityEngine.Collision collision, Weapon.IMagazine magazine) [0x00001] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Packages\SceneInGame\Runtime\Scripts\KD_Shooter.cs:20 
+  at KD_CollisionController+<>c__DisplayClass0_0.<OnCollisionEnter>b__0 (ICollisionSubscriber I) [0x00000] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\Interface\KD_CollisionController.cs:13 
+  at EventBusSystem.EventBus.RaiseEvent[TSubscriber] (System.Action`1[T] action) [0x00036] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\EventBusSystem\EventBus.cs:45 
+System.NullReferenceException: Object reference not set to an instance of an object
+  at KD_SkinMono.OnCollisionWithMagazine (UnityEngine.Collision collision, Weapon.IMagazine magazine) [0x00001] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Packages\SceneInGame\Runtime\Scripts\Skin\KD_SkinMono.cs:28 
+  at KD_CollisionController+<>c__DisplayClass0_0.<OnCollisionEnter>b__0 (ICollisionSubscriber I) [0x00000] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\Interface\KD_CollisionController.cs:13 
+  at EventBusSystem.EventBus.RaiseEvent[TSubscriber] (System.Action`1[T] action) [0x00036] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\EventBusSystem\EventBus.cs:45 
+OnCollisionEnter
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Weapon.KD_Shooter.OnCollisionWithMagazine (UnityEngine.Collision collision, Weapon.IMagazine magazine) [0x00001] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Packages\SceneInGame\Runtime\Scripts\KD_Shooter.cs:20 
+  at KD_CollisionController+<>c__DisplayClass0_0.<OnCollisionEnter>b__0 (ICollisionSubscriber I) [0x00000] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\Interface\KD_CollisionController.cs:13 
+  at EventBusSystem.EventBus.RaiseEvent[TSubscriber] (System.Action`1[T] action) [0x00036] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\EventBusSystem\EventBus.cs:45 
+System.NullReferenceException: Object reference not set to an instance of an object
+  at KD_SkinMono.OnCollisionWithMagazine (UnityEngine.Collision collision, Weapon.IMagazine magazine) [0x00001] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Packages\SceneInGame\Runtime\Scripts\Skin\KD_SkinMono.cs:28 
+  at KD_CollisionController+<>c__DisplayClass0_0.<OnCollisionEnter>b__0 (ICollisionSubscriber I) [0x00000] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\Interface\KD_CollisionController.cs:13 
+  at EventBusSystem.EventBus.RaiseEvent[TSubscriber] (System.Action`1[T] action) [0x00036] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\EventBusSystem\EventBus.cs:45 
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+OnCollisionEnter
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Weapon.KD_Shooter.OnCollisionWithMagazine (UnityEngine.Collision collision) [0x0000d] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Packages\SceneInGame\Runtime\Scripts\KD_Shooter.cs:21 
+  at KD_CollisionController+<>c__DisplayClass0_0.<OnCollisionEnter>b__0 (ICollisionSubscriber I) [0x00000] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\Interface\KD_CollisionController.cs:13 
+  at EventBusSystem.EventBus.RaiseEvent[TSubscriber] (System.Action`1[T] action) [0x00036] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\EventBusSystem\EventBus.cs:45 
+System.NullReferenceException: Object reference not set to an instance of an object
+  at KD_SkinMono.OnCollisionWithMagazine (UnityEngine.Collision collision) [0x0000d] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Packages\SceneInGame\Runtime\Scripts\Skin\KD_SkinMono.cs:29 
+  at KD_CollisionController+<>c__DisplayClass0_0.<OnCollisionEnter>b__0 (ICollisionSubscriber I) [0x00000] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\Interface\KD_CollisionController.cs:13 
+  at EventBusSystem.EventBus.RaiseEvent[TSubscriber] (System.Action`1[T] action) [0x00036] in C:\Users\JOAKIN\Documents\Isil\C6 - M4\NET_PRJ\ISIL_UNITY_DVM\Assets\Shared\Types\EventBusSystem\EventBus.cs:45 
