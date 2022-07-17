@@ -1,9 +1,10 @@
 using UnityEngine;
+using Weapon;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Weapon
+namespace Weapon // Don't repeat yourself, but how? FIXME:
 {
 #if UNITY_EDITOR
     [CanEditMultipleObjects]
@@ -49,3 +50,49 @@ namespace Weapon
     }
 #endif
 }
+#if UNITY_EDITOR
+[CanEditMultipleObjects]
+[CustomEditor(typeof(KD_SkinMono))]
+public class KD_SkinMonoEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        var script = (KD_SkinMono)target;
+        var wp = script.WeaponSettings;
+        if (!wp)
+        {
+            EditorUtils.ErrorInspector(nameof(script.WeaponSettings));
+            return;
+        }
+
+        // check if Shooter Settings is valid to show in the inspector
+        script.Settings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.Settings)));
+
+        if (GUILayout.Button("Change Targets"))
+        {
+            script.NotifySiblings();
+        }
+    }
+}
+[CanEditMultipleObjects]
+[CustomEditor(typeof(KD_Magazine))]
+public class KD_MagazineEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        var script = (KD_Magazine)target;
+        var wp = script.WeaponSettings;
+        if (!wp)
+        {
+            EditorUtils.ErrorInspector(nameof(script.WeaponSettings));
+            return;
+        }
+
+        // check if Shooter Settings is valid to show in the inspector
+        script.Settings = EditorUtils.AssignField(wp.Magazine, serializedObject.FindProperty(nameof(script.Settings)));
+        script.SkinSettings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.SkinSettings)));
+    }
+}
+#endif

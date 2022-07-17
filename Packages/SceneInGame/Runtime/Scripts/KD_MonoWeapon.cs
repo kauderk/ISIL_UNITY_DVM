@@ -1,6 +1,13 @@
 using UnityEngine;
 using Photon.Pun;
 using System;
+using Weapon;
+
+public abstract class WeaponMonoBehaviourPunBase : MonoBehaviourPunBase // think of this as an annoying "div" wrapper
+{
+    [field: SerializeField, DimmerAssign, Tooltip("Will render Settings, if this isn't null.")]
+    public SO_WeaponSettings WeaponSettings { get; set; }
+}
 
 namespace Weapon
 {
