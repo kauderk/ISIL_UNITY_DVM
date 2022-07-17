@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using EventBusSystem;
 using UnityEngine;
 using Visual;
+using Weapon;
 
-public class KD_SkinMono : MonoBehaviour
+public class KD_SkinMono : WeaponMonoBehaviourPunBase, ICollisionSubscriber // FIXME: don't repeat yourself
 {
+    public SO_WeaponSkin Settings;
     public bool ChangeOnStart = true;
     public bool random;
     public Color Color;
+
+    private void OnEnable() => EventBus.Subscribe(this);
+    private void OnDisable() => EventBus.Unsubscribe(this);
 
     public void Awake()
     {
@@ -16,10 +20,13 @@ public class KD_SkinMono : MonoBehaviour
     }
     public void NotifySiblings()
     {
-        transform.NotifySiblings<ISkin>(I => I.ApplyColor(GetColor()));
+        transform.NotifySiblings<ISkin>(I => I.ApplyColor(Settings.Color.Runtime));
     }
-    Color GetColor()
+
+    public void OnCollisionWithMagazine(Collision collision)
     {
-        return !random ? Color : Random.ColorHSV(0f, .5f, 0f, 0.5f);
+        var magazine = collision.gameObject.GetComponent<IMagazine>();
+        Settings.Color.Runtime = magazine.skinSettings.Color.Editor;
+        NotifySiblings();
     }
 }

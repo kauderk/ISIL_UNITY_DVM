@@ -5,7 +5,6 @@ namespace Visual
     public interface ISkin
     {
         void ApplyColor(Color color);
-        void HandleSubscription();
         //void SetSkin(string skinName);
     }
     public static class VisualUtils

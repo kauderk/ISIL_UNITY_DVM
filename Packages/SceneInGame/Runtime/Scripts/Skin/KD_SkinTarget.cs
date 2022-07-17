@@ -3,18 +3,17 @@ using UnityEngine;
 using EventBusSystem;
 using Visual;
 
-public interface ITestBus : IGlobalSubscriber
+public interface IVisualChange : IGlobalSubscriber
 {
-    void HandleSubscription();
+    void OnBusRaise(Color color);
 }
 
 [RequireComponent(typeof(MeshRenderer))]
-public class KD_SkinTarget : MonoBehaviour, ISkin, ITestBus
+public class KD_SkinTarget : MonoBehaviour, ISkin, IVisualChange
 {
     private void OnEnable() => EventBus.Subscribe(this);
     private void OnDisable() => EventBus.Unsubscribe(this);
-
-    public void HandleSubscription() => Debug.Log("Quick save");
+    public void OnBusRaise(Color c) => ApplyColor(c);
 
     [ReadOnly]
     public MeshRenderer mesh;
