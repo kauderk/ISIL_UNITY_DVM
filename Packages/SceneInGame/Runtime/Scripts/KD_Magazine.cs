@@ -14,8 +14,8 @@ namespace Weapon
 
         private void OnEnable()
         {
-            Settings = WeaponSettings.Magazine;
-            SkinSettings = WeaponSettings.Skin;
+            //Settings = WeaponSettings.Magazine;
+            //SkinSettings = WeaponSettings.Skin;
         }
 
         public void PickUp() { }

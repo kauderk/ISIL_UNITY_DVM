@@ -195,6 +195,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22219317}
     - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
+      propertyPath: <Settings>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 54ca0707ab2059e4a9803b2a9ae1b5dd, type: 2}
+    - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: <settings>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 103a6fc739276e1418a3343f44a5f2e8, type: 2}
@@ -202,6 +206,10 @@ PrefabInstance:
       propertyPath: <SkinSettings>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: dc755d7e0700b454dae75e5c6f769bd9, type: 2}
+    - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
+      propertyPath: <WeaponSettings>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: a9028891ca1a8e644afe37e69fb05712, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
 --- !u!21 &22219317
@@ -1819,13 +1827,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1362492291}
     - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
+      propertyPath: <Settings>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a21fbb9581212942872d882c1a88d6e, type: 2}
+    - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: <SkinSettings>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 1669736e019bb9f4d8622167c7f9c0b8, type: 2}
     - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: <WeaponSettings>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 39c61857a940eb7458c8f74dcd0cecd3, type: 2}
+      objectReference: {fileID: 11400000, guid: 5a32977db93d81f478828cd3f8e48f6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
 --- !u!1 &1777402811
@@ -2573,7 +2585,7 @@ PrefabInstance:
     - target: {fileID: 7364139711906798408, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
       propertyPath: <WeaponSettings>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 39c61857a940eb7458c8f74dcd0cecd3, type: 2}
+      objectReference: {fileID: 11400000, guid: c9f6666617e95f74a8684dd79c005783, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8731ffee8ab12468604a13011eb71f, type: 3}
 --- !u!4 &543450652844376172

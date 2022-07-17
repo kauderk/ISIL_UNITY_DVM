@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e1bf59f50206b49adc4469229d3498, type: 3}
+  m_Name: ShotgunSettings
+  m_EditorClassIdentifier: 
+  Shooter: {fileID: 11400000, guid: 7c916a71b5e1a23439c19a3e6f88ec1a, type: 2}
+  Reloader: {fileID: 11400000, guid: 33939f03d579175498d78359ae385c48, type: 2}
+  Ammo: {fileID: 11400000, guid: bbc8f466add33a9408e6d29c7f2d4111, type: 2}
+  Magazine: {fileID: 11400000, guid: 7a21fbb9581212942872d882c1a88d6e, type: 2}
+  Skin: {fileID: 11400000, guid: 1669736e019bb9f4d8622167c7f9c0b8, type: 2}
+  SFX: {fileID: 11400000, guid: 5d6b5cb5c375b364fbd1b913bb41d6b0, type: 2}
