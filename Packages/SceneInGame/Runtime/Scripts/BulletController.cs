@@ -14,11 +14,11 @@ namespace Weapon
 
         protected override void MyUpdate() => Move();
 
-        public void Init(SO_AmmoSettings _settings) // Awake()
+        public void Init(SO_AmmoSettings settings) // Awake()
         {
-            settings = SO_AmmoSettings.Init(_settings); // create a new instance to avoid changing the original settings, because c# passes by reference
             transform.position = settings.Instance.Origin.transform.position;
             thisDamage ??= settings.Damage;
+            this.settings = settings;
         }
 
         float RandomJiggle() => Random.Range(settings.Jigle.x, settings.Jigle.y);

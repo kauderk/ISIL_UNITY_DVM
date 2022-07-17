@@ -1,9 +1,6 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-
-using Store;
 using System;
-using System.Collections;
 
 namespace Weapon
 {
@@ -22,9 +19,9 @@ namespace Weapon
         [field: SerializeField]
         public float Delay { get; private set; } = 0;
 
-        SO_WeaponMagazine magazine;
-        GameObject Bullet;
+        SO_AmmoSettings AmmoSettings;
         SOC_WeaponShooter EditorSettings;
+        SO_WeaponSkin SkinSettings;
 
         public bool Elapsed(float deltaFireRate) => deltaFireRate > Cadence;
 
@@ -45,24 +42,22 @@ namespace Weapon
         }
         private void CreateBurst(Action OnBurst)
         {
-            var bullet = Instantiate(this.Bullet);
+            var bullet = Instantiate(AmmoSettings.Bullet);
             var controller = bullet.GetComponent<BulletController>();
             controller.enabled = false;
 
-            var AmmoRef = Store.SO_Artillery.Instance.Ammo[magazine.Type]; // the only "dependency", how do you avoid this?
-            var Ammo = Instantiate(AmmoRef);
-
+            var Ammo = Instantiate(AmmoSettings);
             OnBurst?.Invoke();
             Ammo.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
             controller.Init(Ammo);
 
             controller.enabled = true;
         }
-        public void Init(SO_WeaponMagazine Magazine, SO_AmmoSettings Ammo, SOC_WeaponShooter EditorSettings)
+        public void Init(SO_AmmoSettings Ammo = null, SOC_WeaponShooter Editor = null, SO_WeaponSkin skin = null)
         {
-            this.magazine = Magazine;
-            this.Bullet = Ammo.Bullet;
-            this.EditorSettings = EditorSettings;
+            AmmoSettings = Ammo ?? AmmoSettings;
+            EditorSettings = Editor ?? EditorSettings;
+            SkinSettings = skin ?? SkinSettings;
         }
     }
 }
