@@ -16,7 +16,7 @@ public class KD_SkinMono : MonoBehaviour
     }
     public void NotifySiblings()
     {
-        transform.NotifySiblings<ISkin>(I => I.ApplyMaterial(GetColor()));
+        transform.NotifySiblings<ISkin>(I => I.ApplyColor(GetColor()));
     }
     Color GetColor()
     {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Visual;
 
@@ -8,14 +9,15 @@ public class KD_SkinTarget : MonoBehaviour, ISkin
     public MeshRenderer mesh;
 
     public void Awake() => mesh = GetComponent<MeshRenderer>();
+
     private void Start()
     {
-        GlobalEvents.Subscribe(IDs.pickupMagazine, c => ApplyMaterial((Color)c));
+        //GlobalEvents.Subscribe<Color>(IDs.pickupMagazine, ApplyColor);
     }
-    public void ApplyMaterial(Color color)
+    public void ApplyColor(Color color)
     {
         if (!mesh)
             Awake();
-        mesh.ApplyMaterial(color);
+        mesh.ApplyColor(color);
     }
 }
