@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviourPunCallbacks
             enabled = false;
         }
 
-        myCamera = GameObject.FindGameObjectWithTag("Camera").transform; //FIXME: 
+        myCamera = GameObject.FindGameObjectWithTag("MainCamera").transform; //FIXME: 
         myCamera.transform.position = transform.position + distance;
     }
     void Update()

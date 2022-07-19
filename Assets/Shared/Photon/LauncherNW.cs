@@ -16,7 +16,7 @@ namespace Photon.Pun
         #region Unity Events
         public UnityEvent OnPhotonJoinedLobby;
         public UnityEvent<string> OnPhotonCreatedRoom;
-        public UnityEvent<string> OnPhotonJoinedRoom;
+        public UnityEvent OnPhotonJoinedRoom;
         public UnityEvent OnPhotonLeftRoom;
         public UnityEvent<string> OnPhotonFailedToConnect;
         #endregion
@@ -72,7 +72,7 @@ namespace Photon.Pun
         {
             Log("Joined Room");
             Log("Room name: " + PhotonNetwork.CurrentRoom.Name);
-            OnPhotonJoinedRoom?.Invoke(PhotonNetwork.CurrentRoom.Name);
+            OnPhotonJoinedRoom?.Invoke();
         }
         public override void OnLeftRoom()
         {

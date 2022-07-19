@@ -11,6 +11,7 @@ using TrackDict = RotaryHeart.Lib.SerializableDictionary.UDictionary<float, SO_A
 public class AudioManager : SingletonScriptableObject<AudioManager>
 {
     public AudioMixer MainAudioMixer;
+    public bool PlayOnLoad;
     [field: SerializeField]
     public UDictionary<AudioMood, int> PreviousMoodIndex { get; private set; }
     public UDictionary<AudioMood, TrackDict> audioMoods;
@@ -23,7 +24,8 @@ public class AudioManager : SingletonScriptableObject<AudioManager>
     {
         audioMoods.AssignSceneComponents(MainAudioMixer);
 
-        //PlayNextTrack(AudioMood.Background);
+        if (PlayOnLoad)
+            PlayNextTrack(AudioMood.Background);
 
         OnScoreChangedThreshold += TryToPlayNextTrack;
         OnScoreChanged += PlayNextIfScoreChanged;

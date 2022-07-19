@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2480576}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1375486730}
+        m_TargetAssemblyTypeName: Photon.Pun.LauncherNW, shared-photon
+        m_MethodName: CreateRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2480576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,17 +842,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412520558}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -63.616264}
+  m_LocalScale: {x: 0.33405668, y: 0.33405668, z: 0.33405668}
   m_Children:
   - {fileID: 695368658}
-  m_Father: {fileID: 2106194374}
-  m_RootOrder: 2
+  m_Father: {fileID: 555785102}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -195}
+  m_AnchoredPosition: {x: 548.0236, y: 205.70956}
   m_SizeDelta: {x: 600, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &412520560
@@ -1282,7 +1294,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -227.52362, y: -90.350624, z: 63.616264}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1556323471}
+  - {fileID: 412520559}
   m_Father: {fileID: 865982668}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2534,43 +2548,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3902c175064d82e47872129aaea50948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnJoinedLobbyLauncher:
+  createRoomOnPhotonJoinedLobby: 1
+  ShowDebug: 1
+  OnPhotonJoinedLobby:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPhotonCreatedRoom:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPhotonJoinedRoom:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1375486729}
-        m_TargetAssemblyTypeName: Networking.MenuManager, Networking
-        m_MethodName: OpenMenu
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: title
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnCreatedRoomLauncher:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1375486729}
-        m_TargetAssemblyTypeName: Networking.MenuManager, Networking
-        m_MethodName: OpenMenu
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: loading
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnJoinedRoomLauncher:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 435941733}
-        m_TargetAssemblyTypeName: UIEvents, Networking
-        m_MethodName: SetText
-        m_Mode: 0
+      - m_Target: {fileID: 1470641892}
+        m_TargetAssemblyTypeName: Networking.Menu, kauderk.lobby
+        m_MethodName: Close
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2579,37 +2571,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1375486729}
-        m_TargetAssemblyTypeName: Networking.MenuManager, Networking
-        m_MethodName: OpenMenu
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: room
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnFailedToConnectLauncher:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1375486729}
-        m_TargetAssemblyTypeName: Networking.MenuManager, Networking
-        m_MethodName: OpenMenu
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: error
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1775985450}
-        m_TargetAssemblyTypeName: UIEvents, Networking
-        m_MethodName: SetText
-        m_Mode: 0
+      - m_Target: {fileID: 724950821}
+        m_TargetAssemblyTypeName: Networking.Menu, kauderk.lobby
+        m_MethodName: Open
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2618,6 +2583,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnPhotonLeftRoom:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPhotonFailedToConnect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1470641890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,17 +2730,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556323470}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -63.616264}
+  m_LocalScale: {x: 0.33405668, y: 0.33405668, z: 0.33405668}
   m_Children:
   - {fileID: 2007852499}
-  m_Father: {fileID: 2106194374}
-  m_RootOrder: 1
+  m_Father: {fileID: 555785102}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -115}
+  m_AnchoredPosition: {x: 548.0236, y: 232.43408}
   m_SizeDelta: {x: 600, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556323472
@@ -3734,8 +3705,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2480574}
-  - {fileID: 1556323471}
-  - {fileID: 412520559}
   m_Father: {fileID: 724950820}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
