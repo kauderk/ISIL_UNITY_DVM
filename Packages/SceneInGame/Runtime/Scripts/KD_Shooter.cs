@@ -66,6 +66,7 @@ namespace Weapon
                 cycle.TakeFromMagazine();
                 IShooter.Fire(OnBurst: () => Play(S => S.Burst), IShooter.Delay);
                 Play(S => S.Fire);
+                EventBus.RaiseEvent<IUIShootEvents>(I => I.OnShoot(new PlayerStats(), Magazine));
 
                 transform.NotifySiblings<IFireEvent>(I => I.OnFire());
             }
