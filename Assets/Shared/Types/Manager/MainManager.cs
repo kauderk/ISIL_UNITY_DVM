@@ -11,6 +11,8 @@ public class MainManager : SingletonScriptableObject<MainManager>
     {
         if (Application.isPlaying)
         {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
             OnGameInitialized?.Invoke();
         }
     }

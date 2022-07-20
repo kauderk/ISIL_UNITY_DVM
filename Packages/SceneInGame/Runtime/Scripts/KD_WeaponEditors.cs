@@ -90,6 +90,11 @@ public class KD_MagazineEditor : Editor
             return;
         }
 
+        if (GUILayout.Button("Update Mesh Renderer"))
+        {
+            script.updateMeshRenderer();
+        }
+
         // check if Shooter Settings is valid to show in the inspector
         //script.Settings = EditorUtils.AssignField(wp.Magazine, serializedObject.FindProperty("Settings"));
         //script.SkinSettings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.SkinSettings)));

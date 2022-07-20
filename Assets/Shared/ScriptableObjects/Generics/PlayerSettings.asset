@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   rotationSpeed: 200
-  movementSpeed: 5
-  weapon: 0
-  bulletPrefab: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
+  movementSpeed: 7.5

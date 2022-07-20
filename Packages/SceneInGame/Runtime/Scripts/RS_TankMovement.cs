@@ -6,11 +6,15 @@ namespace Photon.Pun
     public class RS_TankMovement : MonoBehaviourPunBase
     {
         public SO_PlayerSettings Settings;
+        float rotY, dirZ;
 
         protected override void MyUpdate()
         {
-            transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * Settings.rotationSpeed, 0);
-            transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * Settings.movementSpeed);
+            rotY = Input.GetAxis("Horizontal") * Settings.rotationSpeed * Time.deltaTime;
+            transform.Rotate(0, rotY, 0);
+
+            dirZ = Input.GetAxis("Vertical") * Settings.movementSpeed * Time.deltaTime;
+            transform.Translate(0, 0, dirZ);
         }
     }
 }
