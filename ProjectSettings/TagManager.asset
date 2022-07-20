@@ -9,6 +9,7 @@ TagManager:
   - Shotgun
   - Mira
   - Camera
+  - SolidCollisions
   layers:
   - Default
   - TransparentFX

@@ -32,10 +32,16 @@ namespace Weapon
                 Destroy(gameObject);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject.TryGetComponent<KD_IDamage>(out var damage))
                 damage.TakeDamage(thisDamage ?? settings.Damage);
+
+            settings.TriggerTags.ForEach(tag =>
+            {
+                if (collision.gameObject.CompareTag(tag))
+                    Destroy(this.gameObject);
+            });
         }
     }
 }

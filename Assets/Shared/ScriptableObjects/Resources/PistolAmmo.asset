@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160f1fc96bc450e47817f5f0976387f4, type: 3}
   m_Name: PistolAmmo
   m_EditorClassIdentifier: 
+  TriggerTags:
+  - SolidCollisions
   <Bullet>k__BackingField: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
   <Speed>k__BackingField: 10
   <DestroyAtDistance>k__BackingField: 40

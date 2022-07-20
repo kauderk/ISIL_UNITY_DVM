@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Weapon
 {
     [CreateAssetMenu(fileName = "AmmoSettings", menuName = "Game Data/SO_AmmoSettings")]
     public class SO_AmmoSettings : ScriptableObject
     {
+        [TagSelector] public List<string> TriggerTags;
+
         [field: SerializeField, Tooltip("How fast will the bullet move.")]
         public GameObject Bullet { get; private set; }
 
