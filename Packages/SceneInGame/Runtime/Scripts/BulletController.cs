@@ -34,7 +34,7 @@ namespace Weapon
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent<KD_IDamage>(out var damage))
+            if (other.gameObject.TryGetComponent<IDamage>(out var damage))
                 damage.TakeDamage(thisDamage ?? settings.Damage);
 
             settings.TriggerTags.ForEach(tag =>

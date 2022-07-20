@@ -1,4 +1,4 @@
-public interface KD_IDamage
+public interface IDamage
 {
     void TakeDamage(float damage);
 }

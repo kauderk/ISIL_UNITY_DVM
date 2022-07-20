@@ -4,18 +4,20 @@ using Photon.Pun;
 using UnityEditor;
 #endif
 
-public class HealthController : MonoBehaviourPun, KD_IDamage
+public class HealthController : MonoBehaviourPun, IDamage, IPlayerStatsSubscriber
 {
-    public float health = 100f;
+    [field: SerializeField]
+    public PlayerStats Stats { get; private set; }
+
+    public void OnStatsChanged(PlayerStats stats) => Stats = stats;
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        Stats.Health -= damage;
+        if (Stats.Health <= 0)
         {
-            Debug.Log("Dead", gameObject);
             Destroy(this.gameObject);
-            RespawnSystem.Instance.CallRespawnPlayer();
+            RespawnSystem.Instance.CallRespawnPlayer(Stats);
         }
     }
 }
@@ -25,13 +27,22 @@ public class HealthController : MonoBehaviourPun, KD_IDamage
 [CustomEditor(typeof(HealthController))]
 public class HealthControllerEditor : Editor
 {
+    HealthController script;
+    private void OnEnable()
+    {
+        script = (HealthController)target;
+    }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         if (GUILayout.Button("Take Damage"))
         {
-            var script = target as HealthController;
-            script.TakeDamage(100f);
+            script.TakeDamage(10f);
+        }
+        //kill me
+        if (GUILayout.Button("Kill Me"))
+        {
+            script.TakeDamage(script.Stats.Health + 1);
         }
     }
 }
