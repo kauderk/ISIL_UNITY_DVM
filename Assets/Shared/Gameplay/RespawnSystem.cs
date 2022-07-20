@@ -22,7 +22,7 @@ public class RespawnSystem : MonoBehaviour
     // create a coroutine to respawn the player
     public IEnumerator RespawnPlayer()
     {
-        yield return new WaitForSeconds(5); // wait
+        yield return new WaitForSeconds(2); // wait
         // create
         var creation = SO_DependencyManager.Instance.CreatePlayerPrefabs();
         // set random position
