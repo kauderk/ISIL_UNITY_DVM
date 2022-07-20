@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbc5a2d701273b4b96a9827490889ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WeaponSettings>k__BackingField: {fileID: 0}
+  <WeaponSettings>k__BackingField: {fileID: 11400000, guid: c9f6666617e95f74a8684dd79c005783, type: 2}
   Settings: {fileID: 11400000, guid: eb846ff21d595a140af8707e5e59334e, type: 2}
   ChangeOnStart: 1
   random: 0
@@ -5049,7 +5049,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Settings: {fileID: 11400000, guid: 3aae6c2604408344d966570f5194b56b, type: 2}
-  rb: {fileID: 6174200290490017378}
 --- !u!114 &3131309838712745906
 MonoBehaviour:
   m_ObjectHideFlags: 0

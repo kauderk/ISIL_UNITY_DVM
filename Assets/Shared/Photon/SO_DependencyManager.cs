@@ -15,11 +15,14 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         MainManager.RegisterOnGameInitialized(() =>
         {
             if (CreatePlayerOffline)
-                CreatePlayer();
+            {
+                CreatePlayerPrefabs().list
+                .ForEach(go => go.SetActive(true));
+            }
         });
     }
 
-    public void CreatePlayer()
+    public (GameObject player, GameObject cam, List<GameObject> list) CreatePlayerPrefabs()
     {
         var cam = InstantiateCamera();
         var player = InstantiatePlayer();
@@ -27,8 +30,8 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         cam.controller.AssignTarget(player.transform);
         player.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.animtor));
 
-        new List<GameObject> { cam.go, player }
-        .ForEach(go => go.SetActive(true));
+        var list = new List<GameObject>() { player, cam.go };
+        return (player, cam.go, list);
     }
 
     #region Query

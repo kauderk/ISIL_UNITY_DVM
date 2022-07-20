@@ -1,6 +1,7 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class HealthController : MonoBehaviour, KD_IDamage
+public class HealthController : MonoBehaviourPun, KD_IDamage
 {
     private float health = 100f;
 
@@ -10,7 +11,8 @@ public class HealthController : MonoBehaviour, KD_IDamage
         if (health <= 0)
         {
             Debug.Log("Dead", gameObject);
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            RespawnSystem.Instance.CallRespawnPlayer();
         }
     }
 }
