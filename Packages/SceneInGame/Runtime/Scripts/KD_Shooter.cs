@@ -28,6 +28,7 @@ namespace Weapon
             delta = Settings.Burst + 1; // able to shoot on start up
             IShooter = WeaponSettings.Shooter; //SO_WeaponShooter
             IShooter.Init(WeaponSettings.Ammo, EditorSettings, WeaponSettings.Skin);
+            EventBus.RaiseEvent<IUIShootEvents>(I => I.OnShoot(new PlayerStats(), Magazine));
         }
 
         protected override void MyUpdate() // Use a State Machine FIXME:

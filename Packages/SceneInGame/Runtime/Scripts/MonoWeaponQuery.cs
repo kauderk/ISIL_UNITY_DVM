@@ -13,9 +13,9 @@ namespace Weapon
             void TakeFromMagazine()
             {
                 if (I.Type == WeaponType.singleShot)
-                    Magazine.Clear();
+                    Magazine.Clear(); // 0
                 else
-                    Magazine.Consume();
+                    Magazine.Consume(); // 1
             }
             return (canShoot, TakeFromMagazine);
         }
