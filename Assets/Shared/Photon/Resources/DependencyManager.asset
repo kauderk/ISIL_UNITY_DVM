@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b661d311e8db44a9456850ac541e9f, type: 3}
   m_Name: DependencyManager
   m_EditorClassIdentifier: 
-  CreatePlayerOffline: 1
+  CreatePlayerOffline: 0
   playerPrefab: {fileID: 4072184899575808409, guid: 03a539a81ebee964b9a13d34a2cec22a, type: 3}
   cameraFollowPrefab: {fileID: 892686442898908530, guid: c6ad9bbed65074b4bbe8fb89fe8abdbe, type: 3}

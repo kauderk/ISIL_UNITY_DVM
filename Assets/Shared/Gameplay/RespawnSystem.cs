@@ -36,7 +36,7 @@ public class RespawnSystem : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         stats.Instance.Player.transform.position = GetRandomPoint().position;
-        stats.Instance.Player.SetActive(false);
+        stats.Instance.Player.SetActive(true);
     }
 
     void OnEnable()

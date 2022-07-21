@@ -1,8 +1,11 @@
+using UnityEngine;
+
 namespace Photon.Pun
 {
+    [RequireComponent(typeof(PhotonView))]
     public class MonoBehaviourPunBase : MonoBehaviourPun
     {
-        bool isMine() => true;//LauncherNW.IsMine();
+        bool isMine() => photonView?.IsMine == true || SO_DependencyManager.Instance.CreatePlayerOffline;
 
         // void OnEnable()
         // {

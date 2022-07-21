@@ -8,8 +8,9 @@ namespace Photon.Pun
     {
         [SerializeField]
         private bool createRoomOnPhotonJoinedLobby;
-        string roomName = "ISIL_DVM_Room";
+        string roomName = "ISIL_DVM_Room2";
         public void SetRoomNameInputField(string roomName) => this.roomName = roomName;
+        public bool IsMine { get { return photonView?.IsMine == true; } }
 
         public bool ShowDebug = true;
 

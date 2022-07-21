@@ -2,6 +2,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
 using Visual;
+using Photon.Pun;
 
 namespace Weapon
 {
@@ -55,7 +56,7 @@ namespace Weapon
 
         private (GameObject bullet, SO_AmmoSettings settings) InstanciateAmmo(SO_AmmoSettings crr)
         {
-            var bullet = Instantiate(crr.Bullet);
+            var bullet = InstantiatePrefab(crr.Bullet, EditorSettings.Scope.position, Quaternion.identity);
             var settings = Instantiate(crr);
             settings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
             bullet.GetComponent<MeshRenderer>().ApplyDefaultMaterial(SkinSettings.Color.Editor); // FIXME: this shold be at least a Visual Event
@@ -67,6 +68,14 @@ namespace Weapon
             AmmoSettings = Ammo ?? AmmoSettings;
             EditorSettings = Editor ?? EditorSettings;
             SkinSettings = skin ?? SkinSettings;
+        }
+        //FIXME:
+        private GameObject InstantiatePrefab(GameObject prefabName, Vector3 position, Quaternion rotation)
+        {
+            if (SO_DependencyManager.Instance.CreatePlayerOffline)
+                return UnityEngine.Object.Instantiate(prefabName, position, rotation);
+            else
+                return PhotonNetwork.Instantiate(prefabName.name, position, rotation);
         }
     }
 }

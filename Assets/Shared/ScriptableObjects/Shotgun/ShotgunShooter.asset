@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcda179eeb8e064b8291c9e9f7c19a2, type: 3}
   m_Name: ShotgunShooter
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 2
+  <Type>k__BackingField: 1
   <Burst>k__BackingField: 5
-  <Cadence>k__BackingField: 0.5
+  <Cadence>k__BackingField: 1
   <Delay>k__BackingField: 0.1
