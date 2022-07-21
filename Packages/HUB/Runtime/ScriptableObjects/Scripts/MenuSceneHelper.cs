@@ -6,24 +6,10 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
-using Photon.Pun;
 
 [CreateAssetMenu(fileName = "MenuHelper", menuName = "Loaders/MenuHelper")]
 public class MenuSceneHelper : ScriptableObject
 {
-    public string UserRoomName = "ISIL_DVM";
-    public string UserNickname = "Player";
-    // set UserRoomName
-    public void SetUserRoomName(string roomName)
-    {
-        //PhotonNetwork.CurrentRoom.Name = roomName;
-        UserRoomName = roomName;
-    }
-    public void SetUserNickname(string nickname)
-    {
-        PhotonNetwork.NickName = UserNickname = nickname;
-    }
-
     void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Confined;
