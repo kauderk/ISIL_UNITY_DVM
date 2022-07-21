@@ -30,13 +30,15 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         var cam = InstantiateCamera();
         var player = InstantiatePlayer();
 
-        if (!cam.photonView.IsMine)
+        if (cam.photonView.IsMine)
             cam.controller.AssignTarget(player.photonView.ViewID);
         player.go.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.animtor));
         player.go.transform.NotifyChildren<IPlayerStatsSubscriber>(I => I.OnStatsChanged(CreatePlayerStats(player.go, cam.go)));
 
         player.go.SetActive(true); // show others regarless of their photon view
         cam.go.SetActive(CreatePlayerOffline || cam.photonView.IsMine); // if set to offline, show camera regardless of photon view
+        if (!cam.photonView.IsMine)
+            Destroy(cam.go);
     }
     PlayerStats CreatePlayerStats(GameObject player, GameObject cam)
     {

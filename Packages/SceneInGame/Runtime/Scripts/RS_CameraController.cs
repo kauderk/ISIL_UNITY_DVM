@@ -10,7 +10,15 @@ public class RS_CameraController : MonoBehaviourPunBase, ICamera
     [SerializeField] Transform Target;
 
     public void AssignTarget(Transform target) => Target = target;
-    public void AssignTarget(int id) => Target = PhotonView.Find(id).transform;
+    public void AssignTarget(int id)
+    {
+        if (!photonView.IsMine && PhotonNetwork.IsConnected)
+            return;
+
+        Target = PhotonView.Find(id).transform;
+        if (!photonView.IsMine)
+            Destroy(gameObject);
+    }
     public Transform GetTarget() => Target;
 
     protected override void MyUpdate()

@@ -10,6 +10,8 @@ namespace Photon.Pun
 
         protected override void MyUpdate()
         {
+            if (!photonView.IsMine && PhotonNetwork.IsConnected)
+                return;
             rotY = Input.GetAxis("Horizontal") * Settings.rotationSpeed * Time.deltaTime;
             transform.Rotate(0, rotY, 0);
 

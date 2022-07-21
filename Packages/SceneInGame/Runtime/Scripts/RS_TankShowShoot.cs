@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Weapon;
+using Photon.Pun;
 
-public class RS_TankShowShoot : MonoBehaviour, IFireEvent, ICameraEvents
+public class RS_TankShowShoot : MonoBehaviourPunBase, IFireEvent, ICameraEvents
 {
     public ParticleSystem fireShot;
     [SerializeField] Animator camAnim;
@@ -34,6 +35,8 @@ public class RS_TankShowShoot : MonoBehaviour, IFireEvent, ICameraEvents
 
     public void OnCameraAnimatorChange(Animator camera)
     {
+        if (!photonView.IsMine && PhotonNetwork.IsConnected)
+            return;
         camAnim = camera;
     }
     public void OnCameraTriggersChange(List<string> shakes)
