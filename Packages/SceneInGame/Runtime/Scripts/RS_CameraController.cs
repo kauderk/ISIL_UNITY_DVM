@@ -10,6 +10,7 @@ public class RS_CameraController : MonoBehaviourPunBase, ICamera
     [SerializeField] Transform Target;
 
     public void AssignTarget(Transform target) => Target = target;
+    public void AssignTarget(int id) => Target = PhotonView.Find(id).transform;
     public Transform GetTarget() => Target;
 
     protected override void MyUpdate()
