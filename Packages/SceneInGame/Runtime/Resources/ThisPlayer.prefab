@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 6830632112925308021}
   - component: {fileID: 3022471041834781968}
   - component: {fileID: 3988961668560711869}
+  - component: {fileID: 7798708458054500609}
   m_Layer: 7
   m_Name: PlayerName
   m_TagString: Untagged
@@ -252,6 +253,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ce465921aaa89248ab729a8430d8028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7798708458054500609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093600942540105237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ce6f18b86ef5a4baa08333b326e414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2597929261817080950
@@ -15118,6 +15131,7 @@ GameObject:
   - component: {fileID: 2902442304776377741}
   - component: {fileID: 1253632173721824492}
   - component: {fileID: 3680646862543356168}
+  - component: {fileID: 6224743762713819960}
   m_Layer: 7
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -15287,6 +15301,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97a282f965648a443835db0726c6285e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6224743762713819960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816848218727647930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ce6f18b86ef5a4baa08333b326e414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8078488608823751954

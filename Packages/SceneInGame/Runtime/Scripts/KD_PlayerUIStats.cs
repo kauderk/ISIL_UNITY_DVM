@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class KD_PlayerUIStats : MonoBehaviour
+using TMPro;
+using Photon.Pun;
+public interface IMenuData
 {
-    // Start is called before the first frame update
-    void Start()
+    string GetRoomName();
+    string SetNickname();
+}
+
+public class KD_PlayerUIStats : MonoBehaviourPunBase //, IMenuData
+{
+    private void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        GetComponent<TMP_Text>().text = PhotonNetwork.NickName;
     }
 }
