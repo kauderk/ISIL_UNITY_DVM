@@ -8523,3 +8523,13 @@ There are 2 event systems in the scene. Please ensure there is always exactly on
 There are 2 event systems in the scene. Please ensure there is always exactly one event system in the scene
 There are 2 event systems in the scene. Please ensure there is always exactly one event system in the scene
 There are 2 event systems in the scene. Please ensure there is always exactly one event system in the scene
+GetSleepAngularVelocity is no longer supported. Use GetSleepThreshold().
+GetSleepVelocity is no longer supported. Use GetSleepThreshold().
+GetSleepAngularVelocity is no longer supported. Use GetSleepThreshold().
+GetSleepVelocity is no longer supported. Use GetSleepThreshold().
+GetSleepAngularVelocity is no longer supported. Use GetSleepThreshold().
+GetSleepVelocity is no longer supported. Use GetSleepThreshold().
+Received OnSerialization for view ID 1. We have no such PhotonView! Ignore this if you're joining or leaving a room. State: Joined
+Received OnSerialization for view ID 2. We have no such PhotonView! Ignore this if you're joining or leaving a room. State: Joined
+Received OnSerialization for view ID 1. We have no such PhotonView! Ignore this if you're joining or leaving a room. State: Joined
+Received OnSerialization for view ID 2. We have no such PhotonView! Ignore this if you're joining or leaving a room. State: Joined

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShotgunMagazine
   m_EditorClassIdentifier: 
   <MagazineSize>k__BackingField: 20
-  <Amoution>k__BackingField: 20
+  <Amoution>k__BackingField: 15
   <Type>k__BackingField: 1

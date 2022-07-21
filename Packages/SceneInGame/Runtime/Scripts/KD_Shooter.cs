@@ -26,16 +26,19 @@ namespace Weapon
         protected override void MyAwake()
         {
             base.MyAwake();
-            delta = Settings.Burst + 1; // able to shoot on start up
+            // able to shoot on start up
             SetUp();
         }
         protected override void OnNewWeaponSettings() => SetUp();
 
         private void SetUp()
         {
+            Magazine.Fill();
+            delta = Settings.Burst + 1;
             IShooter = WeaponSettings.Shooter; //SO_WeaponShooter
             IShooter.Init(WeaponSettings.Ammo, EditorSettings, WeaponSettings.Skin);
             EventBus.RaiseEvent<IUIShootEvents>(I => I.OnMagazineChange(Stats, Magazine));
+            //Resolve(false);
         }
 
         protected override void MyUpdate() // Use a State Machine FIXME:
