@@ -93,6 +93,14 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
         await UniTask.Delay(TimeSpan.FromSeconds(fade.waitTime));
         OnComplete?.Invoke();
     }
+    public async UniTask FadeIn(Action OnComplete)
+    {
+        var fade = new Fade(); // come ON!
+        ToogleFader(true);
+        await LerpFader(1, 0, fade);
+        await UniTask.Delay(TimeSpan.FromSeconds(fade.waitTime));
+        OnComplete?.Invoke();
+    }
 
     public async UniTask LoadScene<T>(T sceneID, Fade fade = null)
     {

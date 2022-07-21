@@ -10,15 +10,21 @@ using System;
 [CreateAssetMenu(fileName = "MenuHelper", menuName = "Loaders/MenuHelper")]
 public class MenuSceneHelper : ScriptableObject
 {
-    void Start()
+    void OnEnable()
     {
-        // KILL ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        ShowCursor();
     }
+
+    public void ShowCursor(bool b = true) => Cursor.visible = b;
+
     public async void Quit()
     {
         await SO_SceneLoader.Instance.FadeOut(() => Application.Quit());
+    }
+    public async void FadeOut()
+    {
+        await SO_SceneLoader.Instance.FadeOut(() => { });
     }
     public void DisableButtons(RectTransform obj) => ToggleButtons(obj, false);
     public void EnableButtons(RectTransform obj) => ToggleButtons(obj, true);
