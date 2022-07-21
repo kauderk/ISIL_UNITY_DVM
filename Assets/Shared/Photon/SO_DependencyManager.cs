@@ -24,14 +24,13 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
             }
         });
     }
-    PhotonView myPhotonView;
 
     public void CreatePlayerPrefabs()
     {
         var cam = InstantiateCamera();
         var player = InstantiatePlayer();
 
-        cam.controller.AssignTarget(player.go.transform);
+        //cam.controller.AssignTarget(player.go.transform);
         player.go.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.animtor));
         player.go.transform.NotifyChildren<IPlayerStatsSubscriber>(I => I.OnStatsChanged(CreatePlayerStats(player.go, cam.go)));
 

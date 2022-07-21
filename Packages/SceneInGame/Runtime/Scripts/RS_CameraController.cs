@@ -15,6 +15,7 @@ public class RS_CameraController : MonoBehaviourPunBase, ICamera
     protected override void MyUpdate()
     {
         // follow the Target with smoothness
-        transform.position = Vector3.Lerp(transform.position, Target.position + distance, Smoothness);
+        if (Target)
+            transform.position = Vector3.Lerp(transform.position, Target.position + distance, Smoothness);
     }
 }

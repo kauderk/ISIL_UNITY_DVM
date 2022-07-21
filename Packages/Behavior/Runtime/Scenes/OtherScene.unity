@@ -2211,6 +2211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3479598692247720190, guid: 277b0449f73dfe240adbf0f1cd439e26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3479598692247720191, guid: 277b0449f73dfe240adbf0f1cd439e26, type: 3}
       propertyPath: m_Name
       value: PhotonLauncher

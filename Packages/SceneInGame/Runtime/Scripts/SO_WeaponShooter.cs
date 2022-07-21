@@ -46,18 +46,18 @@ namespace Weapon
         {
             var @new = InstanciateAmmo(AmmoSettings);
 
-            var controller = @new.bullet.GetComponent<BulletController>();
-            controller.enabled = false;
-            controller.Init(@new.settings);
-            controller.enabled = true;
+            // var controller = @new.bullet.GetComponent<BulletController>();
+            // controller.enabled = false;
+            // //controller.Init(@new.settings);
+            // controller.enabled = true;
 
             OnBurst?.Invoke();
         }
 
         private (GameObject bullet, SO_AmmoSettings settings) InstanciateAmmo(SO_AmmoSettings crr)
         {
-            var bullet = InstantiatePrefab(crr.Bullet, EditorSettings.Scope.position, Quaternion.identity);
             var settings = Instantiate(crr);
+            var bullet = InstantiatePrefab(crr.Bullet, EditorSettings.Scope.position, Quaternion.identity, settings);
             settings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
             bullet.GetComponent<MeshRenderer>().ApplyDefaultMaterial(SkinSettings.Color.Editor); // FIXME: this shold be at least a Visual Event
             return (bullet, settings);
@@ -70,12 +70,17 @@ namespace Weapon
             SkinSettings = skin ?? SkinSettings;
         }
         //FIXME:
-        private GameObject InstantiatePrefab(GameObject prefabName, Vector3 position, Quaternion rotation)
+        private GameObject InstantiatePrefab(GameObject prefabName, Vector3 position, Quaternion rotation, SO_AmmoSettings settings)
         {
+            object[] myCustomInitData = new object[]
+            {
+                settings
+            };
+
             if (SO_DependencyManager.Instance.CreatePlayerOffline)
                 return UnityEngine.Object.Instantiate(prefabName, position, rotation);
             else
-                return PhotonNetwork.Instantiate(prefabName.name, position, rotation);
+                return PhotonNetwork.Instantiate(prefabName.name, position, rotation, 0, myCustomInitData);
         }
     }
 }

@@ -14,6 +14,16 @@ namespace Weapon
 
         protected override void MyUpdate() => Move();
 
+        public void OnPhotonInstantiate(PhotonMessageInfo info)
+        {
+            UnityEngine.Debug.Break();
+            object[] instantiationData = info.photonView.InstantiationData;
+            instantiationData[0] = instantiationData[0] as SO_AmmoSettings;
+            settings = instantiationData[0] as SO_AmmoSettings;
+            Init(settings);
+            // ...
+        }
+
         public void Init(SO_AmmoSettings settings) // Awake()
         {
             transform.position = settings.Instance.Origin.transform.position;
