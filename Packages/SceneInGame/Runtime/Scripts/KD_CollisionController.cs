@@ -9,7 +9,7 @@ public class KD_CollisionController : MonoBehaviour
         if (collision.gameObject.TryGetComponent<KD_Magazine>(out var magazine))
         {
             var weaponSettings = magazine.WeaponSettings;
-            EventBus.RaiseEvent<ICollisionSubscriber>(I => I.OnCollisionWithMagazine(weaponSettings, collision));
+            transform.NotifyChildren<ICollisionSubscriber>(I => I.OnCollisionWithMagazine(weaponSettings, collision));
             Destroy(collision.gameObject);
         }
     }

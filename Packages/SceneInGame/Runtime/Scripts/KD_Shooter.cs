@@ -5,16 +5,13 @@ using Visual;
 
 namespace Weapon
 {
-    public class KD_Shooter : KD_MonoWeapon//, ICollisionSubscriber
+    public class KD_Shooter : KD_MonoWeapon, ICollisionSubscriber
     {
         [SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponShooter Settings;
         public SOC_WeaponShooter EditorSettings;
 
         IWeaponShooter IShooter;
-
-        private void OnEnable() => EventBus.Subscribe(this);
-        private void OnDisable() => EventBus.Unsubscribe(this);
 
         // public void OnCollisionWithMagazine(SO_WeaponSettings weaponSettings, Collision collision)
         // {
@@ -26,10 +23,15 @@ namespace Weapon
         protected override void MyAwake()
         {
             base.MyAwake();
-            // able to shoot on start up
             SetUp();
         }
-        protected override void OnNewWeaponSettings() => SetUp();
+
+        public void OnCollisionWithMagazine(SO_WeaponSettings weaponSettings, Collision collision)
+        {
+            WeaponSettings = weaponSettings;
+            UpdateMagazine();
+            SetUp();
+        }
 
         private void SetUp()
         {

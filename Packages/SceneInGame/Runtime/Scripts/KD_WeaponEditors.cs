@@ -23,7 +23,7 @@ namespace Weapon // Don't repeat yourself, but how? FIXME:
             }
 
             // check if Shooter Settings is valid to show in the inspector
-            script.Settings = EditorUtils.AssignField(wp.Shooter, serializedObject.FindProperty(nameof(script.Settings)));
+            //FIXME:script.Settings = EditorUtils.AssignField(wp.Shooter, serializedObject.FindProperty(nameof(script.Settings)));
 
             if (!wp.Ammo) // check if the bullet settings is null
                 EditorUtils.ErrorInspector(nameof(wp.Ammo));
@@ -45,7 +45,7 @@ namespace Weapon // Don't repeat yourself, but how? FIXME:
             }
 
             // check if Shooter Settings is valid to show in the inspector
-            script.Settings = EditorUtils.AssignField(wp.Reloader, serializedObject.FindProperty(nameof(script.Settings)));
+            //FIXME:script.Settings = EditorUtils.AssignField(wp.Reloader, serializedObject.FindProperty(nameof(script.Settings)));
         }
     }
 #endif
@@ -67,7 +67,7 @@ public class KD_SkinMonoEditor : Editor
         }
 
         // check if Shooter Settings is valid to show in the inspector
-        script.Settings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.Settings)));
+        //FIXME:script.Settings = EditorUtils.AssignField(wp.Skin, serializedObject.FindProperty(nameof(script.Settings)));
 
         if (GUILayout.Button("Change Targets"))
         {

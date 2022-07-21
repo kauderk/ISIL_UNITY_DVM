@@ -11,17 +11,18 @@ public abstract class WeaponMonoBehaviourPunBase : MonoBehaviourPunBase // think
 
 namespace Weapon
 {
-    public abstract class KD_MonoWeapon : WeaponMonoBehaviourPunBase, IPlayerStatsSubscriber, ICollisionSubscriber
+    public abstract class KD_MonoWeapon : WeaponMonoBehaviourPunBase, IPlayerStatsSubscriber
     {
         //public SO_WeaponSettings WeaponSettings { get; }
         protected SO_WeaponMagazine Magazine;
         protected float delta;
         protected bool pending;
         protected PlayerStats Stats;
+        protected Action OnNewWeaponSettings;
 
         protected override void MyAwake() => UpdateMagazine();
 
-        private void UpdateMagazine() => Magazine = WeaponSettings.Magazine;
+        protected void UpdateMagazine() => Magazine = WeaponSettings.Magazine;
 
         public void Play(Func<SO_WeaponSFX, AudioClip> cb) => WeaponSettings.SFX.Play(cb);
         protected void Awaiting(bool? BusyMagazine = null)
@@ -36,14 +37,9 @@ namespace Weapon
             pending = false;
         }
 
-        public void OnStatsChanged(PlayerStats stats) => Stats = stats;
-
-        public void OnCollisionWithMagazine(SO_WeaponSettings weaponSettings, Collision collision)
+        public void OnStatsChanged(PlayerStats stats)
         {
-            WeaponSettings = weaponSettings;
-            UpdateMagazine();
-            OnNewWeaponSettings();
+            Stats = stats;
         }
-        protected virtual void OnNewWeaponSettings() { }
     }
 }

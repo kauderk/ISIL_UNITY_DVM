@@ -28,9 +28,17 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
 
         cam.controller.AssignTarget(player.transform);
         player.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.animtor));
+        player.transform.NotifyChildren<IPlayerStatsSubscriber>(I => I.OnStatsChanged(CreatePlayerStats(player, cam.go)));
 
         new List<GameObject>() { player, cam.go }
         .ForEach(go => go.SetActive(true));
+    }
+    PlayerStats CreatePlayerStats(GameObject player, GameObject cam)
+    {
+        var stats = new PlayerStats();
+        stats.Instance.Player = player;
+        stats.Instance.Camera = cam;
+        return stats;
     }
 
     #region Query

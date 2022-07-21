@@ -3,12 +3,19 @@ using UnityEngine;
 
 namespace Weapon
 {
-    public class KD_Reloader : KD_MonoWeapon
+    public class KD_Reloader : KD_MonoWeapon, ICollisionSubscriber
     {
         [SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponReloader Settings;
 
-        protected override void OnNewWeaponSettings()
+        public void OnCollisionWithMagazine(SO_WeaponSettings weaponSettings, Collision collision)
+        {
+            WeaponSettings = weaponSettings;
+            UpdateMagazine();
+            SetUp();
+        }
+
+        private void SetUp()
         {
             Resolve(BusyMagazine: false);
             Settings = WeaponSettings.Reloader;
@@ -32,7 +39,7 @@ namespace Weapon
             if (delta > WeaponSettings.SFX.FullyReloaded.length)
             {
                 Resolve(BusyMagazine: false);
-                EventBus.RaiseEvent<IUIShootEvents>(I => I.OnMagazineChange(Stats, Magazine));
+                EventBus.RaiseEvent<IUIShootEvents>(I => I.OnMagazineChange(Stats, WeaponSettings.Magazine));
             }
         }
     }

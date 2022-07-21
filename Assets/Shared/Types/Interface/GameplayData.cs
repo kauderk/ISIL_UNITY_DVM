@@ -20,7 +20,7 @@ public class PlayerStats
 
     [field: SerializeField]
     public float Health { get; set; } = 100f; // should be private...
-    public PlayerInstance Instance { get; }
+    public PlayerInstance Instance { get; } = new PlayerInstance();
 }
 public class PlayerInstance
 {
