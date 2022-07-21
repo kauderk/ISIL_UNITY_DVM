@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 2
   <Burst>k__BackingField: 5
-  <Cadence>k__BackingField: 0.2
+  <Cadence>k__BackingField: 0.5
   <Delay>k__BackingField: 0.1

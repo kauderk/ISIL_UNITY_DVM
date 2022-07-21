@@ -8,7 +8,11 @@ namespace Weapon
         [SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponReloader Settings;
 
-        protected override void OnNewWeaponSettings() => Settings = WeaponSettings.Reloader;
+        protected override void OnNewWeaponSettings()
+        {
+            Resolve(BusyMagazine: false);
+            Settings = WeaponSettings.Reloader;
+        }
 
         protected override void MyUpdate()
         {
