@@ -20956,3 +20956,8 @@ NullReferenceException: Object reference not set to an instance of an object
 NullReferenceException: Object reference not set to an instance of an object
 NullReferenceException: Object reference not set to an instance of an object
 Exception: Write failed. Custom type not found: Weapon.SO_AmmoSettings
+Exception: Write failed. Custom type not found: Weapon.SO_AmmoSettings
+Exception: Write failed. Custom type not found: Weapon.SO_AmmoSettings
+MissingReferenceException: The object of type 'PhotonView' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Disconnecting PUN due to recompile. Exit PlayMode.

@@ -1,53 +1,46 @@
 using System.Diagnostics;
 using UnityEngine;
 using Photon.Pun;
+using System.Collections.Generic;
 
 namespace Weapon
 {
-    public class BulletController : MonoBehaviourPunBase
+    public class BulletController : MonoBehaviourPunBase, IPunInstantiateMagicCallback
     {
-        /// <summary>
-        /// If no one sets a value, "settings.damage" will be used.
-        /// </summary>
-        [HideInInspector] public float? thisDamage = null;
-        private SO_AmmoSettings settings;
+        [TagSelector]
+        public List<string> TriggerTags = new List<string>();
+        Vector3 initPos = Vector3.zero;
+        Vector3 forward = Vector3.zero;
 
         protected override void MyUpdate() => Move();
 
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
-            UnityEngine.Debug.Break();
+            //UnityEngine.Debug.Break();
             object[] instantiationData = info.photonView.InstantiationData;
-            instantiationData[0] = instantiationData[0] as SO_AmmoSettings;
-            settings = instantiationData[0] as SO_AmmoSettings;
-            Init(settings);
-            // ...
+            initPos = transform.position;
+            forward = (Vector3)instantiationData[0];
         }
 
-        public void Init(SO_AmmoSettings settings) // Awake()
-        {
-            transform.position = settings.Instance.Origin.transform.position;
-            thisDamage ??= settings.Damage;
-            this.settings = settings;
-        }
 
-        float RandomJiggle() => Random.Range(settings.Jigle.x, settings.Jigle.y);
+        float RandomJiggle() => Random.Range(-.3f, .3f);
         private void Move()
         {
-            var direccion = settings.OriginForward + new Vector3(RandomJiggle(), 0, RandomJiggle());
-            var distance = Vector3.Distance(settings.Instance.Caster.transform.position, transform.position);
-            transform.position += settings.Speed * Time.deltaTime * direccion;
+            var direccion = forward + new Vector3(RandomJiggle(), 0, RandomJiggle());
+            var distance = Vector3.Distance(initPos, transform.position);
+            transform.position += 10 * Time.deltaTime * direccion;
 
-            if (distance > settings.DestroyAtDistance)
+            if (distance > 30)
                 Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent<IDamage>(out var damage))
-                damage.TakeDamage(thisDamage ?? settings.Damage);
+                damage.TakeDamage(10);
 
-            settings.TriggerTags.ForEach(tag =>
+
+            TriggerTags.ForEach(tag =>
             {
                 if (other.gameObject.CompareTag(tag))
                     Destroy(this.gameObject);

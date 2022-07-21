@@ -44,23 +44,18 @@ namespace Weapon
         }
         private void CreateBurst(Action OnBurst)
         {
-            var @new = InstanciateAmmo(AmmoSettings);
+            var initPos = EditorSettings.Scope.position;
+            object[] myCustomInitData = new object[]
+            {
+                EditorSettings.Caster.transform.forward
+            };
 
-            // var controller = @new.bullet.GetComponent<BulletController>();
-            // controller.enabled = false;
-            // //controller.Init(@new.settings);
-            // controller.enabled = true;
+            if (SO_DependencyManager.Instance.CreatePlayerOffline)
+                UnityEngine.Object.Instantiate(AmmoSettings.Bullet, initPos, Quaternion.identity);
+            else
+                PhotonNetwork.Instantiate(AmmoSettings.Bullet.name, initPos, Quaternion.identity, 0, myCustomInitData);
 
             OnBurst?.Invoke();
-        }
-
-        private (GameObject bullet, SO_AmmoSettings settings) InstanciateAmmo(SO_AmmoSettings crr)
-        {
-            var settings = Instantiate(crr);
-            var bullet = InstantiatePrefab(crr.Bullet, EditorSettings.Scope.position, Quaternion.identity, settings);
-            settings.Init(bullet, EditorSettings.Caster, EditorSettings.Scope);
-            bullet.GetComponent<MeshRenderer>().ApplyDefaultMaterial(SkinSettings.Color.Editor); // FIXME: this shold be at least a Visual Event
-            return (bullet, settings);
         }
 
         public void Init(SO_AmmoSettings Ammo = null, SOC_WeaponShooter Editor = null, SO_WeaponSkin skin = null)
@@ -68,19 +63,6 @@ namespace Weapon
             AmmoSettings = Ammo ?? AmmoSettings;
             EditorSettings = Editor ?? EditorSettings;
             SkinSettings = skin ?? SkinSettings;
-        }
-        //FIXME:
-        private GameObject InstantiatePrefab(GameObject prefabName, Vector3 position, Quaternion rotation, SO_AmmoSettings settings)
-        {
-            object[] myCustomInitData = new object[]
-            {
-                settings
-            };
-
-            if (SO_DependencyManager.Instance.CreatePlayerOffline)
-                return UnityEngine.Object.Instantiate(prefabName, position, rotation);
-            else
-                return PhotonNetwork.Instantiate(prefabName.name, position, rotation, 0, myCustomInitData);
         }
     }
 }
