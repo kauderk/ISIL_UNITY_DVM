@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160f1fc96bc450e47817f5f0976387f4, type: 3}
   m_Name: ShotgunAmmo
   m_EditorClassIdentifier: 
+  TriggerTags: []
   <Bullet>k__BackingField: {fileID: 4690624050911692975, guid: f19b602cd1610094c92639551559e5bf, type: 3}
   <Speed>k__BackingField: 10
   <DestroyAtDistance>k__BackingField: 40
   <Damage>k__BackingField: 5
-  <Jigle>k__BackingField: {x: -0.3, y: 0.3}
+  <Jigle>k__BackingField: {x: -0.6, y: 0.6}
   <OriginForward>k__BackingField: {x: 0, y: 0, z: 0}
   Instance:
     <Caster>k__BackingField: {fileID: 0}

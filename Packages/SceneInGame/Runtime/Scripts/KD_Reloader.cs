@@ -1,3 +1,4 @@
+using EventBusSystem;
 using UnityEngine;
 
 namespace Weapon
@@ -25,6 +26,7 @@ namespace Weapon
             if (delta > WeaponSettings.SFX.FullyReloaded.length)
             {
                 Resolve(BusyMagazine: false);
+                EventBus.RaiseEvent<IUIShootEvents>(I => I.OnMagazineChange(Stats, Magazine));
             }
         }
     }

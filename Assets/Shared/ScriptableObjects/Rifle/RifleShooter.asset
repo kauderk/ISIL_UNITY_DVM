@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd959fb9bd9e5041814b973e4662099, type: 3}
-  m_Name: ShotgunMagazine
+  m_Script: {fileID: 11500000, guid: fdcda179eeb8e064b8291c9e9f7c19a2, type: 3}
+  m_Name: RifleShooter
   m_EditorClassIdentifier: 
-  <MagazineSize>k__BackingField: 20
-  <Amoution>k__BackingField: 20
-  <Type>k__BackingField: 1
+  <Type>k__BackingField: 0
+  <Burst>k__BackingField: 1
+  <Cadence>k__BackingField: 0.1
+  <Delay>k__BackingField: 0

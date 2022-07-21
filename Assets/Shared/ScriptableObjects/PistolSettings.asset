@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e1bf59f50206b49adc4469229d3498, type: 3}
   m_Name: PistolSettings
   m_EditorClassIdentifier: 
-  Shooter: {fileID: 11400000, guid: 7c916a71b5e1a23439c19a3e6f88ec1a, type: 2}
-  Reloader: {fileID: 11400000, guid: 33939f03d579175498d78359ae385c48, type: 2}
+  Shooter: {fileID: 11400000, guid: 73988af8c59bcac4b895e586faedb390, type: 2}
+  Reloader: {fileID: 11400000, guid: 3676420b7056fa54ba1da86c6cf62c8c, type: 2}
   Ammo: {fileID: 11400000, guid: 00e65dd2c959da949b44d4918736ce36, type: 2}
   Magazine: {fileID: 11400000, guid: cb736c03bbd838f4bae6d72c8137b86c, type: 2}
   Skin: {fileID: 11400000, guid: eb846ff21d595a140af8707e5e59334e, type: 2}

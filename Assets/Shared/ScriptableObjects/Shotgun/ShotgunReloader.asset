@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd959fb9bd9e5041814b973e4662099, type: 3}
-  m_Name: ShotgunMagazine
+  m_Script: {fileID: 11500000, guid: fb6a7ed6ef9e9194a870949f72f8f44f, type: 3}
+  m_Name: ShotgunReloader
   m_EditorClassIdentifier: 
-  <MagazineSize>k__BackingField: 20
-  <Amoution>k__BackingField: 20
-  <Type>k__BackingField: 1
+  <Amount>k__BackingField: 2
+  <FullyReloadTime>k__BackingField: 5
+  <SingleReloadTime>k__BackingField: 1.5

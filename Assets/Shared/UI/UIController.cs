@@ -11,9 +11,11 @@ public class UIController : MonoBehaviour, IUIShootEvents
 
     public TMP_Text AmmoText;
 
-    public void OnShoot(PlayerStats player, SO_WeaponMagazine magazine)
+    public void OnMagazineChange(PlayerStats player, SO_WeaponMagazine magazine)
     {
         // react to ammo change
         AmmoText.text = magazine.Amoution.ToString();
+
+        if (magazine.Amoution <= 0) AmmoText.text = "R";
     }
 }
