@@ -21023,3 +21023,24 @@ Your script should either check if it is null or you should not destroy the obje
 (-4.0, 1.8, 13.1)
 (-4.0, 1.8, 13.3)
 (-4.0, 1.8, 13.6)
+MissingComponentException: There is no 'Renderer' attached to the "ThisPlayer(Clone)" game object, but a script is trying to access it.
+You probably need to add a Renderer to the game object "ThisPlayer(Clone)". Or your script needs to check if the component is attached before using it.
+Disconnecting PUN due to recompile. Exit PlayMode.
+Can not Instantiate before the client joined/created a room. State: ConnectingToGameServer
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+Can not Instantiate before the client joined/created a room. State: ConnectedToNameServer
+NullReferenceException: Object reference not set to an instance of an object
+MissingReferenceException: The object of type 'GameObject' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object
+NullReferenceException: Object reference not set to an instance of an object

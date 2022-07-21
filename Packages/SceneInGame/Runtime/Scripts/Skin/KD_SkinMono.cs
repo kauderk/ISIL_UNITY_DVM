@@ -1,3 +1,4 @@
+using System.Collections;
 using EventBusSystem;
 using UnityEngine;
 using Visual;
@@ -19,6 +20,4 @@ public class KD_SkinMono : WeaponMonoBehaviourPunBase // FIXME: don't repeat you
     {
         transform.NotifySiblings<ISkin>(I => I.ApplyColor(Settings.Color.Runtime));
     }
-
-
 }

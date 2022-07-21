@@ -1,5 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
+using System.Collections;
+using Visual;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,15 +11,29 @@ public class HealthController : MonoBehaviourPun, IDamage, IPlayerStatsSubscribe
     [field: SerializeField]
     public PlayerStats Stats { get; private set; }
 
-    public void OnStatsChanged(PlayerStats stats) => Stats = stats;
+    public void CurrentHealth(float health)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    public void OnStatsChanged(PlayerStats stats)
+    {
+        Stats = stats;
+        transform.NotifyChildren<IDamage>(I => I.CurrentHealth(Stats.Health));
+    }
 
     public void TakeDamage(float damage)
     {
         Stats.Health -= damage;
         if (Stats.Health <= 0)
         {
-            Destroy(this.gameObject);
+            //gameObject.SetActive(false);
             RespawnSystem.Instance.CallRespawnPlayer(Stats);
+        }
+        else
+        {
+            transform.NotifyChildren<ISkin>(I => I.Flicker());
+            transform.NotifyChildren<IDamage>(I => I.CurrentHealth(Stats.Health));
         }
     }
 }
