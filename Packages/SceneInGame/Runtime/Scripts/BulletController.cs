@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 using Photon.Pun;
 using System.Collections.Generic;
@@ -12,11 +11,10 @@ namespace Weapon
         Vector3 initPos = Vector3.zero;
         Vector3 forward = Vector3.zero;
 
-        protected override void MyUpdate() => Move();
+        //protected override void MyUpdate() => Move();
 
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
-            //UnityEngine.Debug.Break();
             object[] instantiationData = info.photonView.InstantiationData;
             initPos = transform.position;
             forward = (Vector3)instantiationData[0];
@@ -24,7 +22,7 @@ namespace Weapon
 
 
         float RandomJiggle() => Random.Range(-.3f, .3f);
-        private void Move()
+        private void Update()
         {
             var direccion = forward + new Vector3(RandomJiggle(), 0, RandomJiggle());
             var distance = Vector3.Distance(initPos, transform.position);
