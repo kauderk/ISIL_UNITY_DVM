@@ -5,7 +5,7 @@ using Visual;
 
 namespace Weapon
 {
-    public class KD_Shooter : KD_MonoWeapon, ICollisionSubscriber
+    public class KD_Shooter : KD_MonoWeapon//, ICollisionSubscriber
     {
         [SerializeField, HideInInspector, Tooltip("Must Inherit from WeaponSettings")]
         public SO_WeaponShooter Settings;

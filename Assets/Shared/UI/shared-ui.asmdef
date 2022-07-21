@@ -2,9 +2,9 @@
     "name": "shared-ui",
     "rootNamespace": "",
     "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:db11e77527d3d9449b57cc4d0c0b396d",
-        "GUID:29c3c0027a7e34443ac615caa3f2d247",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:29c3c0027a7e34443ac615caa3f2d247"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

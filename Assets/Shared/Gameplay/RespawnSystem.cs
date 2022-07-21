@@ -29,15 +29,14 @@ public class RespawnSystem : MonoBehaviour
     }
 
     public void CallRespawnPlayer(PlayerStats stats) => StartCoroutine(RespawnPlayer(stats));
-    public IEnumerator RespawnPlayer(PlayerStats ID)
+    public IEnumerator RespawnPlayer(PlayerStats stats)
     {
-        yield return new WaitForSeconds(2); // wait
-        // create
-        var creation = SO_DependencyManager.Instance.CreatePlayerPrefabs();
-        // set random position
-        creation.player.transform.position = GetRandomPoint().position;
-        // enable gameobjects
-        creation.list.ForEach(go => go.SetActive(true));
+        stats.Instance.Player.SetActive(false);
+
+        yield return new WaitForSeconds(2);
+
+        stats.Instance.Player.transform.position = GetRandomPoint().position;
+        stats.Instance.Player.SetActive(false);
     }
 
     void OnEnable()

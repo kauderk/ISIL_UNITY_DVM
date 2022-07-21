@@ -2,9 +2,9 @@
     "name": "shared-photon",
     "rootNamespace": "",
     "references": [
-        "GUID:db11e77527d3d9449b57cc4d0c0b396d",
         "GUID:57c32fc907df0f54e8e6e8f0d2488336",
-        "GUID:831409e8f9d13b5479a3baef9822ad34"
+        "GUID:831409e8f9d13b5479a3baef9822ad34",
+        "GUID:db11e77527d3d9449b57cc4d0c0b396d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

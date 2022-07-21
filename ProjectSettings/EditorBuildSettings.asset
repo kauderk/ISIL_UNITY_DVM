@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Packages/com.kauderk.hub/Runtime/Scenes/LauncherLobbyScene.unity
     guid: ca57bdcf8239efd44a0b1d69ebd0bc54
-  - enabled: 1
+  - enabled: 0
     path: Packages/com.kauderk.hub/Runtime/Scenes/SceneHUB.unity
     guid: c7e2a27c678976e44bae0e4efd807ffd
-  - enabled: 1
+  - enabled: 0
     path: Packages/com.singersilent.behavior/Runtime/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Packages/com.ricostudio.sceneingame/Runtime/Scenes/TANK.unity
     guid: af9b56f959089c948b00c6001975a778
+  - enabled: 1
+    path: Packages/com.singersilent.behavior/Runtime/Scenes/OtherScene.unity
+    guid: d5e4f93e710bb8b4cb7d60ca9262b398
   m_configObjects: {}
