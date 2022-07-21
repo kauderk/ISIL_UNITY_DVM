@@ -1,17 +1,14 @@
 using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RotaryHeart.Lib.SerializableDictionary;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 
 [CreateAssetMenu(fileName = "SceneLoader", menuName = "Loaders/SceneLoader")]
 public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
 {
-    [Tooltip("SO_SceneData are ScriptableObjects")]
-    public UDictionary<SceneID, SO_SceneData> SceneDataDict;
-
     [Tooltip("A canvas that covers the entire screen")]
     public GameObject FaderCanvasPrefab = null;
 
@@ -28,11 +25,18 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     private void OnEnable()
     {
         //SceneManager.sceneLoaded += UnitySceneManagerLoaded;
-        MainManager.OnGameInitialized += OnLoad;
+        MainManager.RegisterOnGameInitialized(() =>
+        {
+            pupetMonoBehaviour = new GameObject("Singleton_SceneLoader");
+            DontDestroyOnLoad(pupetMonoBehaviour);
+            // AppendCanvasTo
+            FaderCanvas = Instantiate(FaderCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            FaderCanvas.transform.SetParent(pupetMonoBehaviour.transform, false);
+            UniTask x = SetupCanvasAndFaderAsync();
+        });
     }
     private void OnDisable()
     {
-        MainManager.OnGameInitialized -= OnLoad;
         CleanUp();
     }
     private static void CleanUp()
@@ -46,22 +50,13 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     #endregion
 
 
-    #region Custom Logic
-    private void OnLoad()
-    {
-        pupetMonoBehaviour = new GameObject("Singleton_SceneLoader");
-        DontDestroyOnLoad(pupetMonoBehaviour);
-        // AppendCanvasTo
-        FaderCanvas = Instantiate(FaderCanvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        UniTask uniTask = SetupCanvasAndFaderAsync();
-    }
-    #endregion
+
 
 
     private static GameObject FaderCanvas;
     private static Image fader;
     private static Toggle GlobalVolumeToogle;
-    event Action OnFaderLoaded;
+    public event Action OnFaderLoaded;
     [Tooltip("When the loading begins it won't end until this boolen is set to false")]
     public bool KeepLoading = false;
 
@@ -73,13 +68,6 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
         fader.rectTransform.sizeDelta = new Vector2(Screen.width + buffer, Screen.height + buffer);
         // show
         FaderCanvas.SetActive(true);
-        if (SceneDataOnly)
-        {
-            var sceneName = SceneManager.GetActiveScene().path;
-            var exist = SceneDataDict.Values.Any(so => so.Scene.ScenePath == sceneName);
-            if (!exist)
-                return;
-        }
         ToogleFader(FadeOutOnLoad);
         if (FadeOutOnLoad)
         {
@@ -90,7 +78,22 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
     }
     public void ToogleFader(bool b) => fader.gameObject.SetActive(b);
 
-    public void LoadSceneAwaiter(SceneID id) => LoadScene(id, null).GetAwaiter();
+    public void LoadScene(string sceneName)
+    {
+        var f = LoadScene(sceneName, null);
+    }
+    public async UniTask FadeOut(Action OnComplete)
+    {
+        var fade = new Fade(); // come ON!
+
+        ToogleFader(true);
+
+        await LerpFader(0, 1, fade);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(fade.waitTime));
+        OnComplete?.Invoke();
+    }
+
     public async UniTask LoadScene<T>(T sceneID, Fade fade = null)
     {
         fade = fade ?? new Fade(); // come ON!
@@ -110,7 +113,9 @@ public class SO_SceneLoader : SingletonScriptableObject<SO_SceneLoader>
 
         await LerpFader(0, 1, fade);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(fade.waitTime), ignoreTimeScale: false);
+        await UniTask.Delay(TimeSpan.FromSeconds(fade.waitTime));
+
+        //Debug.Break();
 
         var ao = typeof(T) == typeof(int)
             ? SceneManager.LoadSceneAsync((int)(object)sceneID)

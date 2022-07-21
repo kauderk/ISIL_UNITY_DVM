@@ -12,37 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33703d0e4dc064c4ea81cf37cc657cd1, type: 3}
   m_Name: SceneLoader
   m_EditorClassIdentifier: 
-  SceneDataDict:
-    reorderableList:
-      canAdd: 1
-      canRemove: 1
-      draggable: 1
-      expandable: 1
-      multipleSelection: 1
-      isExpanded: 1
-      label:
-        m_Text: Keys
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-      headerHeight: 18
-      footerHeight: 13
-      slideEasing: 0.15
-      verticalSpacing: 2
-      showDefaultBackground: 1
-      elementDisplayType: 0
-      elementNameProperty: 
-      elementNameOverride: 
-      elementIcon: {fileID: 0}
-    reqReferences: {fileID: 0}
-    isExpanded: 1
-    _keyValues: 00000000010000000200000003000000
-    _keys: 00000000010000000200000003000000
-    _values:
-    - {fileID: 11400000, guid: dc12983b82d18dd44b4a7fc3f393e3f2, type: 2}
-    - {fileID: 11400000, guid: 3d88add320f9b0444b99728261191007, type: 2}
-    - {fileID: 11400000, guid: a13bfcb06bf128d458262cbb063fa385, type: 2}
-    - {fileID: 11400000, guid: 765e13aba5e349848be4354d0920bed3, type: 2}
   FaderCanvasPrefab: {fileID: 4116738222299488092, guid: 41f43640fe213aa4ea437d9edf86e5a6, type: 3}
-  SceneDataOnly: 1
+  SceneDataOnly: 0
   FadeOutOnLoad: 1
   KeepLoading: 0
