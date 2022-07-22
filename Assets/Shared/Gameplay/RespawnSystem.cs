@@ -12,11 +12,6 @@ public class RespawnSystem : MonoBehaviour
     public Transform ParentWithChildernPoints;
     List<Transform> points;
 
-    [Header("Spawn")]
-    public static List<float> SpawnTimes = new List<float>() { 1f, 2f, 4f, 6f };
-    public static float GetSpawnTime(int deathCount) => SpawnTimes[deathCount];
-
-
     private void Awake()
     {
         points = ParentWithChildernPoints.GetComponentsInChildren<Transform>().ToList();
@@ -31,13 +26,13 @@ public class RespawnSystem : MonoBehaviour
     public void CallRespawnPlayer(PlayerStats stats) => StartCoroutine(RespawnPlayer(stats));
     public IEnumerator RespawnPlayer(PlayerStats stats)
     {
-        stats.OnDead();
-
+        // TODO: implement state Handler, to react to OnDead() and OnTryingToRespawn()
+        // currently it's better to move right away and avoid taking extra damage
         stats.Instance.Player.SetActive(false);
-
-        yield return new WaitForSeconds(2);
-
         stats.Instance.Player.transform.position = GetRandomPoint().position;
+
+        yield return new WaitForSeconds(stats.GetSpawnTime());
+        stats.OnDead(); // the order to get the respawn time is important
 
         var canRespawn = stats.OnTryingToRespawn();
         stats.Instance.Player.SetActive(canRespawn);

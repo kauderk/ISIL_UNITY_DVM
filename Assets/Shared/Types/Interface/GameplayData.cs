@@ -12,8 +12,11 @@ public enum Players
 [System.Serializable]
 public class PlayerStats // should be private...
 {
-    public static readonly int MaxLives = 5;
+    public const int MaxLives = 5;
     public static readonly int MaxHealth = 100;
+    public static float[] SpawnTimes = new float[MaxLives] { 1f, 1.5f, 2f, 2.5f, 3f };
+    public float GetSpawnTime() => SpawnTimes[DeathCount];
+
     public Players ID { get; private set; }
     public string NickName { get; private set; }
     public int KillCount { get; private set; }
@@ -21,9 +24,10 @@ public class PlayerStats // should be private...
     public int Score { get; private set; }
     public int RespawnCount { get; private set; }
 
-    public PlayerStats(string nickName = "Player")
+    public PlayerStats(Players id, string nickName = "Player")
     {
         NickName = nickName;
+        ID = id;
     }
 
     [field: SerializeField]
@@ -32,7 +36,7 @@ public class PlayerStats // should be private...
 
     public void OnDead()
     {
-        DeathCount++;
+        DeathCount += 1 % MaxLives; // alright...
     }
     public void OnConfirmedKill()
     {
@@ -45,13 +49,14 @@ public class PlayerStats // should be private...
     public bool OnTryingToRespawn()
     {
         DeathCount++;
-        if (RespawnCount > MaxLives)
+        if (RespawnCount > MaxLives) // try
         {
             Debug.LogWarning("Player " + ID + " has no more respawns");
             return false;
         }
         var t = DeathCount / MaxLives;
         Health = MaxHealth - (MaxHealth * t);
+        RespawnCount++; // success
         return true;
     }
 }

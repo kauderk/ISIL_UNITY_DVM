@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 using Visual;
+using EventBusSystem;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,13 +13,14 @@ public class HealthController : MonoBehaviourPun, IDamage, IPlayerStatsSubscribe
     public PlayerStats Stats { get; private set; }
     public void CurrentHealth(float health)
     {
+        // TODO: should split the interfaces
         //throw new System.NotImplementedException();
     }
 
     public void OnStatsChanged(PlayerStats stats)
     {
         Stats = stats;
-        transform.NotifyChildren<IDamage>(I => I.CurrentHealth(Stats.Health));
+        NotifyHealthListeners();
     }
 
     public void TakeDamage(float damage)
@@ -32,8 +34,13 @@ public class HealthController : MonoBehaviourPun, IDamage, IPlayerStatsSubscribe
         else
         {
             transform.NotifyChildren<ISkin>(I => I.Flicker());
-            transform.NotifyChildren<IDamage>(I => I.CurrentHealth(Stats.Health));
+            NotifyHealthListeners();
         }
+    }
+    public void NotifyHealthListeners()
+    {
+        transform.NotifyChildren<IDamage>(I => I.CurrentHealth(Stats.Health));
+        EventBus.RaiseEvent<IUIShootEvents>(I => I.OnHealthChange(Stats));
     }
 }
 

@@ -39,22 +39,23 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
 
         player.go.SetActive(true); // show others regarless of their photon view
                                    // find all ICamera objects
-        //cam.go.SetActive(CreatePlayerOffline || cam.photonView.IsMine); // if set to offline, show camera regardless of photon view
+                                   //cam.go.SetActive(CreatePlayerOffline || cam.photonView.IsMine); // if set to offline, show camera regardless of photon view
     }
     PlayerStats CreatePlayerStats(GameObject player)
     {
-        var stats = new PlayerStats();
+        var ID = GameplayManager.Instance.GetNextEmptyKey();
+        var stats = new PlayerStats(ID);
         stats.Instance.Player = player;
         //stats.Instance.Camera = cam;
         return stats;
     }
-    PlayerStats CreatePlayerStats(GameObject player, GameObject cam)
-    {
-        var stats = new PlayerStats();
-        stats.Instance.Player = player;
-        stats.Instance.Camera = cam;
-        return stats;
-    }
+    // PlayerStats CreatePlayerStats(GameObject player, GameObject cam)
+    // {
+    //     var stats = new PlayerStats();
+    //     stats.Instance.Player = player;
+    //     stats.Instance.Camera = cam;
+    //     return stats;
+    // }
 
     #region Query
     private PlayerInstace InstantiatePlayer()
