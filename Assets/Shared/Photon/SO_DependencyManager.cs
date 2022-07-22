@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using EventBusSystem;
 using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -38,7 +39,14 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         var ID = GameplayManager.Instance.GetNextEmptyKey();
         var stats = new PlayerStats(ID);
         stats.Instance.Player = player;
-        //stats.Instance.Camera = cam;
+        try
+        {
+            EventBus.RaiseEvent<IMultiplayerSubscriber>(I => I.OnPlayerInstaceCreated(stats));
+        }
+        catch (System.Exception)
+        {
+            System.Diagnostics.Debugger.Break();
+        }
         return stats;
     }
     private PlayerInstace InstantiatePlayer()

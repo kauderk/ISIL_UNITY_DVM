@@ -1,5 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using EventBusSystem;
+
+public interface IMultiplayerSubscriber : IGlobalSubscriber
+{
+    void OnPlayerInstaceCreated(PlayerStats Player);
+}
 
 public enum Players
 {
@@ -18,6 +24,7 @@ public class PlayerStats // should be private...
     public float GetSpawnTime() => SpawnTimes[DeathCount];
 
     public Players ID { get; }
+    public int Order { get; }
     public string NickName { get; }
     public int KillCount { get; private set; }
     public int DeathCount { get; private set; }
@@ -28,6 +35,7 @@ public class PlayerStats // should be private...
     {
         NickName = nickName;
         ID = id;
+        Order = (int)id;
     }
 
     [field: SerializeField]
