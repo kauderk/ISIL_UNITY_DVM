@@ -10,13 +10,13 @@ namespace Photon.Pun
 
         //public Camera camera = null;
 
-        private PhotonView photonView = null;
+        private PhotonView photonViewComp = null;
 
         protected override void MyUpdate()
         {
-            photonView = GetComponent<PhotonView>();
+            photonViewComp = GetComponent<PhotonView>();
 
-            if (this.photonView.IsMine)
+            if (this.photonViewComp.IsMine)
             {
                 rotY = Input.GetAxis("Horizontal") * Settings.rotationSpeed * Time.deltaTime;
                 this.transform.Rotate(0, rotY, 0);
@@ -26,7 +26,6 @@ namespace Photon.Pun
 
                 //this.camera.transform.position = Vector3.Lerp(this.camera.transform.position, this.photonView.transform.position, 0f);
             }
-            else return;
 
             //if (!photonView.IsMine)
             //{
