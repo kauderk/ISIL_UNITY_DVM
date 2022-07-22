@@ -38,14 +38,7 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
     {
         var stats = GameplayManager.Instance.RequestNextPlayer();
         stats.Instance.Player = player;
-        try
-        {
-            EventBus.RaiseEvent<IMultiplayerSubscriber>(I => I.OnPlayerInstaceCreated(stats));
-        }
-        catch (System.Exception)
-        {
-            System.Diagnostics.Debugger.Break();
-        }
+        EventBus.RaiseEvent<IMultiplayerSubscriber>(I => I.OnPlayerInstaceCreated(stats));
         return stats;
     }
     private PlayerInstace InstantiatePlayer()

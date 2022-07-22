@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Photon.Realtime;
+using System;
 
 namespace Photon.Pun
 {
@@ -50,7 +51,8 @@ namespace Photon.Pun
                 Debug.LogWarning("Room name is empty");
                 return;
             }
-            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = 3 }, TypedLobby.Default);
+            var max = (byte)Enum.GetNames(typeof(Players)).Length;
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = max }, TypedLobby.Default);
         }
         public override void OnCreateRoomFailed(short returnCode, string message)
         {

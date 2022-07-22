@@ -4,8 +4,9 @@ using UnityEngine.UI;
 using Weapon;
 using TMPro;
 using System;
+using Photon.Pun;
 
-public class UIController : MonoBehaviour, IUIShootEvents, IMultiplayerSubscriber
+public class UIController : MonoBehaviourPunBase, IUIShootEvents, IMultiplayerSubscriber
 {
     private void Awake() => EventBus.Subscribe(this);
     private void OnDisable() => EventBus.Unsubscribe(this);
@@ -14,9 +15,11 @@ public class UIController : MonoBehaviour, IUIShootEvents, IMultiplayerSubscribe
     public TMP_Text HelathText;
     public TMP_Text UserOrderText;
     string dummy = "";
+    PhotonView photonViewComp;
 
     private void OnEnable()
     {
+        photonViewComp = GetComponent<PhotonView>();
         // var test = AmmoText.text +
         // HelathText.text +
         // UserOrderText.text;
@@ -35,7 +38,8 @@ public class UIController : MonoBehaviour, IUIShootEvents, IMultiplayerSubscribe
     {
         try
         {
-            HelathText.text = player.Health.ToString();
+            if (photonViewComp.IsMine)
+                HelathText.text = player.Health.ToString();
         }
         catch (Exception e)
         {
@@ -49,8 +53,8 @@ public class UIController : MonoBehaviour, IUIShootEvents, IMultiplayerSubscribe
     {
         try
         {
-            // 1 / 4
-            UserOrderText.text = player.Order.ToString() + "/" + Enum.GetNames(typeof(Players)).Length.ToString();
+            if (photonViewComp.IsMine)
+                UserOrderText.text = player.Order.ToString() + "/" + Enum.GetNames(typeof(Players)).Length.ToString();
         }
         catch (Exception e)
         {
