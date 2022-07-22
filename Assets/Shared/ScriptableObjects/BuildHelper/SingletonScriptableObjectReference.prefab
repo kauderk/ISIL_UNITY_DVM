@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1897516654284748783}
   - component: {fileID: 1897516654284748780}
   - component: {fileID: -6060331195959664751}
+  - component: {fileID: 3680282678072791551}
   m_Layer: 0
   m_Name: SingletonScriptableObjectReference
   m_TagString: Untagged
@@ -49,7 +50,6 @@ MonoBehaviour:
   SO_CanvasListener: {fileID: 11400000, guid: 2d3bef48aaccbc446bb7464523966ed2, type: 2}
   SO_RedirectSignalManager: {fileID: 11400000, guid: 62a3f5f2f5e102540a7a6f06019d9329, type: 2}
   SO_DependencyManager: {fileID: 11400000, guid: eacb0e925cf11ec46a10bba41c8d69da, type: 2}
-  SO_CanvasListener2: {fileID: 11400000, guid: 2d3bef48aaccbc446bb7464523966ed2, type: 2}
   SO_PhotonLauncher: {fileID: 11400000, guid: 382ceeba565b0ed40b4447c9ebeaf50d, type: 2}
   SO_Artillery: {fileID: 11400000, guid: 8d5e16b799fb30b478c5603fe2fd9916, type: 2}
   SO_AudioManager: {fileID: 11400000, guid: f1f09a8ec5100394180d298e3bd1d37f, type: 2}
@@ -66,3 +66,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filename: RuntimeLog
+--- !u!114 &3680282678072791551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897516654284748782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1552b5f5f17a72b48a75bd897745c8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerDataDict:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues: 
+    _keys: 
+    _values: []

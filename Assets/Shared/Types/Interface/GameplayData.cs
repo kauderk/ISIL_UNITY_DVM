@@ -17,8 +17,8 @@ public class PlayerStats // should be private...
     public static float[] SpawnTimes = new float[MaxLives] { 1f, 1.5f, 2f, 2.5f, 3f };
     public float GetSpawnTime() => SpawnTimes[DeathCount];
 
-    public Players ID { get; private set; }
-    public string NickName { get; private set; }
+    public Players ID { get; }
+    public string NickName { get; }
     public int KillCount { get; private set; }
     public int DeathCount { get; private set; }
     public int Score { get; private set; }

@@ -27,20 +27,12 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
 
     public void CreatePlayerPrefabs()
     {
-        //var cam = InstantiateCamera();
         var player = InstantiatePlayer();
-
-        //FindObjectsOfType<Camera>().ToList().ForEach(I => I.gameObject.SetActive(false));
-
-        //if (cam.photonView.IsMine)
-        //cam.controller.AssignTarget(player.photonView.ViewID);
-        //player.go.transform.NotifyChildren<ICameraEvents>(I => I.OnCameraAnimatorChange(cam.animtor));
         player.go.transform.NotifyChildren<IPlayerStatsSubscriber>(I => I.OnStatsChanged(CreatePlayerStats(player.go)));
-
         player.go.SetActive(true); // show others regarless of their photon view
-                                   // find all ICamera objects
-                                   //cam.go.SetActive(CreatePlayerOffline || cam.photonView.IsMine); // if set to offline, show camera regardless of photon view
     }
+
+    #region Query
     PlayerStats CreatePlayerStats(GameObject player)
     {
         var ID = GameplayManager.Instance.GetNextEmptyKey();
@@ -49,15 +41,6 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         //stats.Instance.Camera = cam;
         return stats;
     }
-    // PlayerStats CreatePlayerStats(GameObject player, GameObject cam)
-    // {
-    //     var stats = new PlayerStats();
-    //     stats.Instance.Player = player;
-    //     stats.Instance.Camera = cam;
-    //     return stats;
-    // }
-
-    #region Query
     private PlayerInstace InstantiatePlayer()
     {
         var random = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5)); // FIXME:
@@ -69,20 +52,6 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
             photonView = go.GetComponent<PhotonView>()
         };
     }
-
-    //private CamInstace InstantiateCamera()
-    //{
-    //    GameObject go = Instantiate(cameraFollowPrefab, new Vector3(0f, 20f, -20f), Quaternion.identity);
-    //    go.SetActive(false);
-    //    return new CamInstace()
-    //    {
-    //        go = go,
-    //        controller = go.GetComponent<ICamera>(),
-    //        animtor = go.GetComponentInChildren<Animator>(), //TODO: what's the convention?
-    //        photonView = go.GetComponent<PhotonView>(),
-    //    };
-    //}
-
     private GameObject Instantiate(GameObject prefabName, Vector3 position, Quaternion rotation)
     {
         if (CreatePlayerOffline)
