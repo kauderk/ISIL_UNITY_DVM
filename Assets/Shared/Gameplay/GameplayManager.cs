@@ -2,10 +2,23 @@ using UnityEngine;
 using RotaryHeart.Lib.SerializableDictionary;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "GameplayManager", menuName = "Managers/GameplayManager")]
-public class GameplayManager : SingletonScriptableObject<GameplayManager>
+public class GameplayManager : MonoBehaviour
 {
+    public static GameplayManager Instance { get; private set; }
     public UDictionary<Players, PlayerStats> PlayerDataDict = new UDictionary<Players, PlayerStats>();
+
+    void OnEnable()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     // get next empty key
     public Players GetNextEmptyKey()
