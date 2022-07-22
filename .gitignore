@@ -83,4 +83,7 @@ crashlytics-build.properties
 .collabignore
 ignore.conf
 
+#Log
+RuntimeLog*
+
 
