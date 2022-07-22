@@ -31,12 +31,16 @@ public class RespawnSystem : MonoBehaviour
     public void CallRespawnPlayer(PlayerStats stats) => StartCoroutine(RespawnPlayer(stats));
     public IEnumerator RespawnPlayer(PlayerStats stats)
     {
+        stats.OnDead();
+
         stats.Instance.Player.SetActive(false);
 
         yield return new WaitForSeconds(2);
 
         stats.Instance.Player.transform.position = GetRandomPoint().position;
-        stats.Instance.Player.SetActive(true);
+
+        var canRespawn = stats.OnTryingToRespawn();
+        stats.Instance.Player.SetActive(canRespawn);
     }
 
     void OnEnable()

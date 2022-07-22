@@ -39,7 +39,7 @@ public class KD_SkinTarget : MonoBehaviour, ISkin, IVisualChange
         var endColor = Color.red;
         var time = 0f;
         // Flicker for 1 second
-        while (time < .6f)
+        while (time < .15f)
         {
             if (gameObject == null)
                 yield break;
@@ -47,8 +47,9 @@ public class KD_SkinTarget : MonoBehaviour, ISkin, IVisualChange
             // ping-pong between start and end color
             renderer.material.color = startColor == renderer.material.color ? endColor : startColor;
             //renderer.material.color = Color.Lerp(startColor, endColor, time / 1f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
+        yield return new WaitForSeconds(0.05f);
         renderer.material.color = startColor;
     }
 }
