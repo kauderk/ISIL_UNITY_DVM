@@ -3,12 +3,8 @@
 ## Game: 
 - Packages/com.kauderk.lobby/Runtime/Menu.unity
 - Packages/Lobby/Runtime/Menu.unity
-
-## Builds
-- Windows: https://github.com/kauderk/ISIL_UNITY_DVM/actions/workflows/win.yml
-- WebGL: https://kauderk.github.io/ISIL_UNITY_DVM/
+- Build/ISIL_UNITY_DVM.exe
 
 # Assets
 - Github: https://github.com/kauderk/ISIL_UNITY_DVM
-- Google Drive: https://drive.google.com/file/d/12F7ujaKckaTQsCn5dvjLeReXFppu8HGx/view?usp=sharing
-
+- Google Drive: https://drive.google.com/file/d/1h3yC7EOWJVa0ZYil0faQREkUk8oLNbQj/view?usp=sharing
