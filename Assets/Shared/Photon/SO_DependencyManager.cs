@@ -12,7 +12,7 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
     [Tooltip("Should Only be used for testing purposes")]
     public bool CreatePlayerOffline = false;
     public GameObject playerPrefab;
-    public GameObject cameraFollowPrefab;
+    //public GameObject cameraFollowPrefab;
 
     private void OnEnable()
     {
@@ -69,18 +69,18 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
         };
     }
 
-    private CamInstace InstantiateCamera()
-    {
-        GameObject go = Instantiate(cameraFollowPrefab, new Vector3(0f, 20f, -20f), Quaternion.identity);
-        go.SetActive(false);
-        return new CamInstace()
-        {
-            go = go,
-            controller = go.GetComponent<ICamera>(),
-            animtor = go.GetComponentInChildren<Animator>(), //TODO: what's the convention?
-            photonView = go.GetComponent<PhotonView>(),
-        };
-    }
+    //private CamInstace InstantiateCamera()
+    //{
+    //    GameObject go = Instantiate(cameraFollowPrefab, new Vector3(0f, 20f, -20f), Quaternion.identity);
+    //    go.SetActive(false);
+    //    return new CamInstace()
+    //    {
+    //        go = go,
+    //        controller = go.GetComponent<ICamera>(),
+    //        animtor = go.GetComponentInChildren<Animator>(), //TODO: what's the convention?
+    //        photonView = go.GetComponent<PhotonView>(),
+    //    };
+    //}
 
     private GameObject Instantiate(GameObject prefabName, Vector3 position, Quaternion rotation)
     {

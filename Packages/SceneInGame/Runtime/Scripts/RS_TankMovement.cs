@@ -8,7 +8,7 @@ namespace Photon.Pun
         public SO_PlayerSettings Settings;
         float rotY, dirZ;
 
-        public Camera camera = null;
+        //public Camera camera = null;
 
         private PhotonView photonView = null;
 
@@ -24,14 +24,14 @@ namespace Photon.Pun
                 dirZ = Input.GetAxis("Vertical") * Settings.movementSpeed * Time.deltaTime;
                 this.transform.Translate(0, 0, dirZ);
 
-                this.camera.transform.position = Vector3.Lerp(this.camera.transform.position, this.photonView.transform.position, 0f);
+                //this.camera.transform.position = Vector3.Lerp(this.camera.transform.position, this.photonView.transform.position, 0f);
             }
             else return;
 
-            if (!photonView.IsMine)
-            {
-                this.camera.enabled = false;
-            }
+            //if (!photonView.IsMine)
+            //{
+            //    this.camera.enabled = false;
+            //}
         }
     }
 }
