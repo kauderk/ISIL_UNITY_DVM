@@ -10,7 +10,6 @@ public class HealthController : MonoBehaviourPun, IDamage, IPlayerStatsSubscribe
 {
     [field: SerializeField]
     public PlayerStats Stats { get; private set; }
-
     public void CurrentHealth(float health)
     {
         //throw new System.NotImplementedException();
