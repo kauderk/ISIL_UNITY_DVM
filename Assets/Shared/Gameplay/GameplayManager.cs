@@ -22,15 +22,12 @@ public class GameplayManager : MonoBehaviour
     }
 
     // get next empty key
-    public Players GetNextEmptyKey()
+    public PlayerStats RequestNextPlayer()
     {
         var keys = PlayerDataDict.Keys;
         var nextKey = keys.FirstOrDefault(K => !PlayerDataDict.ContainsKey(K));
-        if (nextKey == default)
-        {
-            Debug.LogError("No empty key found");
-            return default;
-        }
-        return nextKey;
+        PlayerDataDict[nextKey] = new PlayerStats(nextKey);
+        // get next empty position
+        return PlayerDataDict[nextKey];
     }
 }

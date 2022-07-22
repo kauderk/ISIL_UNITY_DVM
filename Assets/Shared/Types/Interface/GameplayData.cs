@@ -35,7 +35,7 @@ public class PlayerStats // should be private...
     {
         NickName = nickName;
         ID = id;
-        Order = (int)id;
+        Order = (int)id + 1;
     }
 
     [field: SerializeField]

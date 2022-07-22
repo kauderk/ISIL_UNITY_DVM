@@ -36,8 +36,7 @@ public class SO_DependencyManager : SingletonScriptableObject<SO_DependencyManag
     #region Query
     PlayerStats CreatePlayerStats(GameObject player)
     {
-        var ID = GameplayManager.Instance.GetNextEmptyKey();
-        var stats = new PlayerStats(ID);
+        var stats = GameplayManager.Instance.RequestNextPlayer();
         stats.Instance.Player = player;
         try
         {
